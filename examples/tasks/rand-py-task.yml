@@ -1,0 +1,15 @@
+---
+    version: 1
+    schedule: 
+        type: "simple"
+        interval: "1s"
+    workflow:
+        collect:
+            metrics:
+                /random/float64: {}
+                /random/int64: {}
+                /random/string: {}
+            process:
+                - plugin_name: "tag-py"
+                  publish:
+                    - plugin_name: "file-py"
