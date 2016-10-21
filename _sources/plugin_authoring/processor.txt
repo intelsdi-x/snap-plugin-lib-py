@@ -1,0 +1,5 @@
+Processor
+---------
+
+Below you will find details that cover writing a snap processor plugin in
+Python.

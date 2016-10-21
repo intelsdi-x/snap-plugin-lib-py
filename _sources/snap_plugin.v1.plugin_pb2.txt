@@ -1,0 +1,7 @@
+snap_plugin.v1.plugin_pb2 module
+================================
+
+.. automodule:: snap_plugin.v1.plugin_pb2
+    :members:
+    :undoc-members:
+    :show-inheritance:

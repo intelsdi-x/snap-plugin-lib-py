@@ -1,0 +1,25 @@
+snap_plugin.v1 package
+======================
+
+Submodules
+----------
+
+.. toctree::
+
+   snap_plugin.v1.collector
+   snap_plugin.v1.collector_proxy
+   snap_plugin.v1.plugin
+   snap_plugin.v1.plugin_pb2
+   snap_plugin.v1.plugin_proxy
+   snap_plugin.v1.processor
+   snap_plugin.v1.processor_proxy
+   snap_plugin.v1.publisher
+   snap_plugin.v1.publisher_proxy
+
+Module contents
+---------------
+
+.. automodule:: snap_plugin.v1
+    :members:
+    :undoc-members:
+    :show-inheritance:

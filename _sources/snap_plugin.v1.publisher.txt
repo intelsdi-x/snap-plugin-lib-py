@@ -1,0 +1,7 @@
+snap_plugin.v1.publisher module
+===============================
+
+.. automodule:: snap_plugin.v1.publisher
+    :members:
+    :undoc-members:
+    :show-inheritance:

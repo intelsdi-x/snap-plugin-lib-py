@@ -1,0 +1,7 @@
+snap_plugin.v1.processor module
+===============================
+
+.. automodule:: snap_plugin.v1.processor
+    :members:
+    :undoc-members:
+    :show-inheritance:

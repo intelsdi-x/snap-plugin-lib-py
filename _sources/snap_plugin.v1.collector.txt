@@ -1,0 +1,7 @@
+snap_plugin.v1.collector module
+===============================
+
+.. automodule:: snap_plugin.v1.collector
+    :members:
+    :undoc-members:
+    :show-inheritance:

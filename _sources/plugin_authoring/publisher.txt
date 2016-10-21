@@ -1,0 +1,5 @@
+Publisher
+---------
+
+Below you will find details that cover writing a Snap publisher plugin in
+Python.

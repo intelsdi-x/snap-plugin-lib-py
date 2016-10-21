@@ -1,0 +1,7 @@
+snap_plugin.v1.collector_proxy module
+=====================================
+
+.. automodule:: snap_plugin.v1.collector_proxy
+    :members:
+    :undoc-members:
+    :show-inheritance:

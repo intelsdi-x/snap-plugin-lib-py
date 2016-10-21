@@ -1,0 +1,42 @@
+Collector
+---------
+
+Below you will find details that cover writing a Snap collector plugin in
+Python.
+
+.. include:: plugin_naming.rst
+
+Creating a Class that inherits from snap_plugin.v1.Collector
+############################################################
+
+In order to write a collector plugin you will want to start by defining a class
+that inherits from :obj:`snap_plugin.v1.collector.Collector`.
+
+.. code-block:: Python
+    :linenos:
+
+    import snap_plugin.v1 as snap
+
+    class Rand(Collector):
+
+The next step is to provide an implementation: 
+ * :obj:`snap_plugin.v1.collector.Collector.collect_metrics`, 
+ * :obj:`snap_plugin.v1.collector.Collector.get_metric_types` 
+ * :obj:`snap_plugin.v1.plugin.Plugin.get_config_policy`
+ 
+We'll start with `collect_metrics`.
+
+.. code-block:: Python
+    :linenos:
+
+    import snap_plugin.v1 as snap
+
+    class Rand(Collector):
+        def collector_metrics(self, metrics):
+            some shit.
+
+done
+
+
+
+

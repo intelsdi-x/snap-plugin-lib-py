@@ -1,0 +1,7 @@
+snap_plugin.v1.publisher_proxy module
+=====================================
+
+.. automodule:: snap_plugin.v1.publisher_proxy
+    :members:
+    :undoc-members:
+    :show-inheritance:
