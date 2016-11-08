@@ -7,3 +7,4 @@ Plugin Authoring
     collector
     processor
     publisher
+    packaging

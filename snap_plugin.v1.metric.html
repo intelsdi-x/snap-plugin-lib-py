@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>snap_plugin.v1.metric module &mdash; Snap 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Snap 0.1.0 documentation" href="index.html"/>
+        <link rel="up" title="snap_plugin.v1 package" href="snap_plugin.v1.html"/>
+        <link rel="next" title="snap_plugin.v1.metrics_arg module" href="snap_plugin.v1.metrics_arg.html"/>
+        <link rel="prev" title="snap_plugin.v1.integer_policy module" href="snap_plugin.v1.integer_policy.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="plugin_authoring/index.html">Plugin Authoring</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="snap_plugin.v1.html">snap_plugin.v1 package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="snap_plugin.v1.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.bool_policy.html">snap_plugin.v1.bool_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.collector.html">snap_plugin.v1.collector module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.collector_proxy.html">snap_plugin.v1.collector_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.config_map.html">snap_plugin.v1.config_map module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.config_policy.html">snap_plugin.v1.config_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.float_policy.html">snap_plugin.v1.float_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.get_metrictypes_arg.html">snap_plugin.v1.get_metrictypes_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.integer_policy.html">snap_plugin.v1.integer_policy module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">snap_plugin.v1.metric module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.metrics_arg.html">snap_plugin.v1.metrics_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.namespace.html">snap_plugin.v1.namespace module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.namespace_element.html">snap_plugin.v1.namespace_element module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin.html">snap_plugin.v1.plugin module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin_proxy.html">snap_plugin.v1.plugin_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.processor.html">snap_plugin.v1.processor module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.processor_proxy.html">snap_plugin.v1.processor_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.pub_proc_arg.html">snap_plugin.v1.pub_proc_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.publisher.html">snap_plugin.v1.publisher module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.publisher_proxy.html">snap_plugin.v1.publisher_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.string_policy.html">snap_plugin.v1.string_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.timestamp.html">snap_plugin.v1.timestamp module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="snap_plugin.v1.html#module-snap_plugin.v1">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Snap</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="snap_plugin.v1.html">snap_plugin.v1 package</a> &raquo;</li>
+      
+    <li>snap_plugin.v1.metric module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/snap_plugin.v1.metric.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-snap_plugin.v1.metric">
+<span id="snap-plugin-v1-metric-module"></span><h1>snap_plugin.v1.metric module<a class="headerlink" href="#module-snap_plugin.v1.metric" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="snap_plugin.v1.metric.Metric">
+<em class="property">class </em><code class="descclassname">snap_plugin.v1.metric.</code><code class="descname">Metric</code><span class="sig-paren">(</span><em>namespace=[]</em>, <em>version=None</em>, <em>tags={}</em>, <em>config={}</em>, <em>timestamp=1479481377.261854</em>, <em>unit=''</em>, <em>description=''</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.metric.Metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>The metric object is the core entity of snap representing metrics.</p>
+<dl class="docutils">
+<dt>:param namespace (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of: <a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement" title="snap_plugin.v1.namespace_element.NamespaceElement"><code class="xref py py-class docutils literal"><span class="pre">NamespaceElement</span></code></a>):</dt>
+<dd>namespace elements</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>version</strong> (<code class="xref py py-obj docutils literal"><span class="pre">int</span></code>) &#8211; metric version</li>
+<li><strong>tags</strong> (<code class="xref py py-obj docutils literal"><span class="pre">dict</span></code>) &#8211; metric tags (key/value pairs)</li>
+<li><strong>config</strong> (<a class="reference internal" href="snap_plugin.v1.config_map.html#snap_plugin.v1.config_map.ConfigMap" title="snap_plugin.v1.config_map.ConfigMap"><code class="xref py py-class docutils literal"><span class="pre">ConfigMap</span></code></a>) &#8211; config for
+metric (key/value pairs)</li>
+<li><strong>timestamp</strong> (<code class="xref py py-obj docutils literal"><span class="pre">float</span></code>) &#8211; metric timestamp (see time.time())</li>
+<li><strong>unit</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; metric unit</li>
+<li><strong>description</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; metric description</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<dl class="docutils">
+<dt>metric = Metric(namespace=(&#8220;acme&#8221;, &#8220;sk8&#8221;, &#8220;matix&#8221;, &#8220;rotations&#8221;),</dt>
+<dd>description=&#8221;Rotation count&#8221;)</dd>
+</dl>
+<dl class="attribute">
+<dt id="snap_plugin.v1.metric.Metric.config">
+<code class="descname">config</code><a class="headerlink" href="#snap_plugin.v1.metric.Metric.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric config</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="snap_plugin.v1.config_map.html#snap_plugin.v1.config_map.ConfigMap" title="snap_plugin.v1.config_map.ConfigMap"><code class="xref py py-class docutils literal"><span class="pre">ConfigMap</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.metric.Metric.data">
+<code class="descname">data</code><a class="headerlink" href="#snap_plugin.v1.metric.Metric.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric data</p>
+<p>:param value (<code class="xref py py-obj docutils literal"><span class="pre">bool</span></code> or <code class="xref py py-obj docutils literal"><span class="pre">int</span></code> or <code class="xref py py-obj docutils literal"><span class="pre">long</span></code> or <code class="xref py py-obj docutils literal"><span class="pre">float</span></code>: or <code class="xref py py-obj docutils literal"><span class="pre">basestring</span></code> or <code class="xref py py-obj docutils literal"><span class="pre">bytes</span></code>)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">TypeError</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.metric.Metric.description">
+<code class="descname">description</code><a class="headerlink" href="#snap_plugin.v1.metric.Metric.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric description</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.metric.Metric.namespace">
+<code class="descname">namespace</code><a class="headerlink" href="#snap_plugin.v1.metric.Metric.namespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric namespace elements.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
+<dt><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of</dt>
+<dd><a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement" title="snap_plugin.v1.namespace_element.NamespaceElement"><code class="xref py py-class docutils literal"><span class="pre">NamespaceElement</span></code></a>)</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.metric.Metric.pb">
+<code class="descname">pb</code><a class="headerlink" href="#snap_plugin.v1.metric.Metric.pb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.metric.Metric.tags">
+<code class="descname">tags</code><a class="headerlink" href="#snap_plugin.v1.metric.Metric.tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric tags.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<code class="xref py py-obj docutils literal"><span class="pre">dict</span></code> of strings) &#8211; {&#8220;tag-key&#8221;: &#8220;tag-value&#8221;}</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Example: [(&#8220;tag-key&#8221;, &#8220;tag-value&#8221;)]</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.metric.Metric.timestamp">
+<code class="descname">timestamp</code><a class="headerlink" href="#snap_plugin.v1.metric.Metric.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time in seconds since Epoch.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<code class="xref py py-obj docutils literal"><span class="pre">float</span></code>) &#8211; time in seconds since Epoch (see time.time())</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">time in seconds since Epoch (see time.time())</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref any docutils literal"><span class="pre">float</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.metric.Metric.unit">
+<code class="descname">unit</code><a class="headerlink" href="#snap_plugin.v1.metric.Metric.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric unit</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.metric.Metric.version">
+<code class="descname">version</code><a class="headerlink" href="#snap_plugin.v1.metric.Metric.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric version.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<code class="xref py py-obj docutils literal"><span class="pre">int</span></code>) &#8211; version</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">int</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="snap_plugin.v1.metrics_arg.html" class="btn btn-neutral float-right" title="snap_plugin.v1.metrics_arg module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="snap_plugin.v1.integer_policy.html" class="btn btn-neutral" title="snap_plugin.v1.integer_policy module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016 Intel.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

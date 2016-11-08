@@ -1,0 +1,7 @@
+snap_plugin.v1.timestamp module
+===============================
+
+.. automodule:: snap_plugin.v1.timestamp
+    :members:
+    :undoc-members:
+    :show-inheritance:

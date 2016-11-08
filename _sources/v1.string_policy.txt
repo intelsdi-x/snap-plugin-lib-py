@@ -1,0 +1,7 @@
+v1.string_policy module
+=======================
+
+.. automodule:: v1.string_policy
+    :members:
+    :undoc-members:
+    :show-inheritance:

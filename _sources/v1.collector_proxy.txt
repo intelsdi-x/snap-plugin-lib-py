@@ -1,0 +1,7 @@
+v1.collector_proxy module
+=========================
+
+.. automodule:: v1.collector_proxy
+    :members:
+    :undoc-members:
+    :show-inheritance:

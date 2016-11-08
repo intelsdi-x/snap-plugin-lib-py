@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>snap_plugin.v1.publisher module &mdash; Snap 0.1 documentation</title>
+  <title>snap_plugin.v1.publisher module &mdash; Snap 0.1.0 documentation</title>
   
 
   
@@ -33,10 +33,10 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Snap 0.1 documentation" href="index.html"/>
+    <link rel="top" title="Snap 0.1.0 documentation" href="index.html"/>
         <link rel="up" title="snap_plugin.v1 package" href="snap_plugin.v1.html"/>
         <link rel="next" title="snap_plugin.v1.publisher_proxy module" href="snap_plugin.v1.publisher_proxy.html"/>
-        <link rel="prev" title="snap_plugin.v1.processor_proxy module" href="snap_plugin.v1.processor_proxy.html"/> 
+        <link rel="prev" title="snap_plugin.v1.pub_proc_arg module" href="snap_plugin.v1.pub_proc_arg.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.1
+                0.1.0
               </div>
             
           
@@ -91,15 +91,27 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="snap_plugin.v1.html">snap_plugin.v1 package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="snap_plugin.v1.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.bool_policy.html">snap_plugin.v1.bool_policy module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.collector.html">snap_plugin.v1.collector module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.collector_proxy.html">snap_plugin.v1.collector_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.config_map.html">snap_plugin.v1.config_map module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.config_policy.html">snap_plugin.v1.config_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.float_policy.html">snap_plugin.v1.float_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.get_metrictypes_arg.html">snap_plugin.v1.get_metrictypes_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.integer_policy.html">snap_plugin.v1.integer_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.metric.html">snap_plugin.v1.metric module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.metrics_arg.html">snap_plugin.v1.metrics_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.namespace.html">snap_plugin.v1.namespace module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.namespace_element.html">snap_plugin.v1.namespace_element module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin.html">snap_plugin.v1.plugin module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin_pb2.html">snap_plugin.v1.plugin_pb2 module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin_proxy.html">snap_plugin.v1.plugin_proxy module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.processor.html">snap_plugin.v1.processor module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.processor_proxy.html">snap_plugin.v1.processor_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.pub_proc_arg.html">snap_plugin.v1.pub_proc_arg module</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">snap_plugin.v1.publisher module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.publisher_proxy.html">snap_plugin.v1.publisher_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.string_policy.html">snap_plugin.v1.string_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.timestamp.html">snap_plugin.v1.timestamp module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="snap_plugin.v1.html#module-snap_plugin.v1">Module contents</a></li>
@@ -157,24 +169,37 @@
 <dt id="snap_plugin.v1.publisher.Publisher">
 <em class="property">class </em><code class="descclassname">snap_plugin.v1.publisher.</code><code class="descname">Publisher</code><span class="sig-paren">(</span><em>name</em>, <em>version</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.publisher.Publisher" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin" title="snap_plugin.v1.plugin.Plugin"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.plugin.Plugin</span></code></a></p>
+<p>Abstract base class for &#8216;publisher&#8217; plugins.</p>
+<p>This class makes the creation of snap &#8216;publisher&#8217; plugins as easy as
+possible.  For instance, when a class inherits from
+<a class="reference internal" href="#snap_plugin.v1.publisher.Publisher" title="snap_plugin.v1.publisher.Publisher"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.publisher.Publisher</span></code></a> plugins can be created by
+providing implementation for:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#snap_plugin.v1.publisher.Publisher.publish" title="snap_plugin.v1.publisher.Publisher.publish"><code class="xref py py-meth docutils literal"><span class="pre">publish()</span></code></a></li>
+<li><a class="reference internal" href="snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin.get_config_policy" title="snap_plugin.v1.plugin.Plugin.get_config_policy"><code class="xref py py-meth docutils literal"><span class="pre">get_config_policy()</span></code></a></li>
+</ul>
+</div></blockquote>
 <dl class="method">
 <dt id="snap_plugin.v1.publisher.Publisher.publish">
 <code class="descname">publish</code><span class="sig-paren">(</span><em>metrics</em>, <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.publisher.Publisher.publish" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method takes a list of metrics publishes them returns an error
-if one occurs. TODO (JC) takes config.</p>
-<p>This method is called by the snapd deamon during the publish phase
+<dd><p>Publishes metrics.</p>
+<p>This method is <code class="docutils literal"><span class="pre">abstract</span></code> so the implementation <strong>must be provided</strong>
+by the plugin which extends <a class="reference internal" href="snap_plugin.v1.html#snap_plugin.v1.Publisher" title="snap_plugin.v1.Publisher"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Publisher</span></code></a>.</p>
+<p>This method is called by the Snap deamon during the publish phase
 of a Snap workflow.</p>
-<p>TODO: add more examples of publishers</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>(obj</strong> (<em>metrics</em>) &#8211; <cite>list</cite> of <code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code>):
-List of metrics to be published.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>metrics</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <a class="reference internal" href="snap_plugin.v1.html#snap_plugin.v1.Metric" title="snap_plugin.v1.Metric"><code class="xref any py py-class docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></a>) &#8211; List of metrics to be published.</li>
+<li><strong>config</strong> (<a class="reference internal" href="snap_plugin.v1.html#snap_plugin.v1.ConfigMap" title="snap_plugin.v1.ConfigMap"><code class="xref any py py-class docutils literal"><span class="pre">snap_plugin.v1.ConfigMap</span></code></a>) &#8211; Dict of config values.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of processed metrics.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -194,7 +219,7 @@ List of metrics to be published.</td>
         <a href="snap_plugin.v1.publisher_proxy.html" class="btn btn-neutral float-right" title="snap_plugin.v1.publisher_proxy module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="snap_plugin.v1.processor_proxy.html" class="btn btn-neutral" title="snap_plugin.v1.processor_proxy module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="snap_plugin.v1.pub_proc_arg.html" class="btn btn-neutral" title="snap_plugin.v1.pub_proc_arg module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -225,7 +250,7 @@ List of metrics to be published.</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1',
+            VERSION:'0.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

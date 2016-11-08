@@ -1,0 +1,38 @@
+v1 package
+==========
+
+Submodules
+----------
+
+.. toctree::
+
+   v1.bool_policy
+   v1.collector
+   v1.collector_proxy
+   v1.config_map
+   v1.config_policy
+   v1.float_policy
+   v1.get_metrictypes_arg
+   v1.integer_policy
+   v1.metric
+   v1.metrics_arg
+   v1.namespace
+   v1.namespace_element
+   v1.plugin
+   v1.plugin_pb2
+   v1.plugin_proxy
+   v1.processor
+   v1.processor_proxy
+   v1.pub_proc_arg
+   v1.publisher
+   v1.publisher_proxy
+   v1.string_policy
+   v1.timestamp
+
+Module contents
+---------------
+
+.. automodule:: v1
+    :members:
+    :undoc-members:
+    :show-inheritance:

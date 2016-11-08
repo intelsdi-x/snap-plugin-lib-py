@@ -1,0 +1,7 @@
+snap_plugin.v1.bool_policy module
+=================================
+
+.. automodule:: snap_plugin.v1.bool_policy
+    :members:
+    :undoc-members:
+    :show-inheritance:

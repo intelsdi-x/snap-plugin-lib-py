@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>snap_plugin.v1.namespace module &mdash; Snap 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Snap 0.1.0 documentation" href="index.html"/>
+        <link rel="up" title="snap_plugin.v1 package" href="snap_plugin.v1.html"/>
+        <link rel="next" title="snap_plugin.v1.namespace_element module" href="snap_plugin.v1.namespace_element.html"/>
+        <link rel="prev" title="snap_plugin.v1.metrics_arg module" href="snap_plugin.v1.metrics_arg.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="plugin_authoring/index.html">Plugin Authoring</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="snap_plugin.v1.html">snap_plugin.v1 package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="snap_plugin.v1.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.bool_policy.html">snap_plugin.v1.bool_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.collector.html">snap_plugin.v1.collector module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.collector_proxy.html">snap_plugin.v1.collector_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.config_map.html">snap_plugin.v1.config_map module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.config_policy.html">snap_plugin.v1.config_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.float_policy.html">snap_plugin.v1.float_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.get_metrictypes_arg.html">snap_plugin.v1.get_metrictypes_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.integer_policy.html">snap_plugin.v1.integer_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.metric.html">snap_plugin.v1.metric module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.metrics_arg.html">snap_plugin.v1.metrics_arg module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">snap_plugin.v1.namespace module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.namespace_element.html">snap_plugin.v1.namespace_element module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin.html">snap_plugin.v1.plugin module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin_proxy.html">snap_plugin.v1.plugin_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.processor.html">snap_plugin.v1.processor module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.processor_proxy.html">snap_plugin.v1.processor_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.pub_proc_arg.html">snap_plugin.v1.pub_proc_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.publisher.html">snap_plugin.v1.publisher module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.publisher_proxy.html">snap_plugin.v1.publisher_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.string_policy.html">snap_plugin.v1.string_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.timestamp.html">snap_plugin.v1.timestamp module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="snap_plugin.v1.html#module-snap_plugin.v1">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Snap</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="snap_plugin.v1.html">snap_plugin.v1 package</a> &raquo;</li>
+      
+    <li>snap_plugin.v1.namespace module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/snap_plugin.v1.namespace.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-snap_plugin.v1.namespace">
+<span id="snap-plugin-v1-namespace-module"></span><h1>snap_plugin.v1.namespace module<a class="headerlink" href="#module-snap_plugin.v1.namespace" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="snap_plugin.v1.namespace.Namespace">
+<em class="property">class </em><code class="descclassname">snap_plugin.v1.namespace.</code><code class="descname">Namespace</code><span class="sig-paren">(</span><em>pb</em>, <em>*elements</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.namespace.Namespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Namespace of a metric.</p>
+<dl class="docutils">
+<dt>:param elements (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of: <a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement" title="snap_plugin.v1.namespace_element.NamespaceElement"><code class="xref py py-class docutils literal"><span class="pre">NamespaceElement</span></code></a></dt>
+<dd>or <code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref any docutils literal"><span class="pre">strings</span></code>):
+namespace elements</dd>
+</dl>
+<dl class="method">
+<dt id="snap_plugin.v1.namespace.Namespace.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>namespace_element</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.namespace.Namespace.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.namespace.Namespace.add_dynamic_element">
+<code class="descname">add_dynamic_element</code><span class="sig-paren">(</span><em>name</em>, <em>description</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.namespace.Namespace.add_dynamic_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a dynamic namespace element to the end of the Namespace.</p>
+<p>A dynamic namespace element is defined by an element that contains a
+non-static data relative to the metric being collected.  For instance,
+when collecting metrics for a given virtual machine the namespace
+element that contains the virtual-machine-id would be dynamic.  This is
+modeled by the a NamespaceElement when its <a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement.name" title="snap_plugin.v1.namespace_element.NamespaceElement.name"><code class="xref any py py-attr docutils literal"><span class="pre">name</span></code></a> attribute contains the
+value &#8216;virtual-machine-id&#8217;.  In this example the <a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement.value" title="snap_plugin.v1.namespace_element.NamespaceElement.value"><code class="xref any py py-attr docutils literal"><span class="pre">value</span></code></a> attribute would
+be set to the ID of the virtual machine when the metric is collected.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement" title="snap_plugin.v1.namespace_element.NamespaceElement"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.namespace_element.NamespaceElement</span></code></a>) &#8211; namespace element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="#snap_plugin.v1.namespace.Namespace" title="snap_plugin.v1.namespace.Namespace"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.namespace.Namespace</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.namespace.Namespace.add_static_element">
+<code class="descname">add_static_element</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.namespace.Namespace.add_static_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a static namespace element to the end of the Namespace.</p>
+<p>A static namespace element is defined by the <a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement.value" title="snap_plugin.v1.namespace_element.NamespaceElement.value"><code class="xref any py py-attr docutils literal"><span class="pre">value</span></code></a> attribute being set
+and where the <a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement.name" title="snap_plugin.v1.namespace_element.NamespaceElement.name"><code class="xref any py py-attr docutils literal"><span class="pre">name</span></code></a> attribute is not used (set to None).  This is the
+case when the namespace does not change based on what is being
+collected.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement" title="snap_plugin.v1.namespace_element.NamespaceElement"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.namespace_element.NamespaceElement</span></code></a>) &#8211; namespace element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="#snap_plugin.v1.namespace.Namespace" title="snap_plugin.v1.namespace.Namespace"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.namespace.Namespace</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.namespace.Namespace.pop">
+<code class="descname">pop</code><span class="sig-paren">(</span><em>key=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.namespace.Namespace.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes and retuns the namespace element at a given index.</p>
+<p>If the kwarg &#8216;key&#8217; is provided the item at the given index is removed
+and returned.  If the kwarg &#8216;key&#8217;&#8217; is not provided the last Namespace
+element is removed and returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>**kwargs</strong> (<em>optional</em>) &#8211; key=-1</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="snap_plugin.v1.namespace_element.html" class="btn btn-neutral float-right" title="snap_plugin.v1.namespace_element module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="snap_plugin.v1.metrics_arg.html" class="btn btn-neutral" title="snap_plugin.v1.metrics_arg module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016 Intel.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

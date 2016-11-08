@@ -1,0 +1,7 @@
+v1.collector module
+===================
+
+.. automodule:: v1.collector
+    :members:
+    :undoc-members:
+    :show-inheritance:

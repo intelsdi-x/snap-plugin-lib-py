@@ -1,0 +1,7 @@
+v1.integer_policy module
+========================
+
+.. automodule:: v1.integer_policy
+    :members:
+    :undoc-members:
+    :show-inheritance:

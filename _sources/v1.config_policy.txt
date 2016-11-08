@@ -1,0 +1,7 @@
+v1.config_policy module
+=======================
+
+.. automodule:: v1.config_policy
+    :members:
+    :undoc-members:
+    :show-inheritance:

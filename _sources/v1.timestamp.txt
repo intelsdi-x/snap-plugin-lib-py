@@ -1,0 +1,7 @@
+v1.timestamp module
+===================
+
+.. automodule:: v1.timestamp
+    :members:
+    :undoc-members:
+    :show-inheritance:

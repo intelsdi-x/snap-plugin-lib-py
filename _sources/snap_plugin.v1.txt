@@ -6,15 +6,28 @@ Submodules
 
 .. toctree::
 
+   snap_plugin.v1.bool_policy
    snap_plugin.v1.collector
    snap_plugin.v1.collector_proxy
+   snap_plugin.v1.config_map
+   snap_plugin.v1.config_policy
+   snap_plugin.v1.float_policy
+   snap_plugin.v1.get_metrictypes_arg
+   snap_plugin.v1.integer_policy
+   snap_plugin.v1.metric
+   snap_plugin.v1.metrics_arg
+   snap_plugin.v1.namespace
+   snap_plugin.v1.namespace_element
    snap_plugin.v1.plugin
    snap_plugin.v1.plugin_pb2
    snap_plugin.v1.plugin_proxy
    snap_plugin.v1.processor
    snap_plugin.v1.processor_proxy
+   snap_plugin.v1.pub_proc_arg
    snap_plugin.v1.publisher
    snap_plugin.v1.publisher_proxy
+   snap_plugin.v1.string_policy
+   snap_plugin.v1.timestamp
 
 Module contents
 ---------------

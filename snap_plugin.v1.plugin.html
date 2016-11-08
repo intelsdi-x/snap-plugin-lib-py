@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>snap_plugin.v1.plugin module &mdash; Snap 0.1 documentation</title>
+  <title>snap_plugin.v1.plugin module &mdash; Snap 0.1.0 documentation</title>
   
 
   
@@ -33,10 +33,10 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Snap 0.1 documentation" href="index.html"/>
+    <link rel="top" title="Snap 0.1.0 documentation" href="index.html"/>
         <link rel="up" title="snap_plugin.v1 package" href="snap_plugin.v1.html"/>
-        <link rel="next" title="snap_plugin.v1.plugin_pb2 module" href="snap_plugin.v1.plugin_pb2.html"/>
-        <link rel="prev" title="snap_plugin.v1.collector_proxy module" href="snap_plugin.v1.collector_proxy.html"/> 
+        <link rel="next" title="snap_plugin.v1.plugin_proxy module" href="snap_plugin.v1.plugin_proxy.html"/>
+        <link rel="prev" title="snap_plugin.v1.namespace_element module" href="snap_plugin.v1.namespace_element.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.1
+                0.1.0
               </div>
             
           
@@ -91,15 +91,27 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="snap_plugin.v1.html">snap_plugin.v1 package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="snap_plugin.v1.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.bool_policy.html">snap_plugin.v1.bool_policy module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.collector.html">snap_plugin.v1.collector module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.collector_proxy.html">snap_plugin.v1.collector_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.config_map.html">snap_plugin.v1.config_map module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.config_policy.html">snap_plugin.v1.config_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.float_policy.html">snap_plugin.v1.float_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.get_metrictypes_arg.html">snap_plugin.v1.get_metrictypes_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.integer_policy.html">snap_plugin.v1.integer_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.metric.html">snap_plugin.v1.metric module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.metrics_arg.html">snap_plugin.v1.metrics_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.namespace.html">snap_plugin.v1.namespace module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.namespace_element.html">snap_plugin.v1.namespace_element module</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">snap_plugin.v1.plugin module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin_pb2.html">snap_plugin.v1.plugin_pb2 module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin_proxy.html">snap_plugin.v1.plugin_proxy module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.processor.html">snap_plugin.v1.processor module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.processor_proxy.html">snap_plugin.v1.processor_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.pub_proc_arg.html">snap_plugin.v1.pub_proc_arg module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.publisher.html">snap_plugin.v1.publisher module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.publisher_proxy.html">snap_plugin.v1.publisher_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.string_policy.html">snap_plugin.v1.string_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.timestamp.html">snap_plugin.v1.timestamp module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="snap_plugin.v1.html#module-snap_plugin.v1">Module contents</a></li>
@@ -154,55 +166,93 @@
   <div class="section" id="module-snap_plugin.v1.plugin">
 <span id="snap-plugin-v1-plugin-module"></span><h1>snap_plugin.v1.plugin module<a class="headerlink" href="#module-snap_plugin.v1.plugin" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="snap_plugin.v1.plugin.EnumEncoder">
-<em class="property">class </em><code class="descclassname">snap_plugin.v1.plugin.</code><code class="descname">EnumEncoder</code><span class="sig-paren">(</span><em>skipkeys=False</em>, <em>ensure_ascii=True</em>, <em>check_circular=True</em>, <em>allow_nan=True</em>, <em>sort_keys=False</em>, <em>indent=None</em>, <em>separators=None</em>, <em>encoding='utf-8'</em>, <em>default=None</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.plugin.EnumEncoder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">json.encoder.JSONEncoder</span></code></p>
-<dl class="method">
-<dt id="snap_plugin.v1.plugin.EnumEncoder.default">
-<code class="descname">default</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.plugin.EnumEncoder.default" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
 <dt id="snap_plugin.v1.plugin.Meta">
-<em class="property">class </em><code class="descclassname">snap_plugin.v1.plugin.</code><code class="descname">Meta</code><span class="sig-paren">(</span><em>type</em>, <em>name</em>, <em>version</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.plugin.Meta" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_plugin.v1.plugin.</code><code class="descname">Meta</code><span class="sig-paren">(</span><em>type</em>, <em>name</em>, <em>version</em>, <em>concurrency_count=5</em>, <em>routing_strategy=&lt;RoutingStrategy.lru: 0&gt;</em>, <em>exclusive=False</em>, <em>cache_ttl=None</em>, <em>rpc_type=&lt;RPCType.grpc: 2&gt;</em>, <em>rpc_version=1</em>, <em>unsecure=True</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.plugin.Meta" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Snap plugin meta</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>type</strong> (<a class="reference internal" href="#snap_plugin.v1.plugin.PluginType" title="snap_plugin.v1.plugin.PluginType"><code class="xref py py-class docutils literal"><span class="pre">PluginType</span></code></a>) &#8211; Plugin type</li>
+<li><strong>name</strong> (<code class="xref py py-obj docutils literal"><span class="pre">string</span></code>) &#8211; Plugin name</li>
+<li><strong>version</strong> (<code class="xref py py-obj docutils literal"><span class="pre">int</span></code>) &#8211; Plugin version</li>
+<li><strong>concurrency_count</strong> (<code class="xref py py-obj docutils literal"><span class="pre">int</span></code>) &#8211; ConcurrencyCount is the max number
+concurrent calls the plugin may take. If there are 5 tasks using the
+plugin and concurrency count is 2 there will be 3 plugins running.</li>
+<li><strong>routing_strategy</strong> (<a class="reference internal" href="#snap_plugin.v1.plugin.RoutingStrategy" title="snap_plugin.v1.plugin.RoutingStrategy"><code class="xref py py-class docutils literal"><span class="pre">RoutingStrategy</span></code></a>) &#8211; RoutingStrategy will
+override the routing strategy this plugin requires.  The default
+routing strategy is least-recently-used.</li>
+<li><strong>exclusive</strong> (<code class="xref py py-obj docutils literal"><span class="pre">bool</span></code>) &#8211; Exclusive results in a single instance of the
+plugin running regardless the number of tasks using the plugin.</li>
+<li><strong>cache_ttl</strong> (<code class="xref py py-obj docutils literal"><span class="pre">int</span></code>) &#8211; CacheTTL will override the default cache TTL
+for the provided plugin and the metrics it exposes (default=500ms).</li>
+<li><strong>rpc_type</strong> (<a class="reference internal" href="#snap_plugin.v1.plugin.RPCType" title="snap_plugin.v1.plugin.RPCType"><code class="xref py py-class docutils literal"><span class="pre">RPCType</span></code></a>) &#8211; </li>
+<li><strong>rpc_version</strong> (<code class="xref py py-obj docutils literal"><span class="pre">int</span></code>) &#8211; RPC version</li>
+<li><strong>unsecure</strong> (<code class="xref py py-obj docutils literal"><span class="pre">bool</span></code>) &#8211; Unsecure</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="class">
 <dt id="snap_plugin.v1.plugin.Plugin">
 <em class="property">class </em><code class="descclassname">snap_plugin.v1.plugin.</code><code class="descname">Plugin</code><a class="headerlink" href="#snap_plugin.v1.plugin.Plugin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Abstract base class for Collector, Processor and Publisher plugins.</p>
+<p>Plugin authoris shoud not inherit directly from this class rather they
+should inherit from <a class="reference internal" href="snap_plugin.v1.collector.html#snap_plugin.v1.collector.Collector" title="snap_plugin.v1.collector.Collector"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.collector.Collector</span></code></a>,
+<a class="reference internal" href="snap_plugin.v1.processor.html#snap_plugin.v1.processor.Processor" title="snap_plugin.v1.processor.Processor"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.processor.Processor</span></code></a> or
+<a class="reference internal" href="snap_plugin.v1.publisher.html#snap_plugin.v1.publisher.Publisher" title="snap_plugin.v1.publisher.Publisher"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.publisher.Publisher</span></code></a>.</p>
 <dl class="method">
 <dt id="snap_plugin.v1.plugin.Plugin.get_config_policy">
 <code class="descname">get_config_policy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.plugin.Plugin.get_config_policy" title="Permalink to this definition">¶</a></dt>
-<dd><p>As the name suggests this method returns the config policy for the
-plugin.</p>
-<p>This method is called by the snapd deamon when the plugin is loaded.
-A config policy describes the configuration key/value pairs that are
-required, optional, what the value type is and if there is a default
-value.</p>
+<dd><p>Returns the config policy for a plugin.</p>
+<p>The config policy for a plugin includes config value types (Integer,
+(Float, String and Bool) and rules which includes default values and
+min and max constraints for Float and Integery value types.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.GetConfigPolicyReply</span></code></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="snap_plugin.v1.config_policy.html#snap_plugin.v1.config_policy.ConfigPolicy" title="snap_plugin.v1.config_policy.ConfigPolicy"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.config_policy.ConfigPolicy</span></code></a></td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
+<dt id="snap_plugin.v1.plugin.Plugin.ping">
+<code class="descname">ping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.plugin.Plugin.ping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ping responds to clients providing proof of life</p>
+<p>The Snap framework will ping plugins every 1.5s to confirm they are not
+hung.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="snap_plugin.v1.plugin.Plugin.start_plugin">
 <code class="descname">start_plugin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.plugin.Plugin.start_plugin" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO (JC) add docstring</p>
+<dd><p>Starts the Plugin</p>
+<dl class="docutils">
+<dt>Starting a plugin includes:</dt>
+<dd><ul class="first last simple">
+<li>Finding an available port</li>
+<li>Starting the gRPC server</li>
+<li>Printing to STDOUT data (JSON) for handshaking with Snap</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="snap_plugin.v1.plugin.Plugin.stop_plugin">
 <code class="descname">stop_plugin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.plugin.Plugin.stop_plugin" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO (JC) add docstring</p>
+<dd><p>Stops the plugin</p>
 </dd></dl>
 
 </dd></dl>
@@ -211,6 +261,7 @@ value.</p>
 <dt id="snap_plugin.v1.plugin.PluginResponseState">
 <em class="property">class </em><code class="descclassname">snap_plugin.v1.plugin.</code><code class="descname">PluginResponseState</code><a class="headerlink" href="#snap_plugin.v1.plugin.PluginResponseState" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Plugin response states</p>
 <dl class="attribute">
 <dt id="snap_plugin.v1.plugin.PluginResponseState.plugin_failure">
 <code class="descname">plugin_failure</code><em class="property"> = &lt;PluginResponseState.plugin_failure: 1&gt;</em><a class="headerlink" href="#snap_plugin.v1.plugin.PluginResponseState.plugin_failure" title="Permalink to this definition">¶</a></dt>
@@ -227,6 +278,7 @@ value.</p>
 <dt id="snap_plugin.v1.plugin.PluginType">
 <em class="property">class </em><code class="descclassname">snap_plugin.v1.plugin.</code><code class="descname">PluginType</code><a class="headerlink" href="#snap_plugin.v1.plugin.PluginType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Plugin types</p>
 <dl class="attribute">
 <dt id="snap_plugin.v1.plugin.PluginType.collector">
 <code class="descname">collector</code><em class="property"> = &lt;PluginType.collector: 0&gt;</em><a class="headerlink" href="#snap_plugin.v1.plugin.PluginType.collector" title="Permalink to this definition">¶</a></dt>
@@ -248,6 +300,7 @@ value.</p>
 <dt id="snap_plugin.v1.plugin.RPCType">
 <em class="property">class </em><code class="descclassname">snap_plugin.v1.plugin.</code><code class="descname">RPCType</code><a class="headerlink" href="#snap_plugin.v1.plugin.RPCType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Snap RPC types</p>
 <dl class="attribute">
 <dt id="snap_plugin.v1.plugin.RPCType.grpc">
 <code class="descname">grpc</code><em class="property"> = &lt;RPCType.grpc: 2&gt;</em><a class="headerlink" href="#snap_plugin.v1.plugin.RPCType.grpc" title="Permalink to this definition">¶</a></dt>
@@ -269,6 +322,31 @@ value.</p>
 <dt id="snap_plugin.v1.plugin.RoutingStrategy">
 <em class="property">class </em><code class="descclassname">snap_plugin.v1.plugin.</code><code class="descname">RoutingStrategy</code><a class="headerlink" href="#snap_plugin.v1.plugin.RoutingStrategy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.Enum</span></code></p>
+<p>Plugin routing strategies</p>
+<ul>
+<li><dl class="first docutils">
+<dt>lru (default): Least recently used</dt>
+<dd><p class="first last">Calls are routed to the least recently called plugin instance.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>sticky: Sticky based routing</dt>
+<dd><p class="first last">Calls are routed to the same instance of the running plugin.  See
+<a class="reference internal" href="#snap_plugin.v1.plugin.Meta" title="snap_plugin.v1.plugin.Meta"><code class="xref py py-class docutils literal"><span class="pre">Meta</span></code></a> its attribute <code class="xref any docutils literal"><span class="pre">concurrency_count</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>config: Config based routing</dt>
+<dd><p class="first last">Calls are routed based on the configuration matching.  In this case
+multiple tasks could be configured with the same configuration in which
+case the framework will route calls to only those running instances with
+a configuration matching the task that is firing.</p>
+</dd>
+</dl>
+</li>
+</ul>
 <dl class="attribute">
 <dt id="snap_plugin.v1.plugin.RoutingStrategy.config">
 <code class="descname">config</code><em class="property"> = &lt;RoutingStrategy.config: 2&gt;</em><a class="headerlink" href="#snap_plugin.v1.plugin.RoutingStrategy.config" title="Permalink to this definition">¶</a></dt>
@@ -295,10 +373,10 @@ value.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="snap_plugin.v1.plugin_pb2.html" class="btn btn-neutral float-right" title="snap_plugin.v1.plugin_pb2 module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="snap_plugin.v1.plugin_proxy.html" class="btn btn-neutral float-right" title="snap_plugin.v1.plugin_proxy module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="snap_plugin.v1.collector_proxy.html" class="btn btn-neutral" title="snap_plugin.v1.collector_proxy module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="snap_plugin.v1.namespace_element.html" class="btn btn-neutral" title="snap_plugin.v1.namespace_element module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -329,7 +407,7 @@ value.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1',
+            VERSION:'0.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

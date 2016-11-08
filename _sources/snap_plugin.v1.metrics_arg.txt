@@ -1,0 +1,7 @@
+snap_plugin.v1.metrics_arg module
+=================================
+
+.. automodule:: snap_plugin.v1.metrics_arg
+    :members:
+    :undoc-members:
+    :show-inheritance:

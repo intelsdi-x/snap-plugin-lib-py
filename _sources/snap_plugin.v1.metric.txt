@@ -1,0 +1,7 @@
+snap_plugin.v1.metric module
+============================
+
+.. automodule:: snap_plugin.v1.metric
+    :members:
+    :undoc-members:
+    :show-inheritance:

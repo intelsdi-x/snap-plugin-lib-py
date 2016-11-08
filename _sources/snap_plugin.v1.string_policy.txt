@@ -1,0 +1,7 @@
+snap_plugin.v1.string_policy module
+===================================
+
+.. automodule:: snap_plugin.v1.string_policy
+    :members:
+    :undoc-members:
+    :show-inheritance:

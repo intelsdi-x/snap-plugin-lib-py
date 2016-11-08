@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Collector &mdash; Snap 0.1 documentation</title>
+  <title>Collector &mdash; Snap 0.1.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Snap 0.1 documentation" href="../index.html"/>
+    <link rel="top" title="Snap 0.1.0 documentation" href="../index.html"/>
         <link rel="up" title="Plugin Authoring" href="index.html"/>
         <link rel="next" title="Processor" href="processor.html"/>
         <link rel="prev" title="Plugin Authoring" href="index.html"/> 
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.1
+                0.1.0
               </div>
             
           
@@ -89,11 +89,17 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Plugin Authoring</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Collector</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#plugin-naming">Plugin Naming</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#creating-a-class-that-inherits-from-snap-plugin-v1-collector">Creating a Class that inherits from snap_plugin.v1.Collector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-collector">Creating a collector</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#get-config-policy"><code class="docutils literal"><span class="pre">get_config_policy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#update-catalog"><code class="docutils literal"><span class="pre">update_catalog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#collect"><code class="docutils literal"><span class="pre">collect()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="processor.html">Processor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging.html">Packaging</a></li>
 </ul>
 </li>
 </ul>
@@ -146,7 +152,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="collector">
-<h1>Collector<a class="headerlink" href="#collector" title="Permalink to this headline">¶</a></h1>
+<span id="collector-label"></span><h1>Collector<a class="headerlink" href="#collector" title="Permalink to this headline">¶</a></h1>
 <p>Below you will find details that cover writing a Snap collector plugin in
 Python.</p>
 <div class="section" id="plugin-naming">
@@ -157,42 +163,149 @@ project/repository.  For this we suggest the following format.</p>
 </pre></div>
 </div>
 <p><strong>TYPE</strong> is either <em>collector</em>, <em>processor</em> or <em>publisher</em> and the
-<strong>PLUGIN_NAME</strong> is the same name that your plugin will provide Snapd when it does
+<strong>PLUGIN_NAME</strong> is the same name that your plugin will provide Snap when it does
 its initial handshake (more on the later).</p>
 </div>
-<div class="section" id="creating-a-class-that-inherits-from-snap-plugin-v1-collector">
-<h2>Creating a Class that inherits from snap_plugin.v1.Collector<a class="headerlink" href="#creating-a-class-that-inherits-from-snap-plugin-v1-collector" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="creating-a-collector">
+<h2>Creating a collector<a class="headerlink" href="#creating-a-collector" title="Permalink to this headline">¶</a></h2>
 <p>In order to write a collector plugin you will want to start by defining a class
-that inherits from <code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.collector.Collector</span></code>.</p>
+that inherits from <a class="reference internal" href="../snap_plugin.v1.collector.html#snap_plugin.v1.collector.Collector" title="snap_plugin.v1.collector.Collector"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.collector.Collector</span></code></a>.</p>
 <div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">snap_plugin.v1</span> <span class="kn">as</span> <span class="nn">snap</span>
 
-<span class="k">class</span> <span class="nc">Rand</span><span class="p">(</span><span class="n">Collector</span><span class="p">):</span>
-</pre></div>
+<span class="hll"><span class="k">class</span> <span class="nc">Rand</span><span class="p">(</span><span class="n">snap</span><span class="o">.</span><span class="n">Collector</span><span class="p">):</span>
+</span></pre></div>
 </td></tr></table></div>
 <dl class="docutils">
-<dt>The next step is to provide an implementation:</dt>
+<dt>The next step is to provide an implementation for the following methods:</dt>
 <dd><ul class="first last simple">
-<li><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.collector.Collector.collect_metrics</span></code>,</li>
-<li><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.collector.Collector.get_metric_types</span></code></li>
-<li><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.plugin.Plugin.get_config_policy</span></code></li>
+<li><a class="reference internal" href="../snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin.get_config_policy" title="snap_plugin.v1.plugin.Plugin.get_config_policy"><code class="xref py py-meth docutils literal"><span class="pre">get_config_policy()</span></code></a></li>
+<li><a class="reference internal" href="../snap_plugin.v1.collector.html#snap_plugin.v1.collector.Collector.collect" title="snap_plugin.v1.collector.Collector.collect"><code class="xref py py-meth docutils literal"><span class="pre">collect()</span></code></a></li>
+<li><a class="reference internal" href="../snap_plugin.v1.collector.html#snap_plugin.v1.collector.Collector.update_catalog" title="snap_plugin.v1.collector.Collector.update_catalog"><code class="xref py py-meth docutils literal"><span class="pre">update_catalog()</span></code></a></li>
 </ul>
 </dd>
 </dl>
-<p>We&#8217;ll start with <cite>collect_metrics</cite>.</p>
-<div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">snap_plugin.v1</span> <span class="kn">as</span> <span class="nn">snap</span>
-
-<span class="k">class</span> <span class="nc">Rand</span><span class="p">(</span><span class="n">Collector</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">collector_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span>
-        <span class="n">some</span> <span class="n">shit</span><span class="o">.</span>
+<p>We&#8217;ll start with <a class="reference internal" href="../snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin.get_config_policy" title="snap_plugin.v1.plugin.Plugin.get_config_policy"><code class="xref py py-meth docutils literal"><span class="pre">get_config_policy()</span></code></a>.</p>
+<div class="section" id="get-config-policy">
+<h3><a class="reference internal" href="../snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin.get_config_policy" title="snap_plugin.v1.plugin.Plugin.get_config_policy"><code class="xref py py-meth docutils literal"><span class="pre">get_config_policy()</span></code></a><a class="headerlink" href="#get-config-policy" title="Permalink to this headline">¶</a></h3>
+<p>This method is called by the framework when a plugin loads.  It communicates
+what configuration items are needed, whether they are required or optional and
+what default values and constraints (min, max) the values may have.</p>
+<div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_config_policy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;GetConfigPolicy called&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">snap</span><span class="o">.</span><span class="n">ConfigPolicy</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;random&quot;</span><span class="p">),</span>
+            <span class="p">[</span>
+                <span class="p">(</span>
+                    <span class="s2">&quot;int_max&quot;</span><span class="p">,</span>
+                    <span class="n">snap</span><span class="o">.</span><span class="n">IntegerRule</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+                <span class="p">),</span>
+                <span class="p">(</span>
+                    <span class="s2">&quot;int_min&quot;</span><span class="p">,</span>
+                    <span class="n">snap</span><span class="o">.</span><span class="n">IntegerRule</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
-<p>done</p>
+<p>Policies are grouped by namespaces for collector plugins so in this case the two
+<a class="reference internal" href="../snap_plugin.v1.integer_policy.html#snap_plugin.v1.integer_policy.IntegerRule" title="snap_plugin.v1.integer_policy.IntegerRule"><code class="xref any py py-class docutils literal"><span class="pre">IntegerRule</span></code></a> policies that we have defined will be applied to all metrics
+that are exposed under the &#8216;/random/&#8217; namespace.</p>
+<p>Next we have <a class="reference internal" href="../snap_plugin.v1.collector.html#snap_plugin.v1.collector.Collector.update_catalog" title="snap_plugin.v1.collector.Collector.update_catalog"><code class="xref py py-meth docutils literal"><span class="pre">update_catalog()</span></code></a>.</p>
+</div>
+<div class="section" id="update-catalog">
+<h3><a class="reference internal" href="../snap_plugin.v1.collector.html#snap_plugin.v1.collector.Collector.update_catalog" title="snap_plugin.v1.collector.Collector.update_catalog"><code class="xref py py-meth docutils literal"><span class="pre">update_catalog()</span></code></a><a class="headerlink" href="#update-catalog" title="Permalink to this headline">¶</a></h3>
+<p>This method is called when a plugin is intially loaded.  It communicates to the
+framework those metrics the plugin collects.</p>
+<div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">,</span> <span class="s2">&quot;int64&quot;</span><span class="p">,</span> <span class="s2">&quot;string&quot;</span><span class="p">):</span>
+        <span class="n">metric</span> <span class="o">=</span> <span class="n">snap</span><span class="o">.</span><span class="n">Metric</span><span class="p">(</span>
+            <span class="n">namespace</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">snap</span><span class="o">.</span><span class="n">NamespaceElement</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">),</span>
+                <span class="n">snap</span><span class="o">.</span><span class="n">NamespaceElement</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+            <span class="p">],</span>
+            <span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">tags</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;mtype&quot;</span><span class="p">:</span> <span class="s2">&quot;gauge&quot;</span><span class="p">},</span>
+            <span class="n">Description</span><span class="o">=</span><span class="s2">&quot;Random {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">metrics</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metric</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">metrics</span>
+</pre></div>
+</td></tr></table></div>
+<p>In the examples above we are adding to the Snap framework three separate
+metrics (&#8216;/random/float64&#8217;, &#8216;/random/int64&#8217; and &#8216;/random/string&#8217;).</p>
+<p>Finally we have <code class="xref py py-meth docutils literal"><span class="pre">collect_metrics()</span></code>.</p>
+</div>
+<div class="section" id="collect">
+<h3><a class="reference internal" href="../snap_plugin.v1.collector.html#snap_plugin.v1.collector.Collector.collect" title="snap_plugin.v1.collector.Collector.collect"><code class="xref py py-meth docutils literal"><span class="pre">collect()</span></code></a><a class="headerlink" href="#collect" title="Permalink to this headline">¶</a></h3>
+<p>This method is called by the framework when a metric is collected.</p>
+<div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">collector_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
+    <span class="n">switch</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;float64&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span>
+        <span class="s2">&quot;string&quot;</span><span class="p">:</span> <span class="s2">&quot;bah&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;int64&quot;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span>
+            <span class="n">metric</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;int_min&quot;</span><span class="p">],</span>
+            <span class="n">metric</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;int_max&quot;</span><span class="p">]</span>
+            <span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">typ</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="n">namespace</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">metric</span><span class="o">.</span><span class="n">namespace</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span>
+    <span class="n">metric</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">switch</span><span class="p">[</span><span class="n">typ</span><span class="p">]</span>
+    <span class="n">metric</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">return</span> <span class="n">metrics</span>
+</pre></div>
+</td></tr></table></div>
+<p>This examples demonstrates using config.  For instance, the &#8216;int_min&#8217; and
+&#8216;int_max&#8217; (lines 7, 8) are config entries that are available because of the
+<a class="reference internal" href="../snap_plugin.v1.config_policy.html#snap_plugin.v1.config_policy.ConfigPolicy" title="snap_plugin.v1.config_policy.ConfigPolicy"><code class="xref py py-class docutils literal"><span class="pre">ConfigPolicy</span></code></a> that is exposed by this
+plugin.</p>
+</div>
 </div>
 </div>
 
@@ -237,7 +350,7 @@ that inherits from <code class="xref py py-obj docutils literal"><span class="pr
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1',
+            VERSION:'0.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

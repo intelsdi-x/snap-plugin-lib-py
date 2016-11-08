@@ -1,0 +1,7 @@
+v1.publisher module
+===================
+
+.. automodule:: v1.publisher
+    :members:
+    :undoc-members:
+    :show-inheritance:

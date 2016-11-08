@@ -1,0 +1,7 @@
+snap_plugin.v1.config_map module
+================================
+
+.. automodule:: snap_plugin.v1.config_map
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,7 @@
+snap_plugin.v1.pub_proc_arg module
+==================================
+
+.. automodule:: snap_plugin.v1.pub_proc_arg
+    :members:
+    :undoc-members:
+    :show-inheritance:

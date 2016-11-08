@@ -1,0 +1,7 @@
+v1.publisher_proxy module
+=========================
+
+.. automodule:: v1.publisher_proxy
+    :members:
+    :undoc-members:
+    :show-inheritance:

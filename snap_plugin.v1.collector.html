@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>snap_plugin.v1.collector module &mdash; Snap 0.1 documentation</title>
+  <title>snap_plugin.v1.collector module &mdash; Snap 0.1.0 documentation</title>
   
 
   
@@ -33,10 +33,10 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Snap 0.1 documentation" href="index.html"/>
+    <link rel="top" title="Snap 0.1.0 documentation" href="index.html"/>
         <link rel="up" title="snap_plugin.v1 package" href="snap_plugin.v1.html"/>
         <link rel="next" title="snap_plugin.v1.collector_proxy module" href="snap_plugin.v1.collector_proxy.html"/>
-        <link rel="prev" title="snap_plugin.v1 package" href="snap_plugin.v1.html"/> 
+        <link rel="prev" title="snap_plugin.v1.bool_policy module" href="snap_plugin.v1.bool_policy.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.1
+                0.1.0
               </div>
             
           
@@ -91,15 +91,27 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="snap_plugin.v1.html">snap_plugin.v1 package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="snap_plugin.v1.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.bool_policy.html">snap_plugin.v1.bool_policy module</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">snap_plugin.v1.collector module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.collector_proxy.html">snap_plugin.v1.collector_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.config_map.html">snap_plugin.v1.config_map module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.config_policy.html">snap_plugin.v1.config_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.float_policy.html">snap_plugin.v1.float_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.get_metrictypes_arg.html">snap_plugin.v1.get_metrictypes_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.integer_policy.html">snap_plugin.v1.integer_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.metric.html">snap_plugin.v1.metric module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.metrics_arg.html">snap_plugin.v1.metrics_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.namespace.html">snap_plugin.v1.namespace module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.namespace_element.html">snap_plugin.v1.namespace_element module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin.html">snap_plugin.v1.plugin module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin_pb2.html">snap_plugin.v1.plugin_pb2 module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin_proxy.html">snap_plugin.v1.plugin_proxy module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.processor.html">snap_plugin.v1.processor module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.processor_proxy.html">snap_plugin.v1.processor_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.pub_proc_arg.html">snap_plugin.v1.pub_proc_arg module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.publisher.html">snap_plugin.v1.publisher module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.publisher_proxy.html">snap_plugin.v1.publisher_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.string_policy.html">snap_plugin.v1.string_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.timestamp.html">snap_plugin.v1.timestamp module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="snap_plugin.v1.html#module-snap_plugin.v1">Module contents</a></li>
@@ -157,46 +169,61 @@
 <dt id="snap_plugin.v1.collector.Collector">
 <em class="property">class </em><code class="descclassname">snap_plugin.v1.collector.</code><code class="descname">Collector</code><span class="sig-paren">(</span><em>name</em>, <em>version</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.collector.Collector" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin" title="snap_plugin.v1.plugin.Plugin"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.plugin.Plugin</span></code></a></p>
+<p>Abstract base class for &#8216;collector&#8217; plugins.</p>
+<p>This class makes the creation of a snap &#8216;collector&#8217;
+plugin as easy as possible.  For instance, when a class inherits from
+py:class:<a class="reference internal" href="#snap_plugin.v1.collector.Collector" title="snap_plugin.v1.collector.Collector"><code class="xref any py py-class docutils literal"><span class="pre">snap_plugin.v1.collector.Collector</span></code></a> plugins can be created by
+providing implementations for:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#snap_plugin.v1.collector.Collector.collect" title="snap_plugin.v1.collector.Collector.collect"><code class="xref py py-meth docutils literal"><span class="pre">collect()</span></code></a></li>
+<li><a class="reference internal" href="#snap_plugin.v1.collector.Collector.update_catalog" title="snap_plugin.v1.collector.Collector.update_catalog"><code class="xref py py-meth docutils literal"><span class="pre">update_catalog()</span></code></a></li>
+<li><a class="reference internal" href="snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin.get_config_policy" title="snap_plugin.v1.plugin.Plugin.get_config_policy"><code class="xref py py-meth docutils literal"><span class="pre">get_config_policy()</span></code></a></li>
+</ul>
+</div></blockquote>
 <dl class="method">
-<dt id="snap_plugin.v1.collector.Collector.collect_metrics">
-<code class="descname">collect_metrics</code><span class="sig-paren">(</span><em>metrics</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.collector.Collector.collect_metrics" title="Permalink to this definition">¶</a></dt>
-<dd><p>Like it&#8217;s name suggests the metrics requested
-are collected and returned.  <strong>Must be overriden.</strong></p>
-<p>This method is called by the snapd deamon during the collection phase
+<dt id="snap_plugin.v1.collector.Collector.collect">
+<code class="descname">collect</code><span class="sig-paren">(</span><em>metrics</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.collector.Collector.collect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect requested metrics.</p>
+<p>This method is <code class="docutils literal"><span class="pre">abstract</span></code> so the implementation <strong>must be provided</strong>
+by the plugin which extends <a class="reference internal" href="snap_plugin.v1.html#snap_plugin.v1.Collector" title="snap_plugin.v1.Collector"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Collector</span></code></a>.</p>
+<p>This method is called by the Snap deamon during the collection phase
 of the execution of a Snap workflow.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>(obj</strong> (<em>metrics</em>) &#8211; <cite>list</cite> of <code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code>):
-List of metrics to be collected.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>metrics</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <a class="reference internal" href="snap_plugin.v1.html#snap_plugin.v1.Metric" title="snap_plugin.v1.Metric"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></a>) &#8211; List of metrics to be collected.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of collected metrics.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <a class="reference internal" href="snap_plugin.v1.html#snap_plugin.v1.Metric" title="snap_plugin.v1.Metric"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></a></td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
-<dt id="snap_plugin.v1.collector.Collector.get_metric_types">
-<code class="descname">get_metric_types</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.collector.Collector.get_metric_types" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method returns the metrics provided by this plugin.  <strong>Must be
-overriden.</strong></p>
-<p>This method is called by the snapd deamon when the plugin is loaded.
-Requiring config to successfully return metric types should be avoided.
-Only in rare circumstances should a plugin require configuration data to
-load.  See plugin authoring docs.</p>
+<dt id="snap_plugin.v1.collector.Collector.update_catalog">
+<code class="descname">update_catalog</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.collector.Collector.update_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the metrics which the plugin provides.</p>
+<p>This method is called by the Snap daemon when the plugin is loaded and
+returns a <code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <a class="reference internal" href="snap_plugin.v1.metric.html#snap_plugin.v1.metric.Metric" title="snap_plugin.v1.metric.Metric"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.metric.Metric</span></code></a> that
+will populate the snap metric catalog.  The method is <code class="docutils literal"><span class="pre">abstract</span></code> so
+the implementation <strong>must be provided</strong> by the plugin which extends
+<a class="reference internal" href="snap_plugin.v1.html#snap_plugin.v1.Collector" title="snap_plugin.v1.Collector"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Collector</span></code></a>.</p>
+<p>Note:  Requiring config to successfully return metric types should be
+avoided.  Only in rare circumstances should a plugin require
+configuration data for it to load.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config</strong> (<code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.ConfigMap</span></code>) &#8211; Provides configuration data.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config</strong> (<a class="reference internal" href="snap_plugin.v1.html#snap_plugin.v1.ConfigMap" title="snap_plugin.v1.ConfigMap"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.ConfigMap</span></code></a>) &#8211; Provides configuration data.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of collected metrics.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of collectable metrics.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <a class="reference internal" href="snap_plugin.v1.html#snap_plugin.v1.Metric" title="snap_plugin.v1.Metric"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -216,7 +243,7 @@ load.  See plugin authoring docs.</p>
         <a href="snap_plugin.v1.collector_proxy.html" class="btn btn-neutral float-right" title="snap_plugin.v1.collector_proxy module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="snap_plugin.v1.html" class="btn btn-neutral" title="snap_plugin.v1 package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="snap_plugin.v1.bool_policy.html" class="btn btn-neutral" title="snap_plugin.v1.bool_policy module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -247,7 +274,7 @@ load.  See plugin authoring docs.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1',
+            VERSION:'0.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

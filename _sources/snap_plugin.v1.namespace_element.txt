@@ -1,0 +1,7 @@
+snap_plugin.v1.namespace_element module
+=======================================
+
+.. automodule:: snap_plugin.v1.namespace_element
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,7 @@
+v1.namespace_element module
+===========================
+
+.. automodule:: v1.namespace_element
+    :members:
+    :undoc-members:
+    :show-inheritance:

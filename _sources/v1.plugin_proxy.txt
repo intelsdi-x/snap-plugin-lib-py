@@ -1,0 +1,7 @@
+v1.plugin_proxy module
+======================
+
+.. automodule:: v1.plugin_proxy
+    :members:
+    :undoc-members:
+    :show-inheritance:

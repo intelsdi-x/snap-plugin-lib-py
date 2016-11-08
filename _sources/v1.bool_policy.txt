@@ -1,0 +1,7 @@
+v1.bool_policy module
+=====================
+
+.. automodule:: v1.bool_policy
+    :members:
+    :undoc-members:
+    :show-inheritance:

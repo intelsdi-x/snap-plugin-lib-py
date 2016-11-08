@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>snap_plugin.v1.config_map module &mdash; Snap 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Snap 0.1.0 documentation" href="index.html"/>
+        <link rel="up" title="snap_plugin.v1 package" href="snap_plugin.v1.html"/>
+        <link rel="next" title="snap_plugin.v1.config_policy module" href="snap_plugin.v1.config_policy.html"/>
+        <link rel="prev" title="snap_plugin.v1.collector_proxy module" href="snap_plugin.v1.collector_proxy.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="plugin_authoring/index.html">Plugin Authoring</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="snap_plugin.v1.html">snap_plugin.v1 package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="snap_plugin.v1.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.bool_policy.html">snap_plugin.v1.bool_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.collector.html">snap_plugin.v1.collector module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.collector_proxy.html">snap_plugin.v1.collector_proxy module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">snap_plugin.v1.config_map module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.config_policy.html">snap_plugin.v1.config_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.float_policy.html">snap_plugin.v1.float_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.get_metrictypes_arg.html">snap_plugin.v1.get_metrictypes_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.integer_policy.html">snap_plugin.v1.integer_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.metric.html">snap_plugin.v1.metric module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.metrics_arg.html">snap_plugin.v1.metrics_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.namespace.html">snap_plugin.v1.namespace module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.namespace_element.html">snap_plugin.v1.namespace_element module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin.html">snap_plugin.v1.plugin module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin_proxy.html">snap_plugin.v1.plugin_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.processor.html">snap_plugin.v1.processor module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.processor_proxy.html">snap_plugin.v1.processor_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.pub_proc_arg.html">snap_plugin.v1.pub_proc_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.publisher.html">snap_plugin.v1.publisher module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.publisher_proxy.html">snap_plugin.v1.publisher_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.string_policy.html">snap_plugin.v1.string_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.timestamp.html">snap_plugin.v1.timestamp module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="snap_plugin.v1.html#module-snap_plugin.v1">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Snap</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="snap_plugin.v1.html">snap_plugin.v1 package</a> &raquo;</li>
+      
+    <li>snap_plugin.v1.config_map module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/snap_plugin.v1.config_map.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-snap_plugin.v1.config_map">
+<span id="snap-plugin-v1-config-map-module"></span><h1>snap_plugin.v1.config_map module<a class="headerlink" href="#module-snap_plugin.v1.config_map" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="snap_plugin.v1.config_map.ConfigMap">
+<em class="property">class </em><code class="descclassname">snap_plugin.v1.config_map.</code><code class="descname">ConfigMap</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.config_map.ConfigMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">collections.abc.MutableMapping</span></code></p>
+<p>ConfigMap provides a map of config key value pairs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>*args</strong> &#8211; variable length argument list.  A valid argument is a two item
+tuple/list.  The first item is the key and the second is the value.</li>
+<li><strong>**kwargs</strong> &#8211; Arbitrary keyword arguments representing the config.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cfg0</span> <span class="o">=</span> <span class="n">snap</span><span class="o">.</span><span class="n">ConfigMap</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="s2">&quot;john&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">911</span><span class="p">)</span>
+<span class="n">cfg1</span> <span class="o">=</span> <span class="n">snap</span><span class="o">.</span><span class="n">ConfigMap</span><span class="p">((</span><span class="s2">&quot;user&quot;</span><span class="p">,</span><span class="s2">&quot;john&quot;</span><span class="p">),(</span><span class="s2">&quot;port&quot;</span><span class="p">,</span> <span class="mi">911</span><span class="p">))</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Also see:</dt>
+<dd><ul class="first last simple">
+<li><a class="reference internal" href="snap_plugin.v1.metric.html#snap_plugin.v1.metric.Metric" title="snap_plugin.v1.metric.Metric"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.metric.Metric</span></code></a></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="snap_plugin.v1.config_map.ConfigMap.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.config_map.ConfigMap.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes all entries from the config map</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.config_map.ConfigMap.has_key">
+<code class="descname">has_key</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.config_map.ConfigMap.has_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does the config map contain the key?</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if key exists, False otherwise.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.config_map.ConfigMap.items">
+<code class="descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.config_map.ConfigMap.items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of (key, value) pairs as 2-tuples.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.config_map.ConfigMap.iteritems">
+<code class="descname">iteritems</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.config_map.ConfigMap.iteritems" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator over the items of ConfigMap.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.config_map.ConfigMap.iterkeys">
+<code class="descname">iterkeys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.config_map.ConfigMap.iterkeys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator over the keys of ConfigMap.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.config_map.ConfigMap.itervalues">
+<code class="descname">itervalues</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.config_map.ConfigMap.itervalues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator over the values of ConfigMap.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.config_map.ConfigMap.keys">
+<code class="descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.config_map.ConfigMap.keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of ConfigMap keys.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.config_map.ConfigMap.pb">
+<code class="descname">pb</code><a class="headerlink" href="#snap_plugin.v1.config_map.ConfigMap.pb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.config_map.ConfigMap.pop">
+<code class="descname">pop</code><span class="sig-paren">(</span><em>key</em>, <em>default=None</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.config_map.ConfigMap.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove specified key and return the corresponding value.
+If key is not found, default is returned if given, otherwise
+KeyError is raised.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.config_map.ConfigMap.popitem">
+<code class="descname">popitem</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.config_map.ConfigMap.popitem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove and return some (key, value) pair as a 2-tuple</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.config_map.ConfigMap.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.config_map.ConfigMap.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update ConfigMap from mapping/iterable.</p>
+<p>If the key exists the entry is updated else it is added.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>*args</strong> &#8211; variable length argument list.  A valid argument is a two item
+tuple/list.  The first item is the key and the second is the value.</li>
+<li><strong>**kwargs</strong> &#8211; Arbitrary keyword arguments representing the config.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.config_map.ConfigMap.values">
+<code class="descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.config_map.ConfigMap.values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of ConfigMap values.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="snap_plugin.v1.config_policy.html" class="btn btn-neutral float-right" title="snap_plugin.v1.config_policy module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="snap_plugin.v1.collector_proxy.html" class="btn btn-neutral" title="snap_plugin.v1.collector_proxy module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016 Intel.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

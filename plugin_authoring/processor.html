@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Processor &mdash; Snap 0.1 documentation</title>
+  <title>Processor &mdash; Snap 0.1.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Snap 0.1 documentation" href="../index.html"/>
+    <link rel="top" title="Snap 0.1.0 documentation" href="../index.html"/>
         <link rel="up" title="Plugin Authoring" href="index.html"/>
         <link rel="next" title="Publisher" href="publisher.html"/>
         <link rel="prev" title="Collector" href="collector.html"/> 
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.1
+                0.1.0
               </div>
             
           
@@ -88,8 +88,17 @@
                 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Plugin Authoring</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="collector.html">Collector</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Processor</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Processor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#plugin-naming">Plugin Naming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-processor">Creating a processor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#we-ll-start-with-get-config-policy">We&#8217;ll start with <code class="docutils literal"><span class="pre">get_config_policy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#process"><code class="docutils literal"><span class="pre">process()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="publisher.html">Publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging.html">Packaging</a></li>
 </ul>
 </li>
 </ul>
@@ -142,9 +151,132 @@
            <div itemprop="articleBody">
             
   <div class="section" id="processor">
-<h1>Processor<a class="headerlink" href="#processor" title="Permalink to this headline">¶</a></h1>
+<span id="processor-label"></span><h1>Processor<a class="headerlink" href="#processor" title="Permalink to this headline">¶</a></h1>
 <p>Below you will find details that cover writing a snap processor plugin in
 Python.</p>
+<div class="section" id="plugin-naming">
+<h2>Plugin Naming<a class="headerlink" href="#plugin-naming" title="Permalink to this headline">¶</a></h2>
+<p>The first naming decision you will need to make will be for your
+project/repository.  For this we suggest the following format.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">snap</span><span class="o">-</span><span class="n">plugin</span><span class="o">-&lt;</span><span class="n">TYPE</span><span class="o">&gt;-&lt;</span><span class="n">PLUGIN_NAME</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>TYPE</strong> is either <em>collector</em>, <em>processor</em> or <em>publisher</em> and the
+<strong>PLUGIN_NAME</strong> is the same name that your plugin will provide Snap when it does
+its initial handshake (more on the later).</p>
+</div>
+<div class="section" id="creating-a-processor">
+<h2>Creating a processor<a class="headerlink" href="#creating-a-processor" title="Permalink to this headline">¶</a></h2>
+<p>In order to write a processor plugin you will want to start by defining a class
+that inherits from <a class="reference internal" href="../snap_plugin.v1.processor.html#snap_plugin.v1.processor.Processor" title="snap_plugin.v1.processor.Processor"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.processor.Processor</span></code></a>.</p>
+<div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">snap_plugin.v1</span> <span class="kn">as</span> <span class="nn">snap</span>
+
+<span class="hll"><span class="k">class</span> <span class="nc">Rand</span><span class="p">(</span><span class="n">snap</span><span class="o">.</span><span class="n">Processor</span><span class="p">):</span>
+</span></pre></div>
+</td></tr></table></div>
+<dl class="docutils">
+<dt>The next step is to provide an implementation for the following methods:</dt>
+<dd><ul class="first last simple">
+<li><a class="reference internal" href="../snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin.get_config_policy" title="snap_plugin.v1.plugin.Plugin.get_config_policy"><code class="xref py py-meth docutils literal"><span class="pre">get_config_policy()</span></code></a></li>
+<li><a class="reference internal" href="../snap_plugin.v1.processor.html#snap_plugin.v1.processor.Processor.process" title="snap_plugin.v1.processor.Processor.process"><code class="xref py py-meth docutils literal"><span class="pre">process()</span></code></a></li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="we-ll-start-with-get-config-policy">
+<h3>We&#8217;ll start with <a class="reference internal" href="../snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin.get_config_policy" title="snap_plugin.v1.plugin.Plugin.get_config_policy"><code class="xref py py-meth docutils literal"><span class="pre">get_config_policy()</span></code></a><a class="headerlink" href="#we-ll-start-with-get-config-policy" title="Permalink to this headline">¶</a></h3>
+<p>This method is called by the framework when a plugin loads.  It communicates
+what configuration items are needed, whether they are required or optional and
+what default values and constraints (min, max) the values may have.</p>
+<div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_config_policy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">snap</span><span class="o">.</span><span class="n">ConfigPolicy</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="bp">None</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="p">(</span>
+                    <span class="s2">&quot;instance-id&quot;</span><span class="p">,</span>
+                    <span class="n">snap</span><span class="o">.</span><span class="n">StringRule</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;xyz-abc-qwerty&quot;</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>Policies are grouped by namespaces for collector plugins however since this is
+a processor plugin it should be set to <code class="xref any docutils literal"><span class="pre">None</span></code>.  The single
+<code class="xref py py-class docutils literal"><span class="pre">IntegerRule</span></code> defines a config item &#8220;instance-id&#8221; with the default
+value &#8220;xyz-abc-qwerty&#8221;.  We could have choosen to make this a required field
+and not provided a <a class="reference internal" href="../snap_plugin.v1.html#snap_plugin.v1.FloatRule.default" title="snap_plugin.v1.FloatRule.default"><code class="xref any py py-attr docutils literal"><span class="pre">default</span></code></a> which would have had the affect of requiring that
+any task that leveraged this plugin to include a config item providing the
+required value.</p>
+<p>Next we have <a class="reference internal" href="../snap_plugin.v1.processor.html#snap_plugin.v1.processor.Processor.process" title="snap_plugin.v1.processor.Processor.process"><code class="xref py py-class docutils literal"><span class="pre">process</span></code></a>.</p>
+</div>
+<div class="section" id="process">
+<h3><a class="reference internal" href="../snap_plugin.v1.processor.html#snap_plugin.v1.processor.Processor.process" title="snap_plugin.v1.processor.Processor.process"><code class="xref py py-meth docutils literal"><span class="pre">process()</span></code></a><a class="headerlink" href="#process" title="Permalink to this headline">¶</a></h3>
+<p>This method is called by the framework when a task manifest includes the use
+of a processor plugin like in the following example task.</p>
+<div class="highlight-yaml"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nn">---</span>
+ <span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+ <span class="l l-Scalar l-Scalar-Plain">schedule</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="s">&quot;simple&quot;</span>
+     <span class="l l-Scalar l-Scalar-Plain">interval</span><span class="p p-Indicator">:</span> <span class="s">&quot;1s&quot;</span>
+ <span class="l l-Scalar l-Scalar-Plain">workflow</span><span class="p p-Indicator">:</span>
+     <span class="l l-Scalar l-Scalar-Plain">collect</span><span class="p p-Indicator">:</span>
+         <span class="l l-Scalar l-Scalar-Plain">metrics</span><span class="p p-Indicator">:</span>
+             <span class="l l-Scalar l-Scalar-Plain">/random/float64</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{}</span>
+             <span class="l l-Scalar l-Scalar-Plain">/random/int64</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{}</span>
+             <span class="l l-Scalar l-Scalar-Plain">/random/string</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{}</span>
+<span class="hll">         <span class="l l-Scalar l-Scalar-Plain">process</span><span class="p p-Indicator">:</span>
+</span><span class="hll">             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">plugin_name</span><span class="p p-Indicator">:</span> <span class="s">&quot;tag-py&quot;</span>
+</span>               <span class="l l-Scalar l-Scalar-Plain">publish</span><span class="p p-Indicator">:</span>
+                 <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">plugin_name</span><span class="p p-Indicator">:</span> <span class="s">&quot;file-py&quot;</span>
+</pre></div>
+</td></tr></table></div>
+<p>Below is an example implementation of a
+<a class="reference internal" href="../snap_plugin.v1.processor.html#snap_plugin.v1.processor.Processor.process" title="snap_plugin.v1.processor.Processor.process"><code class="xref py py-meth docutils literal"><span class="pre">process()</span></code></a> method.</p>
+<div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
+        <span class="n">metric</span><span class="o">.</span><span class="n">tags</span><span class="p">[</span><span class="s2">&quot;instance-id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;instance-id&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">metrics</span>
+</pre></div>
+</td></tr></table></div>
+<p>This example demonstrates using the config to add a tag to the metrics before
+returning them.  A less trivial demonstration of adding context (tags) to a
+metric could have involved calling out to another system to obtain additional
+context (the owner, datacenter, instance-id, etc..).  Besides adding adding
+additional context to a metric processor plugins are a great place to apply
+functions like &#8216;min&#8217;, &#8216;max&#8217;, &#8216;mean&#8217; etc.</p>
+</div>
+</div>
 </div>
 
 
@@ -188,7 +320,7 @@ Python.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1',
+            VERSION:'0.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

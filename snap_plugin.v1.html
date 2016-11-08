@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>snap_plugin.v1 package &mdash; Snap 0.1 documentation</title>
+  <title>snap_plugin.v1 package &mdash; Snap 0.1.0 documentation</title>
   
 
   
@@ -33,9 +33,9 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Snap 0.1 documentation" href="index.html"/>
-        <link rel="next" title="snap_plugin.v1.collector module" href="snap_plugin.v1.collector.html"/>
-        <link rel="prev" title="Publisher" href="plugin_authoring/publisher.html"/> 
+    <link rel="top" title="Snap 0.1.0 documentation" href="index.html"/>
+        <link rel="next" title="snap_plugin.v1.bool_policy module" href="snap_plugin.v1.bool_policy.html"/>
+        <link rel="prev" title="Packaging" href="plugin_authoring/packaging.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.1
+                0.1.0
               </div>
             
           
@@ -90,15 +90,27 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">snap_plugin.v1 package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.bool_policy.html">snap_plugin.v1.bool_policy module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.collector.html">snap_plugin.v1.collector module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.collector_proxy.html">snap_plugin.v1.collector_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.config_map.html">snap_plugin.v1.config_map module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.config_policy.html">snap_plugin.v1.config_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.float_policy.html">snap_plugin.v1.float_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.get_metrictypes_arg.html">snap_plugin.v1.get_metrictypes_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.integer_policy.html">snap_plugin.v1.integer_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.metric.html">snap_plugin.v1.metric module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.metrics_arg.html">snap_plugin.v1.metrics_arg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.namespace.html">snap_plugin.v1.namespace module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.namespace_element.html">snap_plugin.v1.namespace_element module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin.html">snap_plugin.v1.plugin module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin_pb2.html">snap_plugin.v1.plugin_pb2 module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.plugin_proxy.html">snap_plugin.v1.plugin_proxy module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.processor.html">snap_plugin.v1.processor module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.processor_proxy.html">snap_plugin.v1.processor_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.pub_proc_arg.html">snap_plugin.v1.pub_proc_arg module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.publisher.html">snap_plugin.v1.publisher module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.publisher_proxy.html">snap_plugin.v1.publisher_proxy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.string_policy.html">snap_plugin.v1.string_policy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap_plugin.v1.timestamp.html">snap_plugin.v1.timestamp module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-snap_plugin.v1">Module contents</a></li>
@@ -154,64 +166,97 @@
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.bool_policy.html">snap_plugin.v1.bool_policy module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.collector.html">snap_plugin.v1.collector module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.collector_proxy.html">snap_plugin.v1.collector_proxy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.config_map.html">snap_plugin.v1.config_map module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.config_policy.html">snap_plugin.v1.config_policy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.float_policy.html">snap_plugin.v1.float_policy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.get_metrictypes_arg.html">snap_plugin.v1.get_metrictypes_arg module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.integer_policy.html">snap_plugin.v1.integer_policy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.metric.html">snap_plugin.v1.metric module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.metrics_arg.html">snap_plugin.v1.metrics_arg module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.namespace.html">snap_plugin.v1.namespace module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.namespace_element.html">snap_plugin.v1.namespace_element module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.plugin.html">snap_plugin.v1.plugin module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.plugin_pb2.html">snap_plugin.v1.plugin_pb2 module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.plugin_proxy.html">snap_plugin.v1.plugin_proxy module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.processor.html">snap_plugin.v1.processor module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.processor_proxy.html">snap_plugin.v1.processor_proxy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.pub_proc_arg.html">snap_plugin.v1.pub_proc_arg module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.publisher.html">snap_plugin.v1.publisher module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.publisher_proxy.html">snap_plugin.v1.publisher_proxy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.string_policy.html">snap_plugin.v1.string_policy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snap_plugin.v1.timestamp.html">snap_plugin.v1.timestamp module</a></li>
 </ul>
 </div>
 </div>
 <div class="section" id="module-snap_plugin.v1">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-snap_plugin.v1" title="Permalink to this headline">¶</a></h2>
+<p>This is a module for writing python plugins for the <a class="reference external" href="https://github.com/intelsdi-x/snap">Snap telemetry
+framework</a>.</p>
+<p>This module provides provides everything you need to write a
+<a class="reference internal" href="plugin_authoring/collector.html#collector-label"><span class="std std-ref">Collector</span></a>, <a class="reference internal" href="plugin_authoring/processor.html#processor-label"><span class="std std-ref">Processor</span></a> or <a class="reference internal" href="plugin_authoring/publisher.html#publisher-label"><span class="std std-ref">Publisher</span></a>
+plugin for Snap.  For more details checkoout the plugin authoring details at
+<a class="reference external" href="https://intelsdi-x.github.io/snap-plugin-lib-py/">https://intelsdi-x.github.io/snap-plugin-lib-py/</a>.</p>
 <dl class="class">
 <dt id="snap_plugin.v1.Collector">
 <em class="property">class </em><code class="descclassname">snap_plugin.v1.</code><code class="descname">Collector</code><span class="sig-paren">(</span><em>name</em>, <em>version</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Collector" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin" title="snap_plugin.v1.plugin.Plugin"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.plugin.Plugin</span></code></a></p>
+<p>Abstract base class for &#8216;collector&#8217; plugins.</p>
+<p>This class makes the creation of a snap &#8216;collector&#8217;
+plugin as easy as possible.  For instance, when a class inherits from
+py:class:<a class="reference internal" href="snap_plugin.v1.collector.html#snap_plugin.v1.collector.Collector" title="snap_plugin.v1.collector.Collector"><code class="xref any py py-class docutils literal"><span class="pre">snap_plugin.v1.collector.Collector</span></code></a> plugins can be created by
+providing implementations for:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="snap_plugin.v1.collector.html#snap_plugin.v1.collector.Collector.collect" title="snap_plugin.v1.collector.Collector.collect"><code class="xref py py-meth docutils literal"><span class="pre">collect()</span></code></a></li>
+<li><a class="reference internal" href="snap_plugin.v1.collector.html#snap_plugin.v1.collector.Collector.update_catalog" title="snap_plugin.v1.collector.Collector.update_catalog"><code class="xref py py-meth docutils literal"><span class="pre">update_catalog()</span></code></a></li>
+<li><a class="reference internal" href="snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin.get_config_policy" title="snap_plugin.v1.plugin.Plugin.get_config_policy"><code class="xref py py-meth docutils literal"><span class="pre">get_config_policy()</span></code></a></li>
+</ul>
+</div></blockquote>
 <dl class="method">
-<dt id="snap_plugin.v1.Collector.collect_metrics">
-<code class="descname">collect_metrics</code><span class="sig-paren">(</span><em>metrics</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Collector.collect_metrics" title="Permalink to this definition">¶</a></dt>
-<dd><p>Like it&#8217;s name suggests the metrics requested
-are collected and returned.  <strong>Must be overriden.</strong></p>
-<p>This method is called by the snapd deamon during the collection phase
+<dt id="snap_plugin.v1.Collector.collect">
+<code class="descname">collect</code><span class="sig-paren">(</span><em>metrics</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Collector.collect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect requested metrics.</p>
+<p>This method is <code class="docutils literal"><span class="pre">abstract</span></code> so the implementation <strong>must be provided</strong>
+by the plugin which extends <a class="reference internal" href="#snap_plugin.v1.Collector" title="snap_plugin.v1.Collector"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Collector</span></code></a>.</p>
+<p>This method is called by the Snap deamon during the collection phase
 of the execution of a Snap workflow.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>(obj</strong> (<em>metrics</em>) &#8211; <cite>list</cite> of <code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code>):
-List of metrics to be collected.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>metrics</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <a class="reference internal" href="#snap_plugin.v1.Metric" title="snap_plugin.v1.Metric"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></a>) &#8211; List of metrics to be collected.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of collected metrics.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <a class="reference internal" href="#snap_plugin.v1.Metric" title="snap_plugin.v1.Metric"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></a></td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
-<dt id="snap_plugin.v1.Collector.get_metric_types">
-<code class="descname">get_metric_types</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Collector.get_metric_types" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method returns the metrics provided by this plugin.  <strong>Must be
-overriden.</strong></p>
-<p>This method is called by the snapd deamon when the plugin is loaded.
-Requiring config to successfully return metric types should be avoided.
-Only in rare circumstances should a plugin require configuration data to
-load.  See plugin authoring docs.</p>
+<dt id="snap_plugin.v1.Collector.update_catalog">
+<code class="descname">update_catalog</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Collector.update_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the metrics which the plugin provides.</p>
+<p>This method is called by the Snap daemon when the plugin is loaded and
+returns a <code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <a class="reference internal" href="snap_plugin.v1.metric.html#snap_plugin.v1.metric.Metric" title="snap_plugin.v1.metric.Metric"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.metric.Metric</span></code></a> that
+will populate the snap metric catalog.  The method is <code class="docutils literal"><span class="pre">abstract</span></code> so
+the implementation <strong>must be provided</strong> by the plugin which extends
+<a class="reference internal" href="#snap_plugin.v1.Collector" title="snap_plugin.v1.Collector"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Collector</span></code></a>.</p>
+<p>Note:  Requiring config to successfully return metric types should be
+avoided.  Only in rare circumstances should a plugin require
+configuration data for it to load.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config</strong> (<code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.ConfigMap</span></code>) &#8211; Provides configuration data.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config</strong> (<a class="reference internal" href="#snap_plugin.v1.ConfigMap" title="snap_plugin.v1.ConfigMap"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.ConfigMap</span></code></a>) &#8211; Provides configuration data.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of collected metrics.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of collectable metrics.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <a class="reference internal" href="#snap_plugin.v1.Metric" title="snap_plugin.v1.Metric"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -223,27 +268,37 @@ load.  See plugin authoring docs.</p>
 <dt id="snap_plugin.v1.Processor">
 <em class="property">class </em><code class="descclassname">snap_plugin.v1.</code><code class="descname">Processor</code><span class="sig-paren">(</span><em>name</em>, <em>version</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Processor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin" title="snap_plugin.v1.plugin.Plugin"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.plugin.Plugin</span></code></a></p>
-<p>TODO (JC) add class docstring</p>
+<p>Abstract base class for &#8216;processor&#8217; plugins.</p>
+<p>This class makes the creation of snap &#8216;processor&#8217; plugins as easy as
+possible.  For instance, when a class inherits from
+<code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.processor.Process</span></code> plugins can be created by
+providing implementation for:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="snap_plugin.v1.processor.html#snap_plugin.v1.processor.Processor.process" title="snap_plugin.v1.processor.Processor.process"><code class="xref py py-meth docutils literal"><span class="pre">snap_plugin.v1.processor.Processor.process()</span></code></a></li>
+<li><a class="reference internal" href="snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin.get_config_policy" title="snap_plugin.v1.plugin.Plugin.get_config_policy"><code class="xref py py-meth docutils literal"><span class="pre">get_config_policy()</span></code></a></li>
+</ul>
+</div></blockquote>
 <dl class="method">
 <dt id="snap_plugin.v1.Processor.process">
 <code class="descname">process</code><span class="sig-paren">(</span><em>metrics</em>, <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Processor.process" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method takes a list of metrics processes them and returns a list
-of metrics.  TODO (JC) takes a config <strong>Must be overriden.</strong></p>
-<p>This method is called by the snapd deamon during the process phase
+<dd><p>Process metrics.</p>
+<p>This method is <code class="docutils literal"><span class="pre">abstract</span></code> so the implementation <strong>must be provided</strong>
+by the plugin which extends <a class="reference internal" href="#snap_plugin.v1.Processor" title="snap_plugin.v1.Processor"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Processor</span></code></a>.</p>
+<p>This method is called by the Snap deamon during the process phase
 of the execution of a Snap workflow.  Examples of processing metrics
 include applying filtering, max, min, average functions as well as
 adding additional context to the metrics to name just a few.</p>
-<p>TODO: add more examples of processors</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>(obj</strong> (<em>metrics</em>) &#8211; <cite>list</cite> of <code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code>):
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>(obj</strong> (<em>metrics</em>) &#8211; <code class="xref any docutils literal"><span class="pre">list</span></code> of <a class="reference internal" href="#snap_plugin.v1.Metric" title="snap_plugin.v1.Metric"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></a>):
 List of metrics to be processed.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of processed metrics.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <a class="reference internal" href="#snap_plugin.v1.Metric" title="snap_plugin.v1.Metric"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -255,24 +310,37 @@ List of metrics to be processed.</td>
 <dt id="snap_plugin.v1.Publisher">
 <em class="property">class </em><code class="descclassname">snap_plugin.v1.</code><code class="descname">Publisher</code><span class="sig-paren">(</span><em>name</em>, <em>version</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Publisher" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin" title="snap_plugin.v1.plugin.Plugin"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.plugin.Plugin</span></code></a></p>
+<p>Abstract base class for &#8216;publisher&#8217; plugins.</p>
+<p>This class makes the creation of snap &#8216;publisher&#8217; plugins as easy as
+possible.  For instance, when a class inherits from
+<a class="reference internal" href="snap_plugin.v1.publisher.html#snap_plugin.v1.publisher.Publisher" title="snap_plugin.v1.publisher.Publisher"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.publisher.Publisher</span></code></a> plugins can be created by
+providing implementation for:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="snap_plugin.v1.publisher.html#snap_plugin.v1.publisher.Publisher.publish" title="snap_plugin.v1.publisher.Publisher.publish"><code class="xref py py-meth docutils literal"><span class="pre">publish()</span></code></a></li>
+<li><a class="reference internal" href="snap_plugin.v1.plugin.html#snap_plugin.v1.plugin.Plugin.get_config_policy" title="snap_plugin.v1.plugin.Plugin.get_config_policy"><code class="xref py py-meth docutils literal"><span class="pre">get_config_policy()</span></code></a></li>
+</ul>
+</div></blockquote>
 <dl class="method">
 <dt id="snap_plugin.v1.Publisher.publish">
 <code class="descname">publish</code><span class="sig-paren">(</span><em>metrics</em>, <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Publisher.publish" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method takes a list of metrics publishes them returns an error
-if one occurs. TODO (JC) takes config.</p>
-<p>This method is called by the snapd deamon during the publish phase
+<dd><p>Publishes metrics.</p>
+<p>This method is <code class="docutils literal"><span class="pre">abstract</span></code> so the implementation <strong>must be provided</strong>
+by the plugin which extends <a class="reference internal" href="#snap_plugin.v1.Publisher" title="snap_plugin.v1.Publisher"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Publisher</span></code></a>.</p>
+<p>This method is called by the Snap deamon during the publish phase
 of a Snap workflow.</p>
-<p>TODO: add more examples of publishers</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>(obj</strong> (<em>metrics</em>) &#8211; <cite>list</cite> of <code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code>):
-List of metrics to be published.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>metrics</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <a class="reference internal" href="#snap_plugin.v1.Metric" title="snap_plugin.v1.Metric"><code class="xref any py py-class docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></a>) &#8211; List of metrics to be published.</li>
+<li><strong>config</strong> (<a class="reference internal" href="#snap_plugin.v1.ConfigMap" title="snap_plugin.v1.ConfigMap"><code class="xref any py py-class docutils literal"><span class="pre">snap_plugin.v1.ConfigMap</span></code></a>) &#8211; Dict of config values.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of processed metrics.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Metric</span></code></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -280,20 +348,676 @@ List of metrics to be published.</td>
 
 </dd></dl>
 
-<dl class="function">
-<dt id="snap_plugin.v1.current_timestamp">
-<code class="descclassname">snap_plugin.v1.</code><code class="descname">current_timestamp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.current_timestamp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the current time as a <code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Time</span></code> object.</p>
+<dl class="class">
+<dt id="snap_plugin.v1.Metric">
+<em class="property">class </em><code class="descclassname">snap_plugin.v1.</code><code class="descname">Metric</code><span class="sig-paren">(</span><em>namespace=[]</em>, <em>version=None</em>, <em>tags={}</em>, <em>config={}</em>, <em>timestamp=1479481377.261854</em>, <em>unit=''</em>, <em>description=''</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>The metric object is the core entity of snap representing metrics.</p>
+<dl class="docutils">
+<dt>:param namespace (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of: <a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement" title="snap_plugin.v1.namespace_element.NamespaceElement"><code class="xref py py-class docutils literal"><span class="pre">NamespaceElement</span></code></a>):</dt>
+<dd>namespace elements</dd>
+</dl>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>None</strong> &#8211; </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">snap_plugin.v1.Time</span></code></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>version</strong> (<code class="xref py py-obj docutils literal"><span class="pre">int</span></code>) &#8211; metric version</li>
+<li><strong>tags</strong> (<code class="xref py py-obj docutils literal"><span class="pre">dict</span></code>) &#8211; metric tags (key/value pairs)</li>
+<li><strong>config</strong> (<a class="reference internal" href="snap_plugin.v1.config_map.html#snap_plugin.v1.config_map.ConfigMap" title="snap_plugin.v1.config_map.ConfigMap"><code class="xref py py-class docutils literal"><span class="pre">ConfigMap</span></code></a>) &#8211; config for
+metric (key/value pairs)</li>
+<li><strong>timestamp</strong> (<code class="xref py py-obj docutils literal"><span class="pre">float</span></code>) &#8211; metric timestamp (see time.time())</li>
+<li><strong>unit</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; metric unit</li>
+<li><strong>description</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; metric description</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Example</p>
+<dl class="docutils">
+<dt>metric = Metric(namespace=(&#8220;acme&#8221;, &#8220;sk8&#8221;, &#8220;matix&#8221;, &#8220;rotations&#8221;),</dt>
+<dd>description=&#8221;Rotation count&#8221;)</dd>
+</dl>
+<dl class="attribute">
+<dt id="snap_plugin.v1.Metric.config">
+<code class="descname">config</code><a class="headerlink" href="#snap_plugin.v1.Metric.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric config</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="snap_plugin.v1.config_map.html#snap_plugin.v1.config_map.ConfigMap" title="snap_plugin.v1.config_map.ConfigMap"><code class="xref py py-class docutils literal"><span class="pre">ConfigMap</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.Metric.data">
+<code class="descname">data</code><a class="headerlink" href="#snap_plugin.v1.Metric.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric data</p>
+<p>:param value (<code class="xref py py-obj docutils literal"><span class="pre">bool</span></code> or <code class="xref py py-obj docutils literal"><span class="pre">int</span></code> or <code class="xref py py-obj docutils literal"><span class="pre">long</span></code> or <code class="xref py py-obj docutils literal"><span class="pre">float</span></code>: or <code class="xref py py-obj docutils literal"><span class="pre">basestring</span></code> or <code class="xref py py-obj docutils literal"><span class="pre">bytes</span></code>)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">TypeError</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.Metric.description">
+<code class="descname">description</code><a class="headerlink" href="#snap_plugin.v1.Metric.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric description</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.Metric.namespace">
+<code class="descname">namespace</code><a class="headerlink" href="#snap_plugin.v1.Metric.namespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric namespace elements.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><dl class="docutils">
+<dt><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of</dt>
+<dd><a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement" title="snap_plugin.v1.namespace_element.NamespaceElement"><code class="xref py py-class docutils literal"><span class="pre">NamespaceElement</span></code></a>)</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.Metric.pb">
+<code class="descname">pb</code><a class="headerlink" href="#snap_plugin.v1.Metric.pb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.Metric.tags">
+<code class="descname">tags</code><a class="headerlink" href="#snap_plugin.v1.Metric.tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric tags.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<code class="xref py py-obj docutils literal"><span class="pre">dict</span></code> of strings) &#8211; {&#8220;tag-key&#8221;: &#8220;tag-value&#8221;}</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Example: [(&#8220;tag-key&#8221;, &#8220;tag-value&#8221;)]</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.Metric.timestamp">
+<code class="descname">timestamp</code><a class="headerlink" href="#snap_plugin.v1.Metric.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time in seconds since Epoch.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<code class="xref py py-obj docutils literal"><span class="pre">float</span></code>) &#8211; time in seconds since Epoch (see time.time())</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">time in seconds since Epoch (see time.time())</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref any docutils literal"><span class="pre">float</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.Metric.unit">
+<code class="descname">unit</code><a class="headerlink" href="#snap_plugin.v1.Metric.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric unit</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.Metric.version">
+<code class="descname">version</code><a class="headerlink" href="#snap_plugin.v1.Metric.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metric version.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<code class="xref py py-obj docutils literal"><span class="pre">int</span></code>) &#8211; version</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="xref py py-obj docutils literal"><span class="pre">int</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="snap_plugin.v1.Namespace">
+<em class="property">class </em><code class="descclassname">snap_plugin.v1.</code><code class="descname">Namespace</code><span class="sig-paren">(</span><em>pb</em>, <em>*elements</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Namespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Namespace of a metric.</p>
+<dl class="docutils">
+<dt>:param elements (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of: <a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement" title="snap_plugin.v1.namespace_element.NamespaceElement"><code class="xref py py-class docutils literal"><span class="pre">NamespaceElement</span></code></a></dt>
+<dd>or <code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref any docutils literal"><span class="pre">strings</span></code>):
+namespace elements</dd>
+</dl>
+<dl class="method">
+<dt id="snap_plugin.v1.Namespace.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>namespace_element</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Namespace.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.Namespace.add_dynamic_element">
+<code class="descname">add_dynamic_element</code><span class="sig-paren">(</span><em>name</em>, <em>description</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Namespace.add_dynamic_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a dynamic namespace element to the end of the Namespace.</p>
+<p>A dynamic namespace element is defined by an element that contains a
+non-static data relative to the metric being collected.  For instance,
+when collecting metrics for a given virtual machine the namespace
+element that contains the virtual-machine-id would be dynamic.  This is
+modeled by the a NamespaceElement when its <a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement.name" title="snap_plugin.v1.namespace_element.NamespaceElement.name"><code class="xref any py py-attr docutils literal"><span class="pre">name</span></code></a> attribute contains the
+value &#8216;virtual-machine-id&#8217;.  In this example the <a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement.value" title="snap_plugin.v1.namespace_element.NamespaceElement.value"><code class="xref any py py-attr docutils literal"><span class="pre">value</span></code></a> attribute would
+be set to the ID of the virtual machine when the metric is collected.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement" title="snap_plugin.v1.namespace_element.NamespaceElement"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.namespace_element.NamespaceElement</span></code></a>) &#8211; namespace element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="snap_plugin.v1.namespace.html#snap_plugin.v1.namespace.Namespace" title="snap_plugin.v1.namespace.Namespace"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.namespace.Namespace</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.Namespace.add_static_element">
+<code class="descname">add_static_element</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Namespace.add_static_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a static namespace element to the end of the Namespace.</p>
+<p>A static namespace element is defined by the <a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement.value" title="snap_plugin.v1.namespace_element.NamespaceElement.value"><code class="xref any py py-attr docutils literal"><span class="pre">value</span></code></a> attribute being set
+and where the <a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement.name" title="snap_plugin.v1.namespace_element.NamespaceElement.name"><code class="xref any py py-attr docutils literal"><span class="pre">name</span></code></a> attribute is not used (set to None).  This is the
+case when the namespace does not change based on what is being
+collected.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement" title="snap_plugin.v1.namespace_element.NamespaceElement"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.namespace_element.NamespaceElement</span></code></a>) &#8211; namespace element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="snap_plugin.v1.namespace.html#snap_plugin.v1.namespace.Namespace" title="snap_plugin.v1.namespace.Namespace"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.namespace.Namespace</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.Namespace.pop">
+<code class="descname">pop</code><span class="sig-paren">(</span><em>key=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.Namespace.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes and retuns the namespace element at a given index.</p>
+<p>If the kwarg &#8216;key&#8217; is provided the item at the given index is removed
+and returned.  If the kwarg &#8216;key&#8217;&#8217; is not provided the last Namespace
+element is removed and returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>**kwargs</strong> (<em>optional</em>) &#8211; key=-1</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="snap_plugin.v1.NamespaceElement">
+<em class="property">class </em><code class="descclassname">snap_plugin.v1.</code><code class="descname">NamespaceElement</code><span class="sig-paren">(</span><em>name=''</em>, <em>description=''</em>, <em>value=''</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.NamespaceElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Namespace element of a metric.</p>
+<p>A static namespace element is defined by the <a class="reference internal" href="#snap_plugin.v1.NamespaceElement.value" title="snap_plugin.v1.NamespaceElement.value"><code class="xref any py py-attr docutils literal"><span class="pre">value</span></code></a> attribute being set
+and where the <a class="reference internal" href="#snap_plugin.v1.NamespaceElement.name" title="snap_plugin.v1.NamespaceElement.name"><code class="xref any py py-attr docutils literal"><span class="pre">name</span></code></a> attribute is not used (set to None).  This is the case
+when the namespace does not change based on what is being collected.</p>
+<p>A dynamic namespace element is defined by an element that contains a
+non-static data relative to the metric being collected.  For instance, when
+collecting metrics for a given virtual machine the namespace element that
+contains the virtual-machine-id would be dynamic.  This is modeled by
+the a NamespaceElement when its <a class="reference internal" href="#snap_plugin.v1.NamespaceElement.name" title="snap_plugin.v1.NamespaceElement.name"><code class="xref any py py-attr docutils literal"><span class="pre">name</span></code></a> attribute contains the value
+&#8216;virtual-machine-id&#8217;.  In this example the <a class="reference internal" href="#snap_plugin.v1.NamespaceElement.value" title="snap_plugin.v1.NamespaceElement.value"><code class="xref any py py-attr docutils literal"><span class="pre">value</span></code></a> attribute would be set
+to the ID of the virtual machine when the metric is collected.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; The value of an element.</li>
+<li><strong>name</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; The name of an element.</li>
+<li><strong>description</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A short description of the element.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="snap_plugin.v1.NamespaceElement.description">
+<code class="descname">description</code><a class="headerlink" href="#snap_plugin.v1.NamespaceElement.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="snap_plugin.v1.NamespaceElement.dynamic_namespace_element">
+<em class="property">classmethod </em><code class="descname">dynamic_namespace_element</code><span class="sig-paren">(</span><em>name</em>, <em>description</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.NamespaceElement.dynamic_namespace_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dynamic namespace_element.</p>
+<p>A dynamic namespace element is one whose <a class="reference internal" href="#snap_plugin.v1.NamespaceElement.value" title="snap_plugin.v1.NamespaceElement.value"><code class="xref any py py-attr docutils literal"><span class="pre">value</span></code></a> attribute is set while
+the <a class="reference internal" href="#snap_plugin.v1.NamespaceElement.name" title="snap_plugin.v1.NamespaceElement.name"><code class="xref any py py-attr docutils literal"><span class="pre">name</span></code></a> attribute is not.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<code class="xref any docutils literal"><span class="pre">str</span></code>) &#8211; Name of the namespace element</li>
+<li><strong>description</strong> (<code class="xref any docutils literal"><span class="pre">str</span></code>) &#8211; Decription of the namespace element</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">NamespaceElement</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement" title="snap_plugin.v1.namespace_element.NamespaceElement"><code class="xref py py-class docutils literal"><span class="pre">NamespaceElement</span></code></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.NamespaceElement.name">
+<code class="descname">name</code><a class="headerlink" href="#snap_plugin.v1.NamespaceElement.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="snap_plugin.v1.NamespaceElement.static_namespace_element">
+<em class="property">classmethod </em><code class="descname">static_namespace_element</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.NamespaceElement.static_namespace_element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a static namespace_element.</p>
+<p>A static namespace element is one whose <a class="reference internal" href="#snap_plugin.v1.NamespaceElement.value" title="snap_plugin.v1.NamespaceElement.value"><code class="xref any py py-attr docutils literal"><span class="pre">value</span></code></a> attribute is set and
+the <a class="reference internal" href="#snap_plugin.v1.NamespaceElement.name" title="snap_plugin.v1.NamespaceElement.name"><code class="xref any py py-attr docutils literal"><span class="pre">name</span></code></a> attribute is not.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<code class="xref any docutils literal"><span class="pre">str</span></code>) &#8211; Value of the namespace element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">NamespaceElement</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="snap_plugin.v1.namespace_element.html#snap_plugin.v1.namespace_element.NamespaceElement" title="snap_plugin.v1.namespace_element.NamespaceElement"><code class="xref py py-class docutils literal"><span class="pre">NamespaceElement</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.NamespaceElement.value">
+<code class="descname">value</code><a class="headerlink" href="#snap_plugin.v1.NamespaceElement.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="snap_plugin.v1.ConfigMap">
+<em class="property">class </em><code class="descclassname">snap_plugin.v1.</code><code class="descname">ConfigMap</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.ConfigMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">collections.abc.MutableMapping</span></code></p>
+<p>ConfigMap provides a map of config key value pairs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>*args</strong> &#8211; variable length argument list.  A valid argument is a two item
+tuple/list.  The first item is the key and the second is the value.</li>
+<li><strong>**kwargs</strong> &#8211; Arbitrary keyword arguments representing the config.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cfg0</span> <span class="o">=</span> <span class="n">snap</span><span class="o">.</span><span class="n">ConfigMap</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="s2">&quot;john&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">911</span><span class="p">)</span>
+<span class="n">cfg1</span> <span class="o">=</span> <span class="n">snap</span><span class="o">.</span><span class="n">ConfigMap</span><span class="p">((</span><span class="s2">&quot;user&quot;</span><span class="p">,</span><span class="s2">&quot;john&quot;</span><span class="p">),(</span><span class="s2">&quot;port&quot;</span><span class="p">,</span> <span class="mi">911</span><span class="p">))</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Also see:</dt>
+<dd><ul class="first last simple">
+<li><a class="reference internal" href="snap_plugin.v1.metric.html#snap_plugin.v1.metric.Metric" title="snap_plugin.v1.metric.Metric"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.metric.Metric</span></code></a></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="snap_plugin.v1.ConfigMap.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.ConfigMap.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes all entries from the config map</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.ConfigMap.has_key">
+<code class="descname">has_key</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.ConfigMap.has_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does the config map contain the key?</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if key exists, False otherwise.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.ConfigMap.items">
+<code class="descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.ConfigMap.items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of (key, value) pairs as 2-tuples.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.ConfigMap.iteritems">
+<code class="descname">iteritems</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.ConfigMap.iteritems" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator over the items of ConfigMap.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.ConfigMap.iterkeys">
+<code class="descname">iterkeys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.ConfigMap.iterkeys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator over the keys of ConfigMap.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.ConfigMap.itervalues">
+<code class="descname">itervalues</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.ConfigMap.itervalues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator over the values of ConfigMap.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.ConfigMap.keys">
+<code class="descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.ConfigMap.keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of ConfigMap keys.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.ConfigMap.pb">
+<code class="descname">pb</code><a class="headerlink" href="#snap_plugin.v1.ConfigMap.pb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.ConfigMap.pop">
+<code class="descname">pop</code><span class="sig-paren">(</span><em>key</em>, <em>default=None</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.ConfigMap.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove specified key and return the corresponding value.
+If key is not found, default is returned if given, otherwise
+KeyError is raised.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.ConfigMap.popitem">
+<code class="descname">popitem</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.ConfigMap.popitem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove and return some (key, value) pair as a 2-tuple</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.ConfigMap.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.ConfigMap.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update ConfigMap from mapping/iterable.</p>
+<p>If the key exists the entry is updated else it is added.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>*args</strong> &#8211; variable length argument list.  A valid argument is a two item
+tuple/list.  The first item is the key and the second is the value.</li>
+<li><strong>**kwargs</strong> &#8211; Arbitrary keyword arguments representing the config.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_plugin.v1.ConfigMap.values">
+<code class="descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.ConfigMap.values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of ConfigMap values.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="snap_plugin.v1.StringRule">
+<em class="property">class </em><code class="descclassname">snap_plugin.v1.</code><code class="descname">StringRule</code><span class="sig-paren">(</span><em>default=''</em>, <em>required=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.StringRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A configuration item with a string value type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>default</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; The default value</li>
+<li><strong>required</strong> (<code class="xref py py-obj docutils literal"><span class="pre">bool</span></code>) &#8211; Is the config item required</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="snap_plugin.v1.StringRule.default">
+<code class="descname">default</code><a class="headerlink" href="#snap_plugin.v1.StringRule.default" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.StringRule.required">
+<code class="descname">required</code><a class="headerlink" href="#snap_plugin.v1.StringRule.required" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is the config item required</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="snap_plugin.v1.IntegerRule">
+<em class="property">class </em><code class="descclassname">snap_plugin.v1.</code><code class="descname">IntegerRule</code><span class="sig-paren">(</span><em>default=None</em>, <em>maximum=None</em>, <em>minimum=None</em>, <em>required=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.IntegerRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A configuration item with a integer value type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>default</strong> (<code class="xref py py-obj docutils literal"><span class="pre">int</span></code>) &#8211; The default value</li>
+<li><strong>maximum</strong> (<code class="xref py py-obj docutils literal"><span class="pre">int</span></code>) &#8211; The maximum allowed value</li>
+<li><strong>minimum</strong> (<code class="xref py py-obj docutils literal"><span class="pre">int</span></code>) &#8211; The minimum allowed value</li>
+<li><strong>required</strong> (<code class="xref py py-obj docutils literal"><span class="pre">bool</span></code>) &#8211; Is the config item required</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="snap_plugin.v1.IntegerRule.default">
+<code class="descname">default</code><a class="headerlink" href="#snap_plugin.v1.IntegerRule.default" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.IntegerRule.maximum">
+<code class="descname">maximum</code><a class="headerlink" href="#snap_plugin.v1.IntegerRule.maximum" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum allowed value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.IntegerRule.minimum">
+<code class="descname">minimum</code><a class="headerlink" href="#snap_plugin.v1.IntegerRule.minimum" title="Permalink to this definition">¶</a></dt>
+<dd><p>The minimum allowed value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.IntegerRule.required">
+<code class="descname">required</code><a class="headerlink" href="#snap_plugin.v1.IntegerRule.required" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is the config item required</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="snap_plugin.v1.BoolRule">
+<em class="property">class </em><code class="descclassname">snap_plugin.v1.</code><code class="descname">BoolRule</code><span class="sig-paren">(</span><em>default=False</em>, <em>required=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.BoolRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A configuration item with a integer value type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>default</strong> (<code class="xref py py-obj docutils literal"><span class="pre">bool</span></code>) &#8211; The default value</li>
+<li><strong>required</strong> (<code class="xref py py-obj docutils literal"><span class="pre">bool</span></code>) &#8211; Is the config item required?</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="snap_plugin.v1.BoolRule.default">
+<code class="descname">default</code><a class="headerlink" href="#snap_plugin.v1.BoolRule.default" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.BoolRule.required">
+<code class="descname">required</code><a class="headerlink" href="#snap_plugin.v1.BoolRule.required" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is the config item required</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="snap_plugin.v1.FloatRule">
+<em class="property">class </em><code class="descclassname">snap_plugin.v1.</code><code class="descname">FloatRule</code><span class="sig-paren">(</span><em>default=0.0</em>, <em>required=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.FloatRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A configuration item with a float value type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>default</strong> (<code class="xref py py-obj docutils literal"><span class="pre">float</span></code>) &#8211; The default value</li>
+<li><strong>maximum</strong> (<code class="xref py py-obj docutils literal"><span class="pre">float</span></code>) &#8211; The maximum allowed value</li>
+<li><strong>minimum</strong> (<code class="xref py py-obj docutils literal"><span class="pre">float</span></code>) &#8211; The minimum allowed value</li>
+<li><strong>required</strong> (<code class="xref py py-obj docutils literal"><span class="pre">bool</span></code>) &#8211; Is the config item required</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="snap_plugin.v1.FloatRule.default">
+<code class="descname">default</code><a class="headerlink" href="#snap_plugin.v1.FloatRule.default" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.FloatRule.maximum">
+<code class="descname">maximum</code><a class="headerlink" href="#snap_plugin.v1.FloatRule.maximum" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum allowed value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.FloatRule.minimum">
+<code class="descname">minimum</code><a class="headerlink" href="#snap_plugin.v1.FloatRule.minimum" title="Permalink to this definition">¶</a></dt>
+<dd><p>The minimum allowed value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="snap_plugin.v1.FloatRule.required">
+<code class="descname">required</code><a class="headerlink" href="#snap_plugin.v1.FloatRule.required" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is the config item required</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="snap_plugin.v1.ConfigPolicy">
+<em class="property">class </em><code class="descclassname">snap_plugin.v1.</code><code class="descname">ConfigPolicy</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_plugin.v1.ConfigPolicy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>ConfigPolicy describes the configuration items for a plugin.</p>
+<p>A plugin exposes its configuration to the Snap framework through the object
+<a class="reference internal" href="snap_plugin.v1.config_policy.html#snap_plugin.v1.config_policy.ConfigPolicy" title="snap_plugin.v1.config_policy.ConfigPolicy"><code class="xref py py-class docutils literal"><span class="pre">ConfigPolicy</span></code></a>.  The policy
+describes the configuration items value type (<code class="xref any docutils literal"><span class="pre">string</span></code>,
+<code class="xref any docutils literal"><span class="pre">float</span></code>, <code class="xref any docutils literal"><span class="pre">integer</span></code> and <code class="xref any docutils literal"><span class="pre">bool</span></code>), it&#8217;s default value (if any) as well as its
+contraints (min, max, etc).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> &#8211; A variable length list of tuples/lists where the first item
+of the list/tuple is a tuple/list representing the namespace.
+The second item is a tuple/list where the first item is the
+config&#8217;s key and the second is the specific configuration rule
+that should be applied.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">snap</span><span class="o">.</span><span class="n">ConfigPolicy</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;random&quot;</span><span class="p">),</span>
+        <span class="p">[</span>
+            <span class="p">(</span>
+                <span class="s2">&quot;int_max&quot;</span><span class="p">,</span>
+                <span class="n">snap</span><span class="o">.</span><span class="n">IntegerRule</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+            <span class="p">),</span>
+            <span class="p">(</span>
+                <span class="s2">&quot;int_min&quot;</span><span class="p">,</span>
+                <span class="n">snap</span><span class="o">.</span><span class="n">IntegerRule</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Also see:</dt>
+<dd><ul class="first last simple">
+<li><a class="reference internal" href="snap_plugin.v1.integer_policy.html#snap_plugin.v1.integer_policy.IntegerRule" title="snap_plugin.v1.integer_policy.IntegerRule"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.integer_policy.IntegerRule</span></code></a></li>
+<li><a class="reference internal" href="snap_plugin.v1.float_policy.html#snap_plugin.v1.float_policy.FloatRule" title="snap_plugin.v1.float_policy.FloatRule"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.float_policy.FloatRule</span></code></a></li>
+<li><a class="reference internal" href="snap_plugin.v1.string_policy.html#snap_plugin.v1.string_policy.StringRule" title="snap_plugin.v1.string_policy.StringRule"><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.string_policy.StringRule</span></code></a></li>
+<li><code class="xref py py-class docutils literal"><span class="pre">snap_plugin.v1.bool_policy.BoolPolicy</span></code></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -306,10 +1030,10 @@ List of metrics to be published.</td>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="snap_plugin.v1.collector.html" class="btn btn-neutral float-right" title="snap_plugin.v1.collector module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="snap_plugin.v1.bool_policy.html" class="btn btn-neutral float-right" title="snap_plugin.v1.bool_policy module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="plugin_authoring/publisher.html" class="btn btn-neutral" title="Publisher" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="plugin_authoring/packaging.html" class="btn btn-neutral" title="Packaging" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -340,7 +1064,7 @@ List of metrics to be published.</td>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1',
+            VERSION:'0.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

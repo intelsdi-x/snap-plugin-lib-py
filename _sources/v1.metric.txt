@@ -1,0 +1,7 @@
+v1.metric module
+================
+
+.. automodule:: v1.metric
+    :members:
+    :undoc-members:
+    :show-inheritance:

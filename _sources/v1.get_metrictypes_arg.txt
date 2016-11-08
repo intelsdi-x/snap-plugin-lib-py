@@ -1,0 +1,7 @@
+v1.get_metrictypes_arg module
+=============================
+
+.. automodule:: v1.get_metrictypes_arg
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,7 @@
+v1.plugin_pb2 module
+====================
+
+.. automodule:: v1.plugin_pb2
+    :members:
+    :undoc-members:
+    :show-inheritance:

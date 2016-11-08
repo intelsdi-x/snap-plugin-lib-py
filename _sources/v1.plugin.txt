@@ -1,0 +1,7 @@
+v1.plugin module
+================
+
+.. automodule:: v1.plugin
+    :members:
+    :undoc-members:
+    :show-inheritance:
