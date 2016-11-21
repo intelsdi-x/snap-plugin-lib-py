@@ -20,16 +20,17 @@ import logging
 import sys
 import time
 from abc import ABCMeta, abstractmethod
+from concurrent import futures
+from enum import Enum
 from threading import Thread
 
 import grpc
 import six
-from concurrent import futures
-from enum import Enum
 
 from .plugin_pb2 import GetConfigPolicyReply
 
 LOG = logging.getLogger(__name__)
+
 
 class _EnumEncoder(json.JSONEncoder):
     # pylint: disable=E0202
@@ -114,8 +115,6 @@ class Meta(object):
         self.name = name
         self.version = version
         setattr(sys.modules["snap_plugin.v1"], "PLUGIN_VERSION", version)
-        # from snap_plugin.v1 import PLUGIN_VERSION
-        # PLUGIN_VERSION = version
         self.type = type
         self.concurrency_count = concurrency_count
         self.routing_strategy = routing_strategy
@@ -139,7 +138,6 @@ class Plugin(object):
     def __init__(self):
         self.meta = None
         self.proxy = None
-        self.stopped = False
         self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
         self._port = 0
         self._last_ping = time.time()
@@ -150,15 +148,18 @@ class Plugin(object):
             try:
                 self._args = json.loads(sys.argv[1])
             except ValueError:
-                LOG.warn("Invalid arg provided: expected JSON. "
-                         "(provided={})".format(sys.argv[1]))
+                LOG.warning("Invalid arg provided: expected JSON. " +
+                            "(provided={})".format(sys.argv[1]))
                 self._args = {}
         else:
             self._args = {}
         self._set_log_level()
-        self._monitor = Thread(target=_monitor,
-                               args=(self._last_ping, self.stop_plugin),
-                               kwargs={"timeout": self._get_ping_timout_duration()})
+        self._monitor = Thread(
+            target=_monitor,
+            args=(self.last_ping,
+                  self.stop_plugin,
+                  self._is_shutting_down),
+            kwargs={"timeout": self._get_ping_timout_duration()})
 
     def ping(self):
         """Ping responds to clients providing proof of life
@@ -184,8 +185,7 @@ class Plugin(object):
             - Finding an available port
             - Starting the gRPC server
             - Printing to STDOUT data (JSON) for handshaking with Snap
-        """        
-        self._monitor.start()
+        """
         LOG.debug("plugin start called..")
         # start grpc server
         self._port = self.server.add_insecure_port('127.0.0.1:{!s}'.format(0))
@@ -214,8 +214,9 @@ class Plugin(object):
             cls=_EnumEncoder
         )+"\n")
         sys.stdout.flush()
+        self._monitor.start()
         self._monitor.join()
-        sys.exit()        
+        sys.exit()
 
     def _set_log_level(self):
         """Sets the log level provided by the framework.
@@ -231,20 +232,19 @@ class Plugin(object):
             - 6 panic
         """
         if "LogLevel" in self._args:
-            if  self._args["LogLevel"] >= 1 and self._args["LogLevel"] <= 5:
+            if self._args["LogLevel"] >= 1 and self._args["LogLevel"] <= 5:
                 # Multiplying the provided level by 10 will convert them to what
                 # the python logging module uses.
                 LOG.setLevel(self._args["LogLevel"] * 10)
-                LOG.info("Setting loglevel to {}.".format(
-                    LOG.getEffectiveLevel()))
+                LOG.info("Setting loglevel to %s.", LOG.getEffectiveLevel())
             else:
-                LOG.error("The log level should be between 1 and 5."
-                          " (given={})".format(self._args["LogLevel"]))
+                LOG.error("The log level should be between 1 and 5." +
+                          " (given={})", self._args["LogLevel"])
 
     def _get_ping_timout_duration(self):
         """Gets the ping timout duration provided by the framework.
 
-        The ping timeout duration returned from the framework is in ms. so we 
+        The ping timeout duration returned from the framework is in ms. so we
         convert it to seconds.  If the is no timeout provided by the framework
         we return the default of 5(seconds).
         """
@@ -252,6 +252,14 @@ class Plugin(object):
             return self._args["PingTimeoutDuration"] / 1000
         else:
             return 5
+
+    def last_ping(self):
+        """Returns the epoch time when the last ping was received"""
+        return self._last_ping
+
+    def _is_shutting_down(self):
+        """Returns bool indicating whether the plugin is shutting down"""
+        return self._shutting_down
 
     @abstractmethod
     def get_config_policy(self):
@@ -271,24 +279,32 @@ class Plugin(object):
         return GetConfigPolicyReply()
 
 
-def _monitor(last_ping, stop_plugin, shutting_down, timeout=5):
+def _monitor(last_ping, stop_plugin, is_shutting_down, timeout=5):
     """Monitors health checks (pings) from the Snap framework.
 
-    If the plugin doesn't recieve 3 consecutive health checks from Snap the 
+    If the plugin doesn't recieve 3 consecutive health checks from Snap the
     plugin will shutdown.  The default timeout is set to 5 seconds.
     """
-    timeout_count = 0
+    _timeout_count = 0
+    _last_check = time.time()
+    _sleep_interval = 1
+    # set _sleep_interval if less than the timeout
+    if timeout < _sleep_interval:
+        _sleep_interval = timeout
     while True:
-        time.sleep(.5)
-        if shutting_down:
-            # Signals that stop_plugin has been called
+        time.sleep(_sleep_interval)
+        # Signals that stop_plugin has been called
+        if is_shutting_down():
             return
-        if (time.time() - last_ping) > timeout:
-            timeout_count += 1
-            LOG.warn("Missed ping health check from the framework. "
-                     "({} of 3)".format(timeout_count))
-            if timeout_count >= 3:
+        # have we missed a ping during the last timeout duration
+        if ((time.time() - _last_check) > timeout) and ((time.time() - last_ping()) > timeout):
+            # reset last_check
+            _last_check = time.time()
+            _timeout_count += 1
+            LOG.warning("Missed ping health check from the framework. " +
+                        "({} of 3)".format(_timeout_count))
+            if _timeout_count >= 3:
                 stop_plugin()
                 return
-        else:
-            timeout_count = 0
+        elif (time.time() - last_ping()) <= timeout:
+            _timeout_count = 0

@@ -95,7 +95,6 @@ class MockCollector(snap.Collector, threading.Thread):
 
     def stop(self):
         self._stopper.set()
-        self.stopped = True
         self.stop_plugin()
 
 
@@ -103,8 +102,8 @@ class MockCollector(snap.Collector, threading.Thread):
 def collector_client():
     """Returns a client (grpc) fixture that is passed into collector tests"""
     sys.stdout = ThreadPrinter()
+    sys.argv = ["", '{"LogLevel": 1, "PingTimeoutDuration": 5000}']
     col = MockCollector("MyCollector", 99)
-    col._args = {"LogLevel": 1, "PingTimeoutDuration": 5000}
     col.start()
     t_end = time.time() + 5
     # wait for our collector to print its preamble
@@ -115,6 +114,17 @@ def collector_client():
         grpc.insecure_channel(resp["ListenAddress"]))
     yield client
     col.stop()
+
+
+def test_monitor():
+    sys.argv = ["", '{"LogLevel": 1, "PingTimeoutDuration": 100}']
+    col = MockCollector("MyCollector", 1)
+    # with a PingTimeoutDuration at 50ms the plugin should shutdown
+    # in just over 150ms
+    col.start()
+    assert col._shutting_down is False
+    time.sleep(.4)
+    assert col._shutting_down is True
 
 
 def test_collect(collector_client):
