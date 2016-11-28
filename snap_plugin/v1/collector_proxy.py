@@ -22,6 +22,7 @@ from .metric import Metric
 
 from .plugin_pb2 import MetricsReply
 from .plugin_proxy import PluginProxy
+from .config_map import ConfigMap
 
 LOG = logging.getLogger(__name__)
 
@@ -50,7 +51,7 @@ class _CollectorProxy(PluginProxy):
         """Dispatches the request to the plugins update_catalog method"""
         LOG.debug("GetMetricTypes called")
         try:
-            metrics = self.plugin.update_catalog(request.config)
+            metrics = self.plugin.update_catalog(ConfigMap(pb=request.config))
             return MetricsReply(metrics=[m.pb for m in metrics])
         except Exception as err:
             msg = "message: {}\n\nstack trace: {}".format(

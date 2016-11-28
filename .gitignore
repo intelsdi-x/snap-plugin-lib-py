@@ -40,6 +40,7 @@ nosetests.xml
 .project
 .pydevproject
 .python-version
+tags
 
 # Complexity
 output/*.html
