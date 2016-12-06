@@ -35,7 +35,7 @@ class Timestamp(object):
         self._pb = pb
         self._time = time
         self._pb.sec = int(self._time)
-        self._pb.nsec = int(time - self.sec) * 10 ** 9
+        self._pb.nsec = int((self._time - self._pb.sec) * 10 ** 9)
 
     def __getattr__(self, attr):
         if attr in self.__dict__:
@@ -58,5 +58,5 @@ class Timestamp(object):
 
     def set(self, time):
         self._time = time
-        self.sec = int(time)
-        self.nsec = int(time-self.sec) * 10**9
+        self._pb.sec = int(self._time)
+        self._pb.nsec = int((self._time - self._pb.sec) * 10 ** 9)

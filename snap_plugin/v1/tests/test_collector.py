@@ -41,6 +41,7 @@ class MockCollector(snap.Collector, threading.Thread):
 
     def collect(self, metrics):
         for metric in metrics:
+            metric.timestamp = time.time()
             metric.version = 2
             if "bytes" in metric.config and metric.config["bytes"] is True:
                 metric.data = b'qwerty'
@@ -144,6 +145,12 @@ def test_collect(collector_client):
     assert reply.metrics[0].Version == 2
     assert reply.metrics[0].float64_data == 99.9
     assert snap.Metric(pb=reply.metrics[0]).data == 99.9
+    reply2 = collector_client.CollectMetrics(MetricsArg(metric).pb)
+    assert (reply2.metrics[0].Timestamp.sec +
+            (reply2.metrics[0].Timestamp.nsec * 10 ** -9)) > (
+                reply.metrics[0].Timestamp.sec +
+                (reply.metrics[0].Timestamp.nsec * 10 ** -9))
+
 
     # collect bytes
     metric.config.clear()
