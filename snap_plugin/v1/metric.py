@@ -106,6 +106,11 @@ class Metric(object):
         # timestamp
         self._timestamp = Timestamp(pb=self._pb.Timestamp,
                                     time=timestamp)
+
+        # this was added as a stop gap until
+        # https://github.com/intelsdi-x/snap/issues/1394 lands
+        self._last_advertised_time = Timestamp(pb=self._pb.LastAdvertisedTime,
+                                               time=timestamp)
         # data
         if "data" in kwargs:
             self.data = kwargs.get("data")
