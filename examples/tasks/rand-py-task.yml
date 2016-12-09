@@ -9,6 +9,7 @@
                 /random/float64: {}
                 /random/int64: {}
                 /random/string: {}
+                /random/*/uid: {}
             process:
                 - plugin_name: "tag-py"
                   publish:

@@ -68,7 +68,7 @@ class Namespace(object):
         Returns:
             :py:class:`snap_plugin.v1.namespace.Namespace`
         """
-        self._pb.add(Name=name, Description=description)
+        self._pb.add(Name=name, Description=description, Value="*")
         return self
 
     def add_static_element(self, value):

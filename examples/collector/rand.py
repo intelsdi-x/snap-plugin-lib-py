@@ -17,6 +17,7 @@
 # limitations under the License.
 
 import logging
+import os
 import random
 import time
 
@@ -42,9 +43,12 @@ class Rand(snap.Collector):
                 "int64": random.randint(
                     metric.config["int_min"],
                     metric.config["int_max"]
-                    )
+                    ),
+                "*": os.getuid()
             }
-            typ = metric.namespace[len(metric.namespace)-1].Value
+            typ = metric.namespace[1].value
+            if typ == "*":
+                metric.namespace[1].value = str(os.getpid())
             metric.data = switch[typ]
             metric.timestamp = time.time()
         return metrics
@@ -63,6 +67,14 @@ class Rand(snap.Collector):
                 Description="Random {}".format(key),
             )
             metrics.append(metric)
+
+        # add a dynamic metric
+        metric = snap.Metric(version=1, Description="dynamic element example")
+        metric.namespace.add_static_element("random")
+        metric.namespace.add_dynamic_element("pid", "current pid")
+        metric.namespace.add_static_element("uid")
+        metrics.append(metric)
+
         return metrics
 
     def get_config_policy(self):
