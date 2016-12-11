@@ -10,6 +10,7 @@
                 /random/int64: {}
                 /random/string: {}
                 /random/*/uid: {}
+                /random/*/gid: {}
             process:
                 - plugin_name: "tag-py"
                   publish:

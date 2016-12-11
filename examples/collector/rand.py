@@ -44,12 +44,17 @@ class Rand(snap.Collector):
                     metric.config["int_min"],
                     metric.config["int_max"]
                     ),
-                "*": os.getuid()
+                "*": None
             }
             typ = metric.namespace[1].value
             if typ == "*":
                 metric.namespace[1].value = str(os.getpid())
-            metric.data = switch[typ]
+                if metric.namespace[2].value == "uid":
+                    metric.data = os.getuid()
+                elif metric.namespace[2].value == "gid":
+                    metric.data = os.getgid()
+            else:
+                metric.data = switch[typ]
             metric.timestamp = time.time()
         return metrics
 
@@ -64,15 +69,27 @@ class Rand(snap.Collector):
                 ],
                 version=1,
                 tags={"mtype": "gauge"},
-                Description="Random {}".format(key),
+                description="Random {}".format(key),
             )
             metrics.append(metric)
 
-        # add a dynamic metric
         metric = snap.Metric(version=1, Description="dynamic element example")
+        # adds namespace elements (static and dynamic) via namespace methods
         metric.namespace.add_static_element("random")
         metric.namespace.add_dynamic_element("pid", "current pid")
         metric.namespace.add_static_element("uid")
+        metrics.append(metric)
+
+        # metric is added with the namespace defined in the constructor
+        metric = snap.Metric(
+            namespace=[
+                snap.NamespaceElement(value="random"),
+                snap.NamespaceElement(name="pid", description="current pid"),
+                snap.NamespaceElement(value="gid")
+            ],
+            description="dynamic element example",
+            version=1
+        )
         metrics.append(metric)
 
         return metrics

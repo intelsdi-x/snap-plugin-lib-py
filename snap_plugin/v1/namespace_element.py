@@ -22,17 +22,18 @@ from .plugin_pb2 import NamespaceElement as PbNamespaceElement
 class NamespaceElement(object):
     """Namespace element of a metric.
 
-    A static namespace element is defined by the `value` attribute being set
-    and where the `name` attribute is not used (set to None).  This is the case
-    when the namespace does not change based on what is being collected.
+    A namespace element is static when the `value` attribute is set
+    and where the `name` attribute is not set.  This is the case when the 
+    namespace does not change based on what is being collected.
 
-    A dynamic namespace element is defined by an element that contains a
+    A dynamic namespace element is defined by an element that contains
     non-static data relative to the metric being collected.  For instance, when
     collecting metrics for a given virtual machine the namespace element that
     contains the virtual-machine-id would be dynamic.  This is modeled by
-    the a NamespaceElement when its `name` attribute contains the value
+    the NamespaceElement when its `name` attribute contains the value
     'virtual-machine-id'.  In this example the `value` attribute would be set
-    to the ID of the virtual machine when the metric is collected.
+    to the ID of the virtual machine when the metric is collected and '*' when
+    the metric catalog is updated.
 
     Args:
         value (:obj:`str`): The value of an element.
@@ -49,6 +50,11 @@ class NamespaceElement(object):
             self._pb.Value = value
             self._pb.Description = description
             self._pb.Name = name
+            if name != "" and value == "":
+                # If the name is provided it's a dynamic metric.
+                # If the value field is not also set it needs to be set to the
+                # default '*'.
+                self._pb.Value = "*"
 
     def __getattr__(self, attr):
         if attr in self.__dict__:
