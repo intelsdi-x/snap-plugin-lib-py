@@ -17,6 +17,7 @@
 # limitations under the License.
 
 import logging
+import os
 import random
 import time
 
@@ -42,10 +43,18 @@ class Rand(snap.Collector):
                 "int64": random.randint(
                     metric.config["int_min"],
                     metric.config["int_max"]
-                    )
+                    ),
+                "*": None
             }
-            typ = metric.namespace[len(metric.namespace)-1].Value
-            metric.data = switch[typ]
+            typ = metric.namespace[1].value
+            if typ == "*":
+                metric.namespace[1].value = str(os.getpid())
+                if metric.namespace[2].value == "uid":
+                    metric.data = os.getuid()
+                elif metric.namespace[2].value == "gid":
+                    metric.data = os.getgid()
+            else:
+                metric.data = switch[typ]
             metric.timestamp = time.time()
         return metrics
 
@@ -60,9 +69,29 @@ class Rand(snap.Collector):
                 ],
                 version=1,
                 tags={"mtype": "gauge"},
-                Description="Random {}".format(key),
+                description="Random {}".format(key),
             )
             metrics.append(metric)
+
+        metric = snap.Metric(version=1, Description="dynamic element example")
+        # adds namespace elements (static and dynamic) via namespace methods
+        metric.namespace.add_static_element("random")
+        metric.namespace.add_dynamic_element("pid", "current pid")
+        metric.namespace.add_static_element("uid")
+        metrics.append(metric)
+
+        # metric is added with the namespace defined in the constructor
+        metric = snap.Metric(
+            namespace=[
+                snap.NamespaceElement(value="random"),
+                snap.NamespaceElement(name="pid", description="current pid"),
+                snap.NamespaceElement(value="gid")
+            ],
+            description="dynamic element example",
+            version=1
+        )
+        metrics.append(metric)
+
         return metrics
 
     def get_config_policy(self):

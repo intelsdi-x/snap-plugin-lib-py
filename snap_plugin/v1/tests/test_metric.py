@@ -121,7 +121,7 @@ class TestMetric(object):
         # add a dynamic namespace element
         m.namespace.add_dynamic_element("el3", "i'm dynamic!")
         assert len(m.namespace) == 4
-        assert (m.namespace[3].value == "" and
+        assert (m.namespace[3].value == "*" and
                 m.namespace[3].name == "el3" and
                 m.namespace[3].description == "i'm dynamic!")
         # pop/remove the last element of the namespace
