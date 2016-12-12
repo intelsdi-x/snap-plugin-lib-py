@@ -46,17 +46,22 @@ class Timestamp(object):
 
     @property
     def time(self):
-        """Represents time in seconds since Epoch
-
-        Args:
-            :obj:`float`: time in seconds since Epoch (see time.time())
+        """Gets time in seconds since Epoch
 
         Returns:
-            None
+            :obj:`float`
         """
         return self._time
 
     def set(self, time):
+        """Sets time in seconds since Epoch
+
+        Args:
+            time (:obj:`float`): time in seconds since Epoch (see time.time())
+
+        Returns:
+            None
+        """
         self._time = time
         self._pb.sec = int(self._time)
         self._pb.nsec = int((self._time - self._pb.sec) * 10 ** 9)
