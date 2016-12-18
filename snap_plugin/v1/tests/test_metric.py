@@ -150,6 +150,10 @@ class TestMetric(object):
                 m.config["int"] == 1 and
                 m.config["bool"] is True)
 
+        # verify an error is not raised
+        # https://github.com/intelsdi-x/snap-plugin-lib-py/issues/12
+        repr(m.config)
+
         with pytest.raises(AttributeError) as excinfo:
                 m.config = ConfigMap()
         assert "can't set attribute" in str(excinfo.value)

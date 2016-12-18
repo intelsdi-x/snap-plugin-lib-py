@@ -81,8 +81,10 @@ class ConfigMap(MutableMapping):
         raise KeyError(key)
 
     def __repr__(self):
-        return repr(self._pb.StringMap.items() + self._pb.IntMap.items() +
-                    self._pb.FloatMap.items() + self._pb.BoolMap.items())
+        return repr(dict(chain(self._pb.StringMap.items(),
+                               self._pb.IntMap.items(),
+                               self._pb.FloatMap.items(),
+                               self._pb.BoolMap.items())))
 
     def __len__(self):
         return (len(self._pb.IntMap) + len(self._pb.StringMap) +
