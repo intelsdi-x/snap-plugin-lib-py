@@ -47,7 +47,7 @@ class TestMetric(object):
         assert m.namespace[1].value == "bar"
         assert m.version == 1
         assert len(m.config) == 4
-        assert m.timestamp.sec > 0
+        assert m.timestamp > 0
         assert len(m.tags) == 1
         assert m.tags["key"] == "value"
         assert m.unit == "b"
@@ -65,16 +65,15 @@ class TestMetric(object):
         assert len(m.config) == 2
         assert (m.config["string"] == "string" and
                 m.config["int"] == 1)
-        assert m.timestamp.sec == 0
+        assert m.timestamp == 0
 
     def test_metric_attrs(self):
         m = Metric()
         now = time.time()
         # timestamp
-        m.timestamp.set(now)
-        assert m.timestamp.sec == int(now)
         m.timestamp = now
-        assert m.timestamp.sec == int(now)
+        assert m.timestamp == now
+        assert m._timestamp.sec == int(now)
         # version
         m.version = 1
         assert m.version == 1

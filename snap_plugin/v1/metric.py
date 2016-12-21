@@ -163,7 +163,7 @@ class Metric(object):
         Returns:
             `float`: time in seconds since Epoch (see time.time())
         """
-        return self._timestamp
+        return self._timestamp.time
 
     @timestamp.setter
     def timestamp(self, value):
