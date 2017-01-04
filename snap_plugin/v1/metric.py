@@ -59,7 +59,13 @@ class Metric(object):
                 self._data_type = int
             elif self._pb.HasField("int64_data"):
                 self._data_type = int
+            elif self._pb.HasField("uint32_data"):
+                self._data_type = int
+            elif self._pb.HasField("uint64_data"):
+                self._data_type = int
             elif self._pb.HasField("float64_data"):
+                self._data_type = float
+            elif self._pb.HasField("float32_data"):
                 self._data_type = float
             elif self._pb.HasField("string_data"):
                 self._data_type = str
@@ -234,14 +240,27 @@ class Metric(object):
             :obj:`TypeError`
 
         """
-        types = {
-            int: self._pb.int64_data if self._pb.HasField("int64_data") else self._pb.int32_data,
-            float: self._pb.float64_data,
-            bool: bool(self._pb.bool_data),
-            str: self._pb.string_data,
-            None: None
-        }
-        return types[self._data_type]
+        if self._data_type == "int":
+            if self._pb.HasField("int64_data"):
+                return self._pb.int64_data
+            if self._pb.HasField("int32_data"):
+                return self._pb.int32_data
+            if self._pb.HasField("uint64_data"):
+                return self._pb.uint64_data
+            if self._pb.HasField("uint32_data"):
+                return self._pb.uint32_data
+        elif self._data_type == "float":
+            if self._pb.HasField("float32_data"):
+                return self._pb.float32_data
+            if self._pb.HasField("float64_data"):
+                return self._pb.float64_data
+        elif self._data_type == "str":
+            return self._pb.string_data
+        elif self._data_type == "bool":
+            return self._pb.bool_data
+        elif self._data_type == "bytes":
+            return self._pb.bytes_data
+        return None
 
     @data.setter
     def data(self, value):

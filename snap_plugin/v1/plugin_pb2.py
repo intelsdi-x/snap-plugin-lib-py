@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='plugin.proto',
   package='rpc',
   syntax='proto3',
-  serialized_pb=_b('\n\x0cplugin.proto\x12\x03rpc\"\x07\n\x05\x45mpty\"\x19\n\x08\x45rrReply\x12\r\n\x05\x65rror\x18\x01 \x01(\t\"!\n\x04Time\x12\x0b\n\x03sec\x18\x01 \x01(\x03\x12\x0c\n\x04nsec\x18\x02 \x01(\x03\"D\n\x10NamespaceElement\x12\r\n\x05Value\x18\x01 \x01(\t\x12\x13\n\x0b\x44\x65scription\x18\x02 \x01(\t\x12\x0c\n\x04Name\x18\x03 \x01(\t\"J\n\nPubProcArg\x12\x1c\n\x07Metrics\x18\x01 \x03(\x0b\x32\x0b.rpc.Metric\x12\x1e\n\x06\x43onfig\x18\x02 \x01(\x0b\x32\x0e.rpc.ConfigMap\"\xc3\x03\n\x06Metric\x12(\n\tNamespace\x18\x01 \x03(\x0b\x32\x15.rpc.NamespaceElement\x12\x0f\n\x07Version\x18\x02 \x01(\x03\x12\x1e\n\x06\x43onfig\x18\x03 \x01(\x0b\x32\x0e.rpc.ConfigMap\x12%\n\x12LastAdvertisedTime\x18\x04 \x01(\x0b\x32\t.rpc.Time\x12#\n\x04Tags\x18\x05 \x03(\x0b\x32\x15.rpc.Metric.TagsEntry\x12\x1c\n\tTimestamp\x18\x06 \x01(\x0b\x32\t.rpc.Time\x12\x0c\n\x04Unit\x18\x07 \x01(\t\x12\x13\n\x0b\x44\x65scription\x18\x08 \x01(\t\x12\x15\n\x0bstring_data\x18\t \x01(\tH\x00\x12\x16\n\x0c\x66loat32_data\x18\n \x01(\x02H\x00\x12\x16\n\x0c\x66loat64_data\x18\x0b \x01(\x01H\x00\x12\x14\n\nint32_data\x18\x0c \x01(\x05H\x00\x12\x14\n\nint64_data\x18\r \x01(\x03H\x00\x12\x14\n\nbytes_data\x18\x0e \x01(\x0cH\x00\x12\x13\n\tbool_data\x18\x0f \x01(\x08H\x00\x1a+\n\tTagsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x42\x06\n\x04\x64\x61ta\"\x89\x03\n\tConfigMap\x12*\n\x06IntMap\x18\x01 \x03(\x0b\x32\x1a.rpc.ConfigMap.IntMapEntry\x12\x30\n\tStringMap\x18\x02 \x03(\x0b\x32\x1d.rpc.ConfigMap.StringMapEntry\x12.\n\x08\x46loatMap\x18\x03 \x03(\x0b\x32\x1c.rpc.ConfigMap.FloatMapEntry\x12,\n\x07\x42oolMap\x18\x04 \x03(\x0b\x32\x1b.rpc.ConfigMap.BoolMapEntry\x1a-\n\x0bIntMapEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\x1a\x30\n\x0eStringMapEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a/\n\rFloatMapEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\x1a.\n\x0c\x42oolMapEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x08:\x02\x38\x01\"\x19\n\x07KillArg\x12\x0e\n\x06Reason\x18\x01 \x01(\t\"\xcd\x04\n\x14GetConfigPolicyReply\x12\r\n\x05\x65rror\x18\x01 \x01(\t\x12>\n\x0b\x62ool_policy\x18\x02 \x03(\x0b\x32).rpc.GetConfigPolicyReply.BoolPolicyEntry\x12@\n\x0c\x66loat_policy\x18\x03 \x03(\x0b\x32*.rpc.GetConfigPolicyReply.FloatPolicyEntry\x12\x44\n\x0einteger_policy\x18\x04 \x03(\x0b\x32,.rpc.GetConfigPolicyReply.IntegerPolicyEntry\x12\x42\n\rstring_policy\x18\x05 \x03(\x0b\x32+.rpc.GetConfigPolicyReply.StringPolicyEntry\x1a\x42\n\x0f\x42oolPolicyEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1e\n\x05value\x18\x02 \x01(\x0b\x32\x0f.rpc.BoolPolicy:\x02\x38\x01\x1a\x44\n\x10\x46loatPolicyEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1f\n\x05value\x18\x02 \x01(\x0b\x32\x10.rpc.FloatPolicy:\x02\x38\x01\x1aH\n\x12IntegerPolicyEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12!\n\x05value\x18\x02 \x01(\x0b\x32\x12.rpc.IntegerPolicy:\x02\x38\x01\x1a\x46\n\x11StringPolicyEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12 \n\x05value\x18\x02 \x01(\x0b\x32\x11.rpc.StringPolicy:\x02\x38\x01\"B\n\x08\x42oolRule\x12\x10\n\x08required\x18\x01 \x01(\x08\x12\x0f\n\x07\x64\x65\x66\x61ult\x18\x02 \x01(\x08\x12\x13\n\x0bhas_default\x18\x03 \x01(\x08\"\x81\x01\n\nBoolPolicy\x12)\n\x05rules\x18\x01 \x03(\x0b\x32\x1a.rpc.BoolPolicy.RulesEntry\x12\x0b\n\x03key\x18\x02 \x03(\t\x1a;\n\nRulesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1c\n\x05value\x18\x02 \x01(\x0b\x32\r.rpc.BoolRule:\x02\x38\x01\"\x87\x01\n\tFloatRule\x12\x10\n\x08required\x18\x01 \x01(\x08\x12\x0f\n\x07minimum\x18\x02 \x01(\x01\x12\x0f\n\x07maximum\x18\x03 \x01(\x01\x12\x0f\n\x07\x64\x65\x66\x61ult\x18\x04 \x01(\x01\x12\x13\n\x0bhas_default\x18\x05 \x01(\x08\x12\x0f\n\x07has_min\x18\x06 \x01(\x08\x12\x0f\n\x07has_max\x18\x07 \x01(\x08\"\x84\x01\n\x0b\x46loatPolicy\x12*\n\x05rules\x18\x01 \x03(\x0b\x32\x1b.rpc.FloatPolicy.RulesEntry\x12\x0b\n\x03key\x18\x02 \x03(\t\x1a<\n\nRulesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1d\n\x05value\x18\x02 \x01(\x0b\x32\x0e.rpc.FloatRule:\x02\x38\x01\"\x89\x01\n\x0bIntegerRule\x12\x10\n\x08required\x18\x01 \x01(\x08\x12\x0f\n\x07minimum\x18\x02 \x01(\x03\x12\x0f\n\x07maximum\x18\x03 \x01(\x03\x12\x0f\n\x07\x64\x65\x66\x61ult\x18\x04 \x01(\x03\x12\x13\n\x0bhas_default\x18\x05 \x01(\x08\x12\x0f\n\x07has_min\x18\x06 \x01(\x08\x12\x0f\n\x07has_max\x18\x07 \x01(\x08\"\x8a\x01\n\rIntegerPolicy\x12,\n\x05rules\x18\x01 \x03(\x0b\x32\x1d.rpc.IntegerPolicy.RulesEntry\x12\x0b\n\x03key\x18\x02 \x03(\t\x1a>\n\nRulesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1f\n\x05value\x18\x02 \x01(\x0b\x32\x10.rpc.IntegerRule:\x02\x38\x01\"D\n\nStringRule\x12\x10\n\x08required\x18\x01 \x01(\x08\x12\x0f\n\x07\x64\x65\x66\x61ult\x18\x02 \x01(\t\x12\x13\n\x0bhas_default\x18\x03 \x01(\x08\"\x87\x01\n\x0cStringPolicy\x12+\n\x05rules\x18\x01 \x03(\x0b\x32\x1c.rpc.StringPolicy.RulesEntry\x12\x0b\n\x03key\x18\x02 \x03(\t\x1a=\n\nRulesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1e\n\x05value\x18\x02 \x01(\x0b\x32\x0f.rpc.StringRule:\x02\x38\x01\"*\n\nMetricsArg\x12\x1c\n\x07metrics\x18\x01 \x03(\x0b\x32\x0b.rpc.Metric\";\n\x0cMetricsReply\x12\x1c\n\x07metrics\x18\x01 \x03(\x0b\x32\x0b.rpc.Metric\x12\r\n\x05\x65rror\x18\x02 \x01(\t\"3\n\x11GetMetricTypesArg\x12\x1e\n\x06\x63onfig\x18\x01 \x01(\x0b\x32\x0e.rpc.ConfigMap2\x8a\x02\n\tCollector\x12\x36\n\x0e\x43ollectMetrics\x12\x0f.rpc.MetricsArg\x1a\x11.rpc.MetricsReply\"\x00\x12=\n\x0eGetMetricTypes\x12\x16.rpc.GetMetricTypesArg\x1a\x11.rpc.MetricsReply\"\x00\x12#\n\x04Ping\x12\n.rpc.Empty\x1a\r.rpc.ErrReply\"\x00\x12%\n\x04Kill\x12\x0c.rpc.KillArg\x1a\r.rpc.ErrReply\"\x00\x12:\n\x0fGetConfigPolicy\x12\n.rpc.Empty\x1a\x19.rpc.GetConfigPolicyReply\"\x00\x32\xc4\x01\n\tProcessor\x12/\n\x07Process\x12\x0f.rpc.PubProcArg\x1a\x11.rpc.MetricsReply\"\x00\x12#\n\x04Ping\x12\n.rpc.Empty\x1a\r.rpc.ErrReply\"\x00\x12%\n\x04Kill\x12\x0c.rpc.KillArg\x1a\r.rpc.ErrReply\"\x00\x12:\n\x0fGetConfigPolicy\x12\n.rpc.Empty\x1a\x19.rpc.GetConfigPolicyReply\"\x00\x32\xc0\x01\n\tPublisher\x12+\n\x07Publish\x12\x0f.rpc.PubProcArg\x1a\r.rpc.ErrReply\"\x00\x12#\n\x04Ping\x12\n.rpc.Empty\x1a\r.rpc.ErrReply\"\x00\x12%\n\x04Kill\x12\x0c.rpc.KillArg\x1a\r.rpc.ErrReply\"\x00\x12:\n\x0fGetConfigPolicy\x12\n.rpc.Empty\x1a\x19.rpc.GetConfigPolicyReply\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0cplugin.proto\x12\x03rpc\"\x07\n\x05\x45mpty\"\x19\n\x08\x45rrReply\x12\r\n\x05\x65rror\x18\x01 \x01(\t\"!\n\x04Time\x12\x0b\n\x03sec\x18\x01 \x01(\x03\x12\x0c\n\x04nsec\x18\x02 \x01(\x03\"D\n\x10NamespaceElement\x12\r\n\x05Value\x18\x01 \x01(\t\x12\x13\n\x0b\x44\x65scription\x18\x02 \x01(\t\x12\x0c\n\x04Name\x18\x03 \x01(\t\"J\n\nPubProcArg\x12\x1c\n\x07Metrics\x18\x01 \x03(\x0b\x32\x0b.rpc.Metric\x12\x1e\n\x06\x43onfig\x18\x02 \x01(\x0b\x32\x0e.rpc.ConfigMap\"\xf1\x03\n\x06Metric\x12(\n\tNamespace\x18\x01 \x03(\x0b\x32\x15.rpc.NamespaceElement\x12\x0f\n\x07Version\x18\x02 \x01(\x03\x12\x1e\n\x06\x43onfig\x18\x03 \x01(\x0b\x32\x0e.rpc.ConfigMap\x12%\n\x12LastAdvertisedTime\x18\x04 \x01(\x0b\x32\t.rpc.Time\x12#\n\x04Tags\x18\x05 \x03(\x0b\x32\x15.rpc.Metric.TagsEntry\x12\x1c\n\tTimestamp\x18\x06 \x01(\x0b\x32\t.rpc.Time\x12\x0c\n\x04Unit\x18\x07 \x01(\t\x12\x13\n\x0b\x44\x65scription\x18\x08 \x01(\t\x12\x15\n\x0bstring_data\x18\t \x01(\tH\x00\x12\x16\n\x0c\x66loat32_data\x18\n \x01(\x02H\x00\x12\x16\n\x0c\x66loat64_data\x18\x0b \x01(\x01H\x00\x12\x14\n\nint32_data\x18\x0c \x01(\x05H\x00\x12\x14\n\nint64_data\x18\r \x01(\x03H\x00\x12\x14\n\nbytes_data\x18\x0e \x01(\x0cH\x00\x12\x13\n\tbool_data\x18\x0f \x01(\x08H\x00\x12\x15\n\x0buint32_data\x18\x10 \x01(\rH\x00\x12\x15\n\x0buint64_data\x18\x11 \x01(\x04H\x00\x1a+\n\tTagsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x42\x06\n\x04\x64\x61ta\"\x89\x03\n\tConfigMap\x12*\n\x06IntMap\x18\x01 \x03(\x0b\x32\x1a.rpc.ConfigMap.IntMapEntry\x12\x30\n\tStringMap\x18\x02 \x03(\x0b\x32\x1d.rpc.ConfigMap.StringMapEntry\x12.\n\x08\x46loatMap\x18\x03 \x03(\x0b\x32\x1c.rpc.ConfigMap.FloatMapEntry\x12,\n\x07\x42oolMap\x18\x04 \x03(\x0b\x32\x1b.rpc.ConfigMap.BoolMapEntry\x1a-\n\x0bIntMapEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\x1a\x30\n\x0eStringMapEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a/\n\rFloatMapEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\x1a.\n\x0c\x42oolMapEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x08:\x02\x38\x01\"\x19\n\x07KillArg\x12\x0e\n\x06Reason\x18\x01 \x01(\t\"\xcd\x04\n\x14GetConfigPolicyReply\x12\r\n\x05\x65rror\x18\x01 \x01(\t\x12>\n\x0b\x62ool_policy\x18\x02 \x03(\x0b\x32).rpc.GetConfigPolicyReply.BoolPolicyEntry\x12@\n\x0c\x66loat_policy\x18\x03 \x03(\x0b\x32*.rpc.GetConfigPolicyReply.FloatPolicyEntry\x12\x44\n\x0einteger_policy\x18\x04 \x03(\x0b\x32,.rpc.GetConfigPolicyReply.IntegerPolicyEntry\x12\x42\n\rstring_policy\x18\x05 \x03(\x0b\x32+.rpc.GetConfigPolicyReply.StringPolicyEntry\x1a\x42\n\x0f\x42oolPolicyEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1e\n\x05value\x18\x02 \x01(\x0b\x32\x0f.rpc.BoolPolicy:\x02\x38\x01\x1a\x44\n\x10\x46loatPolicyEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1f\n\x05value\x18\x02 \x01(\x0b\x32\x10.rpc.FloatPolicy:\x02\x38\x01\x1aH\n\x12IntegerPolicyEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12!\n\x05value\x18\x02 \x01(\x0b\x32\x12.rpc.IntegerPolicy:\x02\x38\x01\x1a\x46\n\x11StringPolicyEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12 \n\x05value\x18\x02 \x01(\x0b\x32\x11.rpc.StringPolicy:\x02\x38\x01\"B\n\x08\x42oolRule\x12\x10\n\x08required\x18\x01 \x01(\x08\x12\x0f\n\x07\x64\x65\x66\x61ult\x18\x02 \x01(\x08\x12\x13\n\x0bhas_default\x18\x03 \x01(\x08\"\x81\x01\n\nBoolPolicy\x12)\n\x05rules\x18\x01 \x03(\x0b\x32\x1a.rpc.BoolPolicy.RulesEntry\x12\x0b\n\x03key\x18\x02 \x03(\t\x1a;\n\nRulesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1c\n\x05value\x18\x02 \x01(\x0b\x32\r.rpc.BoolRule:\x02\x38\x01\"\x87\x01\n\tFloatRule\x12\x10\n\x08required\x18\x01 \x01(\x08\x12\x0f\n\x07minimum\x18\x02 \x01(\x01\x12\x0f\n\x07maximum\x18\x03 \x01(\x01\x12\x0f\n\x07\x64\x65\x66\x61ult\x18\x04 \x01(\x01\x12\x13\n\x0bhas_default\x18\x05 \x01(\x08\x12\x0f\n\x07has_min\x18\x06 \x01(\x08\x12\x0f\n\x07has_max\x18\x07 \x01(\x08\"\x84\x01\n\x0b\x46loatPolicy\x12*\n\x05rules\x18\x01 \x03(\x0b\x32\x1b.rpc.FloatPolicy.RulesEntry\x12\x0b\n\x03key\x18\x02 \x03(\t\x1a<\n\nRulesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1d\n\x05value\x18\x02 \x01(\x0b\x32\x0e.rpc.FloatRule:\x02\x38\x01\"\x89\x01\n\x0bIntegerRule\x12\x10\n\x08required\x18\x01 \x01(\x08\x12\x0f\n\x07minimum\x18\x02 \x01(\x03\x12\x0f\n\x07maximum\x18\x03 \x01(\x03\x12\x0f\n\x07\x64\x65\x66\x61ult\x18\x04 \x01(\x03\x12\x13\n\x0bhas_default\x18\x05 \x01(\x08\x12\x0f\n\x07has_min\x18\x06 \x01(\x08\x12\x0f\n\x07has_max\x18\x07 \x01(\x08\"\x8a\x01\n\rIntegerPolicy\x12,\n\x05rules\x18\x01 \x03(\x0b\x32\x1d.rpc.IntegerPolicy.RulesEntry\x12\x0b\n\x03key\x18\x02 \x03(\t\x1a>\n\nRulesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1f\n\x05value\x18\x02 \x01(\x0b\x32\x10.rpc.IntegerRule:\x02\x38\x01\"D\n\nStringRule\x12\x10\n\x08required\x18\x01 \x01(\x08\x12\x0f\n\x07\x64\x65\x66\x61ult\x18\x02 \x01(\t\x12\x13\n\x0bhas_default\x18\x03 \x01(\x08\"\x87\x01\n\x0cStringPolicy\x12+\n\x05rules\x18\x01 \x03(\x0b\x32\x1c.rpc.StringPolicy.RulesEntry\x12\x0b\n\x03key\x18\x02 \x03(\t\x1a=\n\nRulesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1e\n\x05value\x18\x02 \x01(\x0b\x32\x0f.rpc.StringRule:\x02\x38\x01\"*\n\nMetricsArg\x12\x1c\n\x07metrics\x18\x01 \x03(\x0b\x32\x0b.rpc.Metric\";\n\x0cMetricsReply\x12\x1c\n\x07metrics\x18\x01 \x03(\x0b\x32\x0b.rpc.Metric\x12\r\n\x05\x65rror\x18\x02 \x01(\t\"3\n\x11GetMetricTypesArg\x12\x1e\n\x06\x63onfig\x18\x01 \x01(\x0b\x32\x0e.rpc.ConfigMap2\x8a\x02\n\tCollector\x12\x36\n\x0e\x43ollectMetrics\x12\x0f.rpc.MetricsArg\x1a\x11.rpc.MetricsReply\"\x00\x12=\n\x0eGetMetricTypes\x12\x16.rpc.GetMetricTypesArg\x1a\x11.rpc.MetricsReply\"\x00\x12#\n\x04Ping\x12\n.rpc.Empty\x1a\r.rpc.ErrReply\"\x00\x12%\n\x04Kill\x12\x0c.rpc.KillArg\x1a\r.rpc.ErrReply\"\x00\x12:\n\x0fGetConfigPolicy\x12\n.rpc.Empty\x1a\x19.rpc.GetConfigPolicyReply\"\x00\x32\xc4\x01\n\tProcessor\x12/\n\x07Process\x12\x0f.rpc.PubProcArg\x1a\x11.rpc.MetricsReply\"\x00\x12#\n\x04Ping\x12\n.rpc.Empty\x1a\r.rpc.ErrReply\"\x00\x12%\n\x04Kill\x12\x0c.rpc.KillArg\x1a\r.rpc.ErrReply\"\x00\x12:\n\x0fGetConfigPolicy\x12\n.rpc.Empty\x1a\x19.rpc.GetConfigPolicyReply\"\x00\x32\xc0\x01\n\tPublisher\x12+\n\x07Publish\x12\x0f.rpc.PubProcArg\x1a\r.rpc.ErrReply\"\x00\x12#\n\x04Ping\x12\n.rpc.Empty\x1a\r.rpc.ErrReply\"\x00\x12%\n\x04Kill\x12\x0c.rpc.KillArg\x1a\r.rpc.ErrReply\"\x00\x12:\n\x0fGetConfigPolicy\x12\n.rpc.Empty\x1a\x19.rpc.GetConfigPolicyReply\"\x00\x62\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -235,8 +235,8 @@ _METRIC_TAGSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=639,
-  serialized_end=682,
+  serialized_start=685,
+  serialized_end=728,
 )
 
 _METRIC = _descriptor.Descriptor(
@@ -351,6 +351,20 @@ _METRIC = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='uint32_data', full_name='rpc.Metric.uint32_data', index=15,
+      number=16, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='uint64_data', full_name='rpc.Metric.uint64_data', index=16,
+      number=17, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -367,7 +381,7 @@ _METRIC = _descriptor.Descriptor(
       index=0, containing_type=None, fields=[]),
   ],
   serialized_start=239,
-  serialized_end=690,
+  serialized_end=736,
 )
 
 
@@ -404,8 +418,8 @@ _CONFIGMAP_INTMAPENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=894,
-  serialized_end=939,
+  serialized_start=940,
+  serialized_end=985,
 )
 
 _CONFIGMAP_STRINGMAPENTRY = _descriptor.Descriptor(
@@ -441,8 +455,8 @@ _CONFIGMAP_STRINGMAPENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=941,
-  serialized_end=989,
+  serialized_start=987,
+  serialized_end=1035,
 )
 
 _CONFIGMAP_FLOATMAPENTRY = _descriptor.Descriptor(
@@ -478,8 +492,8 @@ _CONFIGMAP_FLOATMAPENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=991,
-  serialized_end=1038,
+  serialized_start=1037,
+  serialized_end=1084,
 )
 
 _CONFIGMAP_BOOLMAPENTRY = _descriptor.Descriptor(
@@ -515,8 +529,8 @@ _CONFIGMAP_BOOLMAPENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1040,
-  serialized_end=1086,
+  serialized_start=1086,
+  serialized_end=1132,
 )
 
 _CONFIGMAP = _descriptor.Descriptor(
@@ -566,8 +580,8 @@ _CONFIGMAP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=693,
-  serialized_end=1086,
+  serialized_start=739,
+  serialized_end=1132,
 )
 
 
@@ -597,8 +611,8 @@ _KILLARG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1088,
-  serialized_end=1113,
+  serialized_start=1134,
+  serialized_end=1159,
 )
 
 
@@ -635,8 +649,8 @@ _GETCONFIGPOLICYREPLY_BOOLPOLICYENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1423,
-  serialized_end=1489,
+  serialized_start=1469,
+  serialized_end=1535,
 )
 
 _GETCONFIGPOLICYREPLY_FLOATPOLICYENTRY = _descriptor.Descriptor(
@@ -672,8 +686,8 @@ _GETCONFIGPOLICYREPLY_FLOATPOLICYENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1491,
-  serialized_end=1559,
+  serialized_start=1537,
+  serialized_end=1605,
 )
 
 _GETCONFIGPOLICYREPLY_INTEGERPOLICYENTRY = _descriptor.Descriptor(
@@ -709,8 +723,8 @@ _GETCONFIGPOLICYREPLY_INTEGERPOLICYENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1561,
-  serialized_end=1633,
+  serialized_start=1607,
+  serialized_end=1679,
 )
 
 _GETCONFIGPOLICYREPLY_STRINGPOLICYENTRY = _descriptor.Descriptor(
@@ -746,8 +760,8 @@ _GETCONFIGPOLICYREPLY_STRINGPOLICYENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1635,
-  serialized_end=1705,
+  serialized_start=1681,
+  serialized_end=1751,
 )
 
 _GETCONFIGPOLICYREPLY = _descriptor.Descriptor(
@@ -804,8 +818,8 @@ _GETCONFIGPOLICYREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1116,
-  serialized_end=1705,
+  serialized_start=1162,
+  serialized_end=1751,
 )
 
 
@@ -849,8 +863,8 @@ _BOOLRULE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1707,
-  serialized_end=1773,
+  serialized_start=1753,
+  serialized_end=1819,
 )
 
 
@@ -887,8 +901,8 @@ _BOOLPOLICY_RULESENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1846,
-  serialized_end=1905,
+  serialized_start=1892,
+  serialized_end=1951,
 )
 
 _BOOLPOLICY = _descriptor.Descriptor(
@@ -924,8 +938,8 @@ _BOOLPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1776,
-  serialized_end=1905,
+  serialized_start=1822,
+  serialized_end=1951,
 )
 
 
@@ -997,8 +1011,8 @@ _FLOATRULE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1908,
-  serialized_end=2043,
+  serialized_start=1954,
+  serialized_end=2089,
 )
 
 
@@ -1035,8 +1049,8 @@ _FLOATPOLICY_RULESENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2118,
-  serialized_end=2178,
+  serialized_start=2164,
+  serialized_end=2224,
 )
 
 _FLOATPOLICY = _descriptor.Descriptor(
@@ -1072,8 +1086,8 @@ _FLOATPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2046,
-  serialized_end=2178,
+  serialized_start=2092,
+  serialized_end=2224,
 )
 
 
@@ -1145,8 +1159,8 @@ _INTEGERRULE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2181,
-  serialized_end=2318,
+  serialized_start=2227,
+  serialized_end=2364,
 )
 
 
@@ -1183,8 +1197,8 @@ _INTEGERPOLICY_RULESENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2397,
-  serialized_end=2459,
+  serialized_start=2443,
+  serialized_end=2505,
 )
 
 _INTEGERPOLICY = _descriptor.Descriptor(
@@ -1220,8 +1234,8 @@ _INTEGERPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2321,
-  serialized_end=2459,
+  serialized_start=2367,
+  serialized_end=2505,
 )
 
 
@@ -1265,8 +1279,8 @@ _STRINGRULE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2461,
-  serialized_end=2529,
+  serialized_start=2507,
+  serialized_end=2575,
 )
 
 
@@ -1303,8 +1317,8 @@ _STRINGPOLICY_RULESENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2606,
-  serialized_end=2667,
+  serialized_start=2652,
+  serialized_end=2713,
 )
 
 _STRINGPOLICY = _descriptor.Descriptor(
@@ -1340,8 +1354,8 @@ _STRINGPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2532,
-  serialized_end=2667,
+  serialized_start=2578,
+  serialized_end=2713,
 )
 
 
@@ -1371,8 +1385,8 @@ _METRICSARG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2669,
-  serialized_end=2711,
+  serialized_start=2715,
+  serialized_end=2757,
 )
 
 
@@ -1409,8 +1423,8 @@ _METRICSREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2713,
-  serialized_end=2772,
+  serialized_start=2759,
+  serialized_end=2818,
 )
 
 
@@ -1440,8 +1454,8 @@ _GETMETRICTYPESARG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2774,
-  serialized_end=2825,
+  serialized_start=2820,
+  serialized_end=2871,
 )
 
 _PUBPROCARG.fields_by_name['Metrics'].message_type = _METRIC
@@ -1473,6 +1487,12 @@ _METRIC.fields_by_name['bytes_data'].containing_oneof = _METRIC.oneofs_by_name['
 _METRIC.oneofs_by_name['data'].fields.append(
   _METRIC.fields_by_name['bool_data'])
 _METRIC.fields_by_name['bool_data'].containing_oneof = _METRIC.oneofs_by_name['data']
+_METRIC.oneofs_by_name['data'].fields.append(
+  _METRIC.fields_by_name['uint32_data'])
+_METRIC.fields_by_name['uint32_data'].containing_oneof = _METRIC.oneofs_by_name['data']
+_METRIC.oneofs_by_name['data'].fields.append(
+  _METRIC.fields_by_name['uint64_data'])
+_METRIC.fields_by_name['uint64_data'].containing_oneof = _METRIC.oneofs_by_name['data']
 _CONFIGMAP_INTMAPENTRY.containing_type = _CONFIGMAP
 _CONFIGMAP_STRINGMAPENTRY.containing_type = _CONFIGMAP
 _CONFIGMAP_FLOATMAPENTRY.containing_type = _CONFIGMAP
@@ -1800,494 +1820,559 @@ _INTEGERPOLICY_RULESENTRY.has_options = True
 _INTEGERPOLICY_RULESENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
 _STRINGPOLICY_RULESENTRY.has_options = True
 _STRINGPOLICY_RULESENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
-import grpc
-from grpc.beta import implementations as beta_implementations
-from grpc.beta import interfaces as beta_interfaces
-from grpc.framework.common import cardinality
-from grpc.framework.interfaces.face import utilities as face_utilities
+try:
+  # THESE ELEMENTS WILL BE DEPRECATED.
+  # Please use the generated *_pb2_grpc.py files instead.
+  import grpc
+  from grpc.framework.common import cardinality
+  from grpc.framework.interfaces.face import utilities as face_utilities
+  from grpc.beta import implementations as beta_implementations
+  from grpc.beta import interfaces as beta_interfaces
 
 
-class CollectorStub(object):
+  class CollectorStub(object):
 
-  def __init__(self, channel):
-    """Constructor.
+    def __init__(self, channel):
+      """Constructor.
 
-    Args:
-      channel: A grpc.Channel.
-    """
-    self.CollectMetrics = channel.unary_unary(
-        '/rpc.Collector/CollectMetrics',
-        request_serializer=MetricsArg.SerializeToString,
-        response_deserializer=MetricsReply.FromString,
-        )
-    self.GetMetricTypes = channel.unary_unary(
-        '/rpc.Collector/GetMetricTypes',
-        request_serializer=GetMetricTypesArg.SerializeToString,
-        response_deserializer=MetricsReply.FromString,
-        )
-    self.Ping = channel.unary_unary(
-        '/rpc.Collector/Ping',
-        request_serializer=Empty.SerializeToString,
-        response_deserializer=ErrReply.FromString,
-        )
-    self.Kill = channel.unary_unary(
-        '/rpc.Collector/Kill',
-        request_serializer=KillArg.SerializeToString,
-        response_deserializer=ErrReply.FromString,
-        )
-    self.GetConfigPolicy = channel.unary_unary(
-        '/rpc.Collector/GetConfigPolicy',
-        request_serializer=Empty.SerializeToString,
-        response_deserializer=GetConfigPolicyReply.FromString,
-        )
-
-
-class CollectorServicer(object):
-
-  def CollectMetrics(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def GetMetricTypes(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def Ping(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def Kill(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def GetConfigPolicy(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+      Args:
+        channel: A grpc.Channel.
+      """
+      self.CollectMetrics = channel.unary_unary(
+          '/rpc.Collector/CollectMetrics',
+          request_serializer=MetricsArg.SerializeToString,
+          response_deserializer=MetricsReply.FromString,
+          )
+      self.GetMetricTypes = channel.unary_unary(
+          '/rpc.Collector/GetMetricTypes',
+          request_serializer=GetMetricTypesArg.SerializeToString,
+          response_deserializer=MetricsReply.FromString,
+          )
+      self.Ping = channel.unary_unary(
+          '/rpc.Collector/Ping',
+          request_serializer=Empty.SerializeToString,
+          response_deserializer=ErrReply.FromString,
+          )
+      self.Kill = channel.unary_unary(
+          '/rpc.Collector/Kill',
+          request_serializer=KillArg.SerializeToString,
+          response_deserializer=ErrReply.FromString,
+          )
+      self.GetConfigPolicy = channel.unary_unary(
+          '/rpc.Collector/GetConfigPolicy',
+          request_serializer=Empty.SerializeToString,
+          response_deserializer=GetConfigPolicyReply.FromString,
+          )
 
 
-def add_CollectorServicer_to_server(servicer, server):
-  rpc_method_handlers = {
-      'CollectMetrics': grpc.unary_unary_rpc_method_handler(
-          servicer.CollectMetrics,
-          request_deserializer=MetricsArg.FromString,
-          response_serializer=MetricsReply.SerializeToString,
-      ),
-      'GetMetricTypes': grpc.unary_unary_rpc_method_handler(
-          servicer.GetMetricTypes,
-          request_deserializer=GetMetricTypesArg.FromString,
-          response_serializer=MetricsReply.SerializeToString,
-      ),
-      'Ping': grpc.unary_unary_rpc_method_handler(
-          servicer.Ping,
-          request_deserializer=Empty.FromString,
-          response_serializer=ErrReply.SerializeToString,
-      ),
-      'Kill': grpc.unary_unary_rpc_method_handler(
-          servicer.Kill,
-          request_deserializer=KillArg.FromString,
-          response_serializer=ErrReply.SerializeToString,
-      ),
-      'GetConfigPolicy': grpc.unary_unary_rpc_method_handler(
-          servicer.GetConfigPolicy,
-          request_deserializer=Empty.FromString,
-          response_serializer=GetConfigPolicyReply.SerializeToString,
-      ),
-  }
-  generic_handler = grpc.method_handlers_generic_handler(
-      'rpc.Collector', rpc_method_handlers)
-  server.add_generic_rpc_handlers((generic_handler,))
+  class CollectorServicer(object):
+
+    def CollectMetrics(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetMetricTypes(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def Ping(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def Kill(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetConfigPolicy(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
 
 
-class BetaCollectorServicer(object):
-  def CollectMetrics(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def GetMetricTypes(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def Ping(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def Kill(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def GetConfigPolicy(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+  def add_CollectorServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+        'CollectMetrics': grpc.unary_unary_rpc_method_handler(
+            servicer.CollectMetrics,
+            request_deserializer=MetricsArg.FromString,
+            response_serializer=MetricsReply.SerializeToString,
+        ),
+        'GetMetricTypes': grpc.unary_unary_rpc_method_handler(
+            servicer.GetMetricTypes,
+            request_deserializer=GetMetricTypesArg.FromString,
+            response_serializer=MetricsReply.SerializeToString,
+        ),
+        'Ping': grpc.unary_unary_rpc_method_handler(
+            servicer.Ping,
+            request_deserializer=Empty.FromString,
+            response_serializer=ErrReply.SerializeToString,
+        ),
+        'Kill': grpc.unary_unary_rpc_method_handler(
+            servicer.Kill,
+            request_deserializer=KillArg.FromString,
+            response_serializer=ErrReply.SerializeToString,
+        ),
+        'GetConfigPolicy': grpc.unary_unary_rpc_method_handler(
+            servicer.GetConfigPolicy,
+            request_deserializer=Empty.FromString,
+            response_serializer=GetConfigPolicyReply.SerializeToString,
+        ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+        'rpc.Collector', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
 
 
-class BetaCollectorStub(object):
-  def CollectMetrics(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  CollectMetrics.future = None
-  def GetMetricTypes(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  GetMetricTypes.future = None
-  def Ping(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  Ping.future = None
-  def Kill(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  Kill.future = None
-  def GetConfigPolicy(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  GetConfigPolicy.future = None
+  class ProcessorStub(object):
+
+    def __init__(self, channel):
+      """Constructor.
+
+      Args:
+        channel: A grpc.Channel.
+      """
+      self.Process = channel.unary_unary(
+          '/rpc.Processor/Process',
+          request_serializer=PubProcArg.SerializeToString,
+          response_deserializer=MetricsReply.FromString,
+          )
+      self.Ping = channel.unary_unary(
+          '/rpc.Processor/Ping',
+          request_serializer=Empty.SerializeToString,
+          response_deserializer=ErrReply.FromString,
+          )
+      self.Kill = channel.unary_unary(
+          '/rpc.Processor/Kill',
+          request_serializer=KillArg.SerializeToString,
+          response_deserializer=ErrReply.FromString,
+          )
+      self.GetConfigPolicy = channel.unary_unary(
+          '/rpc.Processor/GetConfigPolicy',
+          request_serializer=Empty.SerializeToString,
+          response_deserializer=GetConfigPolicyReply.FromString,
+          )
 
 
-def beta_create_Collector_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  request_deserializers = {
-    ('rpc.Collector', 'CollectMetrics'): MetricsArg.FromString,
-    ('rpc.Collector', 'GetConfigPolicy'): Empty.FromString,
-    ('rpc.Collector', 'GetMetricTypes'): GetMetricTypesArg.FromString,
-    ('rpc.Collector', 'Kill'): KillArg.FromString,
-    ('rpc.Collector', 'Ping'): Empty.FromString,
-  }
-  response_serializers = {
-    ('rpc.Collector', 'CollectMetrics'): MetricsReply.SerializeToString,
-    ('rpc.Collector', 'GetConfigPolicy'): GetConfigPolicyReply.SerializeToString,
-    ('rpc.Collector', 'GetMetricTypes'): MetricsReply.SerializeToString,
-    ('rpc.Collector', 'Kill'): ErrReply.SerializeToString,
-    ('rpc.Collector', 'Ping'): ErrReply.SerializeToString,
-  }
-  method_implementations = {
-    ('rpc.Collector', 'CollectMetrics'): face_utilities.unary_unary_inline(servicer.CollectMetrics),
-    ('rpc.Collector', 'GetConfigPolicy'): face_utilities.unary_unary_inline(servicer.GetConfigPolicy),
-    ('rpc.Collector', 'GetMetricTypes'): face_utilities.unary_unary_inline(servicer.GetMetricTypes),
-    ('rpc.Collector', 'Kill'): face_utilities.unary_unary_inline(servicer.Kill),
-    ('rpc.Collector', 'Ping'): face_utilities.unary_unary_inline(servicer.Ping),
-  }
-  server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
-  return beta_implementations.server(method_implementations, options=server_options)
+  class ProcessorServicer(object):
+
+    def Process(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def Ping(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def Kill(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetConfigPolicy(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
 
 
-def beta_create_Collector_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  request_serializers = {
-    ('rpc.Collector', 'CollectMetrics'): MetricsArg.SerializeToString,
-    ('rpc.Collector', 'GetConfigPolicy'): Empty.SerializeToString,
-    ('rpc.Collector', 'GetMetricTypes'): GetMetricTypesArg.SerializeToString,
-    ('rpc.Collector', 'Kill'): KillArg.SerializeToString,
-    ('rpc.Collector', 'Ping'): Empty.SerializeToString,
-  }
-  response_deserializers = {
-    ('rpc.Collector', 'CollectMetrics'): MetricsReply.FromString,
-    ('rpc.Collector', 'GetConfigPolicy'): GetConfigPolicyReply.FromString,
-    ('rpc.Collector', 'GetMetricTypes'): MetricsReply.FromString,
-    ('rpc.Collector', 'Kill'): ErrReply.FromString,
-    ('rpc.Collector', 'Ping'): ErrReply.FromString,
-  }
-  cardinalities = {
-    'CollectMetrics': cardinality.Cardinality.UNARY_UNARY,
-    'GetConfigPolicy': cardinality.Cardinality.UNARY_UNARY,
-    'GetMetricTypes': cardinality.Cardinality.UNARY_UNARY,
-    'Kill': cardinality.Cardinality.UNARY_UNARY,
-    'Ping': cardinality.Cardinality.UNARY_UNARY,
-  }
-  stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
-  return beta_implementations.dynamic_stub(channel, 'rpc.Collector', cardinalities, options=stub_options)
+  def add_ProcessorServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+        'Process': grpc.unary_unary_rpc_method_handler(
+            servicer.Process,
+            request_deserializer=PubProcArg.FromString,
+            response_serializer=MetricsReply.SerializeToString,
+        ),
+        'Ping': grpc.unary_unary_rpc_method_handler(
+            servicer.Ping,
+            request_deserializer=Empty.FromString,
+            response_serializer=ErrReply.SerializeToString,
+        ),
+        'Kill': grpc.unary_unary_rpc_method_handler(
+            servicer.Kill,
+            request_deserializer=KillArg.FromString,
+            response_serializer=ErrReply.SerializeToString,
+        ),
+        'GetConfigPolicy': grpc.unary_unary_rpc_method_handler(
+            servicer.GetConfigPolicy,
+            request_deserializer=Empty.FromString,
+            response_serializer=GetConfigPolicyReply.SerializeToString,
+        ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+        'rpc.Processor', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
 
 
-class ProcessorStub(object):
+  class PublisherStub(object):
 
-  def __init__(self, channel):
-    """Constructor.
+    def __init__(self, channel):
+      """Constructor.
 
-    Args:
-      channel: A grpc.Channel.
-    """
-    self.Process = channel.unary_unary(
-        '/rpc.Processor/Process',
-        request_serializer=PubProcArg.SerializeToString,
-        response_deserializer=MetricsReply.FromString,
-        )
-    self.Ping = channel.unary_unary(
-        '/rpc.Processor/Ping',
-        request_serializer=Empty.SerializeToString,
-        response_deserializer=ErrReply.FromString,
-        )
-    self.Kill = channel.unary_unary(
-        '/rpc.Processor/Kill',
-        request_serializer=KillArg.SerializeToString,
-        response_deserializer=ErrReply.FromString,
-        )
-    self.GetConfigPolicy = channel.unary_unary(
-        '/rpc.Processor/GetConfigPolicy',
-        request_serializer=Empty.SerializeToString,
-        response_deserializer=GetConfigPolicyReply.FromString,
-        )
-
-
-class ProcessorServicer(object):
-
-  def Process(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def Ping(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def Kill(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def GetConfigPolicy(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+      Args:
+        channel: A grpc.Channel.
+      """
+      self.Publish = channel.unary_unary(
+          '/rpc.Publisher/Publish',
+          request_serializer=PubProcArg.SerializeToString,
+          response_deserializer=ErrReply.FromString,
+          )
+      self.Ping = channel.unary_unary(
+          '/rpc.Publisher/Ping',
+          request_serializer=Empty.SerializeToString,
+          response_deserializer=ErrReply.FromString,
+          )
+      self.Kill = channel.unary_unary(
+          '/rpc.Publisher/Kill',
+          request_serializer=KillArg.SerializeToString,
+          response_deserializer=ErrReply.FromString,
+          )
+      self.GetConfigPolicy = channel.unary_unary(
+          '/rpc.Publisher/GetConfigPolicy',
+          request_serializer=Empty.SerializeToString,
+          response_deserializer=GetConfigPolicyReply.FromString,
+          )
 
 
-def add_ProcessorServicer_to_server(servicer, server):
-  rpc_method_handlers = {
-      'Process': grpc.unary_unary_rpc_method_handler(
-          servicer.Process,
-          request_deserializer=PubProcArg.FromString,
-          response_serializer=MetricsReply.SerializeToString,
-      ),
-      'Ping': grpc.unary_unary_rpc_method_handler(
-          servicer.Ping,
-          request_deserializer=Empty.FromString,
-          response_serializer=ErrReply.SerializeToString,
-      ),
-      'Kill': grpc.unary_unary_rpc_method_handler(
-          servicer.Kill,
-          request_deserializer=KillArg.FromString,
-          response_serializer=ErrReply.SerializeToString,
-      ),
-      'GetConfigPolicy': grpc.unary_unary_rpc_method_handler(
-          servicer.GetConfigPolicy,
-          request_deserializer=Empty.FromString,
-          response_serializer=GetConfigPolicyReply.SerializeToString,
-      ),
-  }
-  generic_handler = grpc.method_handlers_generic_handler(
-      'rpc.Processor', rpc_method_handlers)
-  server.add_generic_rpc_handlers((generic_handler,))
+  class PublisherServicer(object):
+
+    def Publish(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def Ping(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def Kill(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetConfigPolicy(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
 
 
-class BetaProcessorServicer(object):
-  def Process(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def Ping(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def Kill(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def GetConfigPolicy(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+  def add_PublisherServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+        'Publish': grpc.unary_unary_rpc_method_handler(
+            servicer.Publish,
+            request_deserializer=PubProcArg.FromString,
+            response_serializer=ErrReply.SerializeToString,
+        ),
+        'Ping': grpc.unary_unary_rpc_method_handler(
+            servicer.Ping,
+            request_deserializer=Empty.FromString,
+            response_serializer=ErrReply.SerializeToString,
+        ),
+        'Kill': grpc.unary_unary_rpc_method_handler(
+            servicer.Kill,
+            request_deserializer=KillArg.FromString,
+            response_serializer=ErrReply.SerializeToString,
+        ),
+        'GetConfigPolicy': grpc.unary_unary_rpc_method_handler(
+            servicer.GetConfigPolicy,
+            request_deserializer=Empty.FromString,
+            response_serializer=GetConfigPolicyReply.SerializeToString,
+        ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+        'rpc.Publisher', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
 
 
-class BetaProcessorStub(object):
-  def Process(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  Process.future = None
-  def Ping(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  Ping.future = None
-  def Kill(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  Kill.future = None
-  def GetConfigPolicy(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  GetConfigPolicy.future = None
+  class BetaCollectorServicer(object):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This class was generated
+    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
+    def CollectMetrics(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetMetricTypes(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def Ping(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def Kill(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetConfigPolicy(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
-def beta_create_Processor_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  request_deserializers = {
-    ('rpc.Processor', 'GetConfigPolicy'): Empty.FromString,
-    ('rpc.Processor', 'Kill'): KillArg.FromString,
-    ('rpc.Processor', 'Ping'): Empty.FromString,
-    ('rpc.Processor', 'Process'): PubProcArg.FromString,
-  }
-  response_serializers = {
-    ('rpc.Processor', 'GetConfigPolicy'): GetConfigPolicyReply.SerializeToString,
-    ('rpc.Processor', 'Kill'): ErrReply.SerializeToString,
-    ('rpc.Processor', 'Ping'): ErrReply.SerializeToString,
-    ('rpc.Processor', 'Process'): MetricsReply.SerializeToString,
-  }
-  method_implementations = {
-    ('rpc.Processor', 'GetConfigPolicy'): face_utilities.unary_unary_inline(servicer.GetConfigPolicy),
-    ('rpc.Processor', 'Kill'): face_utilities.unary_unary_inline(servicer.Kill),
-    ('rpc.Processor', 'Ping'): face_utilities.unary_unary_inline(servicer.Ping),
-    ('rpc.Processor', 'Process'): face_utilities.unary_unary_inline(servicer.Process),
-  }
-  server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
-  return beta_implementations.server(method_implementations, options=server_options)
+  class BetaCollectorStub(object):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This class was generated
+    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
+    def CollectMetrics(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    CollectMetrics.future = None
+    def GetMetricTypes(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetMetricTypes.future = None
+    def Ping(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    Ping.future = None
+    def Kill(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    Kill.future = None
+    def GetConfigPolicy(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetConfigPolicy.future = None
 
 
-def beta_create_Processor_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  request_serializers = {
-    ('rpc.Processor', 'GetConfigPolicy'): Empty.SerializeToString,
-    ('rpc.Processor', 'Kill'): KillArg.SerializeToString,
-    ('rpc.Processor', 'Ping'): Empty.SerializeToString,
-    ('rpc.Processor', 'Process'): PubProcArg.SerializeToString,
-  }
-  response_deserializers = {
-    ('rpc.Processor', 'GetConfigPolicy'): GetConfigPolicyReply.FromString,
-    ('rpc.Processor', 'Kill'): ErrReply.FromString,
-    ('rpc.Processor', 'Ping'): ErrReply.FromString,
-    ('rpc.Processor', 'Process'): MetricsReply.FromString,
-  }
-  cardinalities = {
-    'GetConfigPolicy': cardinality.Cardinality.UNARY_UNARY,
-    'Kill': cardinality.Cardinality.UNARY_UNARY,
-    'Ping': cardinality.Cardinality.UNARY_UNARY,
-    'Process': cardinality.Cardinality.UNARY_UNARY,
-  }
-  stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
-  return beta_implementations.dynamic_stub(channel, 'rpc.Processor', cardinalities, options=stub_options)
+  def beta_create_Collector_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This function was
+    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
+    request_deserializers = {
+      ('rpc.Collector', 'CollectMetrics'): MetricsArg.FromString,
+      ('rpc.Collector', 'GetConfigPolicy'): Empty.FromString,
+      ('rpc.Collector', 'GetMetricTypes'): GetMetricTypesArg.FromString,
+      ('rpc.Collector', 'Kill'): KillArg.FromString,
+      ('rpc.Collector', 'Ping'): Empty.FromString,
+    }
+    response_serializers = {
+      ('rpc.Collector', 'CollectMetrics'): MetricsReply.SerializeToString,
+      ('rpc.Collector', 'GetConfigPolicy'): GetConfigPolicyReply.SerializeToString,
+      ('rpc.Collector', 'GetMetricTypes'): MetricsReply.SerializeToString,
+      ('rpc.Collector', 'Kill'): ErrReply.SerializeToString,
+      ('rpc.Collector', 'Ping'): ErrReply.SerializeToString,
+    }
+    method_implementations = {
+      ('rpc.Collector', 'CollectMetrics'): face_utilities.unary_unary_inline(servicer.CollectMetrics),
+      ('rpc.Collector', 'GetConfigPolicy'): face_utilities.unary_unary_inline(servicer.GetConfigPolicy),
+      ('rpc.Collector', 'GetMetricTypes'): face_utilities.unary_unary_inline(servicer.GetMetricTypes),
+      ('rpc.Collector', 'Kill'): face_utilities.unary_unary_inline(servicer.Kill),
+      ('rpc.Collector', 'Ping'): face_utilities.unary_unary_inline(servicer.Ping),
+    }
+    server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
+    return beta_implementations.server(method_implementations, options=server_options)
 
 
-class PublisherStub(object):
+  def beta_create_Collector_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
+    """The Beta API is deprecated for 0.15.0 and later.
 
-  def __init__(self, channel):
-    """Constructor.
-
-    Args:
-      channel: A grpc.Channel.
-    """
-    self.Publish = channel.unary_unary(
-        '/rpc.Publisher/Publish',
-        request_serializer=PubProcArg.SerializeToString,
-        response_deserializer=ErrReply.FromString,
-        )
-    self.Ping = channel.unary_unary(
-        '/rpc.Publisher/Ping',
-        request_serializer=Empty.SerializeToString,
-        response_deserializer=ErrReply.FromString,
-        )
-    self.Kill = channel.unary_unary(
-        '/rpc.Publisher/Kill',
-        request_serializer=KillArg.SerializeToString,
-        response_deserializer=ErrReply.FromString,
-        )
-    self.GetConfigPolicy = channel.unary_unary(
-        '/rpc.Publisher/GetConfigPolicy',
-        request_serializer=Empty.SerializeToString,
-        response_deserializer=GetConfigPolicyReply.FromString,
-        )
-
-
-class PublisherServicer(object):
-
-  def Publish(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def Ping(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def Kill(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def GetConfigPolicy(self, request, context):
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This function was
+    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
+    request_serializers = {
+      ('rpc.Collector', 'CollectMetrics'): MetricsArg.SerializeToString,
+      ('rpc.Collector', 'GetConfigPolicy'): Empty.SerializeToString,
+      ('rpc.Collector', 'GetMetricTypes'): GetMetricTypesArg.SerializeToString,
+      ('rpc.Collector', 'Kill'): KillArg.SerializeToString,
+      ('rpc.Collector', 'Ping'): Empty.SerializeToString,
+    }
+    response_deserializers = {
+      ('rpc.Collector', 'CollectMetrics'): MetricsReply.FromString,
+      ('rpc.Collector', 'GetConfigPolicy'): GetConfigPolicyReply.FromString,
+      ('rpc.Collector', 'GetMetricTypes'): MetricsReply.FromString,
+      ('rpc.Collector', 'Kill'): ErrReply.FromString,
+      ('rpc.Collector', 'Ping'): ErrReply.FromString,
+    }
+    cardinalities = {
+      'CollectMetrics': cardinality.Cardinality.UNARY_UNARY,
+      'GetConfigPolicy': cardinality.Cardinality.UNARY_UNARY,
+      'GetMetricTypes': cardinality.Cardinality.UNARY_UNARY,
+      'Kill': cardinality.Cardinality.UNARY_UNARY,
+      'Ping': cardinality.Cardinality.UNARY_UNARY,
+    }
+    stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
+    return beta_implementations.dynamic_stub(channel, 'rpc.Collector', cardinalities, options=stub_options)
 
 
-def add_PublisherServicer_to_server(servicer, server):
-  rpc_method_handlers = {
-      'Publish': grpc.unary_unary_rpc_method_handler(
-          servicer.Publish,
-          request_deserializer=PubProcArg.FromString,
-          response_serializer=ErrReply.SerializeToString,
-      ),
-      'Ping': grpc.unary_unary_rpc_method_handler(
-          servicer.Ping,
-          request_deserializer=Empty.FromString,
-          response_serializer=ErrReply.SerializeToString,
-      ),
-      'Kill': grpc.unary_unary_rpc_method_handler(
-          servicer.Kill,
-          request_deserializer=KillArg.FromString,
-          response_serializer=ErrReply.SerializeToString,
-      ),
-      'GetConfigPolicy': grpc.unary_unary_rpc_method_handler(
-          servicer.GetConfigPolicy,
-          request_deserializer=Empty.FromString,
-          response_serializer=GetConfigPolicyReply.SerializeToString,
-      ),
-  }
-  generic_handler = grpc.method_handlers_generic_handler(
-      'rpc.Publisher', rpc_method_handlers)
-  server.add_generic_rpc_handlers((generic_handler,))
+  class BetaProcessorServicer(object):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This class was generated
+    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
+    def Process(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def Ping(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def Kill(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetConfigPolicy(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
-class BetaPublisherServicer(object):
-  def Publish(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def Ping(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def Kill(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-  def GetConfigPolicy(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+  class BetaProcessorStub(object):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This class was generated
+    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
+    def Process(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    Process.future = None
+    def Ping(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    Ping.future = None
+    def Kill(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    Kill.future = None
+    def GetConfigPolicy(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetConfigPolicy.future = None
 
 
-class BetaPublisherStub(object):
-  def Publish(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  Publish.future = None
-  def Ping(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  Ping.future = None
-  def Kill(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  Kill.future = None
-  def GetConfigPolicy(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  GetConfigPolicy.future = None
+  def beta_create_Processor_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This function was
+    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
+    request_deserializers = {
+      ('rpc.Processor', 'GetConfigPolicy'): Empty.FromString,
+      ('rpc.Processor', 'Kill'): KillArg.FromString,
+      ('rpc.Processor', 'Ping'): Empty.FromString,
+      ('rpc.Processor', 'Process'): PubProcArg.FromString,
+    }
+    response_serializers = {
+      ('rpc.Processor', 'GetConfigPolicy'): GetConfigPolicyReply.SerializeToString,
+      ('rpc.Processor', 'Kill'): ErrReply.SerializeToString,
+      ('rpc.Processor', 'Ping'): ErrReply.SerializeToString,
+      ('rpc.Processor', 'Process'): MetricsReply.SerializeToString,
+    }
+    method_implementations = {
+      ('rpc.Processor', 'GetConfigPolicy'): face_utilities.unary_unary_inline(servicer.GetConfigPolicy),
+      ('rpc.Processor', 'Kill'): face_utilities.unary_unary_inline(servicer.Kill),
+      ('rpc.Processor', 'Ping'): face_utilities.unary_unary_inline(servicer.Ping),
+      ('rpc.Processor', 'Process'): face_utilities.unary_unary_inline(servicer.Process),
+    }
+    server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
+    return beta_implementations.server(method_implementations, options=server_options)
 
 
-def beta_create_Publisher_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-  request_deserializers = {
-    ('rpc.Publisher', 'GetConfigPolicy'): Empty.FromString,
-    ('rpc.Publisher', 'Kill'): KillArg.FromString,
-    ('rpc.Publisher', 'Ping'): Empty.FromString,
-    ('rpc.Publisher', 'Publish'): PubProcArg.FromString,
-  }
-  response_serializers = {
-    ('rpc.Publisher', 'GetConfigPolicy'): GetConfigPolicyReply.SerializeToString,
-    ('rpc.Publisher', 'Kill'): ErrReply.SerializeToString,
-    ('rpc.Publisher', 'Ping'): ErrReply.SerializeToString,
-    ('rpc.Publisher', 'Publish'): ErrReply.SerializeToString,
-  }
-  method_implementations = {
-    ('rpc.Publisher', 'GetConfigPolicy'): face_utilities.unary_unary_inline(servicer.GetConfigPolicy),
-    ('rpc.Publisher', 'Kill'): face_utilities.unary_unary_inline(servicer.Kill),
-    ('rpc.Publisher', 'Ping'): face_utilities.unary_unary_inline(servicer.Ping),
-    ('rpc.Publisher', 'Publish'): face_utilities.unary_unary_inline(servicer.Publish),
-  }
-  server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
-  return beta_implementations.server(method_implementations, options=server_options)
+  def beta_create_Processor_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This function was
+    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
+    request_serializers = {
+      ('rpc.Processor', 'GetConfigPolicy'): Empty.SerializeToString,
+      ('rpc.Processor', 'Kill'): KillArg.SerializeToString,
+      ('rpc.Processor', 'Ping'): Empty.SerializeToString,
+      ('rpc.Processor', 'Process'): PubProcArg.SerializeToString,
+    }
+    response_deserializers = {
+      ('rpc.Processor', 'GetConfigPolicy'): GetConfigPolicyReply.FromString,
+      ('rpc.Processor', 'Kill'): ErrReply.FromString,
+      ('rpc.Processor', 'Ping'): ErrReply.FromString,
+      ('rpc.Processor', 'Process'): MetricsReply.FromString,
+    }
+    cardinalities = {
+      'GetConfigPolicy': cardinality.Cardinality.UNARY_UNARY,
+      'Kill': cardinality.Cardinality.UNARY_UNARY,
+      'Ping': cardinality.Cardinality.UNARY_UNARY,
+      'Process': cardinality.Cardinality.UNARY_UNARY,
+    }
+    stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
+    return beta_implementations.dynamic_stub(channel, 'rpc.Processor', cardinalities, options=stub_options)
 
 
-def beta_create_Publisher_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-  request_serializers = {
-    ('rpc.Publisher', 'GetConfigPolicy'): Empty.SerializeToString,
-    ('rpc.Publisher', 'Kill'): KillArg.SerializeToString,
-    ('rpc.Publisher', 'Ping'): Empty.SerializeToString,
-    ('rpc.Publisher', 'Publish'): PubProcArg.SerializeToString,
-  }
-  response_deserializers = {
-    ('rpc.Publisher', 'GetConfigPolicy'): GetConfigPolicyReply.FromString,
-    ('rpc.Publisher', 'Kill'): ErrReply.FromString,
-    ('rpc.Publisher', 'Ping'): ErrReply.FromString,
-    ('rpc.Publisher', 'Publish'): ErrReply.FromString,
-  }
-  cardinalities = {
-    'GetConfigPolicy': cardinality.Cardinality.UNARY_UNARY,
-    'Kill': cardinality.Cardinality.UNARY_UNARY,
-    'Ping': cardinality.Cardinality.UNARY_UNARY,
-    'Publish': cardinality.Cardinality.UNARY_UNARY,
-  }
-  stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
-  return beta_implementations.dynamic_stub(channel, 'rpc.Publisher', cardinalities, options=stub_options)
+  class BetaPublisherServicer(object):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This class was generated
+    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
+    def Publish(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def Ping(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def Kill(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetConfigPolicy(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+
+
+  class BetaPublisherStub(object):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This class was generated
+    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
+    def Publish(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    Publish.future = None
+    def Ping(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    Ping.future = None
+    def Kill(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    Kill.future = None
+    def GetConfigPolicy(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetConfigPolicy.future = None
+
+
+  def beta_create_Publisher_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This function was
+    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
+    request_deserializers = {
+      ('rpc.Publisher', 'GetConfigPolicy'): Empty.FromString,
+      ('rpc.Publisher', 'Kill'): KillArg.FromString,
+      ('rpc.Publisher', 'Ping'): Empty.FromString,
+      ('rpc.Publisher', 'Publish'): PubProcArg.FromString,
+    }
+    response_serializers = {
+      ('rpc.Publisher', 'GetConfigPolicy'): GetConfigPolicyReply.SerializeToString,
+      ('rpc.Publisher', 'Kill'): ErrReply.SerializeToString,
+      ('rpc.Publisher', 'Ping'): ErrReply.SerializeToString,
+      ('rpc.Publisher', 'Publish'): ErrReply.SerializeToString,
+    }
+    method_implementations = {
+      ('rpc.Publisher', 'GetConfigPolicy'): face_utilities.unary_unary_inline(servicer.GetConfigPolicy),
+      ('rpc.Publisher', 'Kill'): face_utilities.unary_unary_inline(servicer.Kill),
+      ('rpc.Publisher', 'Ping'): face_utilities.unary_unary_inline(servicer.Ping),
+      ('rpc.Publisher', 'Publish'): face_utilities.unary_unary_inline(servicer.Publish),
+    }
+    server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
+    return beta_implementations.server(method_implementations, options=server_options)
+
+
+  def beta_create_Publisher_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
+    """The Beta API is deprecated for 0.15.0 and later.
+
+    It is recommended to use the GA API (classes and functions in this
+    file not marked beta) for all further purposes. This function was
+    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
+    request_serializers = {
+      ('rpc.Publisher', 'GetConfigPolicy'): Empty.SerializeToString,
+      ('rpc.Publisher', 'Kill'): KillArg.SerializeToString,
+      ('rpc.Publisher', 'Ping'): Empty.SerializeToString,
+      ('rpc.Publisher', 'Publish'): PubProcArg.SerializeToString,
+    }
+    response_deserializers = {
+      ('rpc.Publisher', 'GetConfigPolicy'): GetConfigPolicyReply.FromString,
+      ('rpc.Publisher', 'Kill'): ErrReply.FromString,
+      ('rpc.Publisher', 'Ping'): ErrReply.FromString,
+      ('rpc.Publisher', 'Publish'): ErrReply.FromString,
+    }
+    cardinalities = {
+      'GetConfigPolicy': cardinality.Cardinality.UNARY_UNARY,
+      'Kill': cardinality.Cardinality.UNARY_UNARY,
+      'Ping': cardinality.Cardinality.UNARY_UNARY,
+      'Publish': cardinality.Cardinality.UNARY_UNARY,
+    }
+    stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
+    return beta_implementations.dynamic_stub(channel, 'rpc.Publisher', cardinalities, options=stub_options)
+except ImportError:
+  pass
 # @@protoc_insertion_point(module_scope)
