@@ -36,7 +36,7 @@ same approach will work for packaging any python based plugin.
    plugin lib `snap-plugin-lib-py <https://github.com/intelsdi-x/snap-plugin-lib-py>`_
    directly into our virtualenv with the following command *(Note: the virtual env 
    should be activated)*.
-   ``pip install git+https://github.com/intelsdi-x/snap-plugin-lib-py``   
+   ``pip install snap-plugin-lib-py``   
 3. **Create the aci**
     1. ``acbuild acbuild begin``
     2. ``acbuild set-name randpy``

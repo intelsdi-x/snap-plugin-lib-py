@@ -1,0 +1,22 @@
+language: python
+sudo: false
+addons:
+  apt_packages:
+    - pandoc
+python:
+- '2.7'
+- '3.5'
+- '3.6'
+install:
+  - pip install -U pip wheel
+  - pip install tox-travis
+  - pip install setuptools-markdown  
+script: tox
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel  
+  user: $pypi_user
+  password: $pypi_password    
+  on:     
+    repo: intelsdi-x/snap-plugin-lib-py
+    condition: $TRAVIS_PYTHON_VERSION = "2.7"    

@@ -13,9 +13,11 @@ testrepository>=0.0.18 # Apache-2.0/BSD
 testscenarios>=0.4 # Apache-2.0/BSD
 testtools>=1.4.0 # MIT
 pytest>=3.0.3
+pytest-cov>=2.4.0
 recommonmark==0.4.0
 sphinx-rtd-theme==0.1.9
 tox>=2.4.1
+setuptools_markdown>=0.2
 
 # releasenotes
 reno>=1.8.0 # Apache2

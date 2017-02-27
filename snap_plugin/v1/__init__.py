@@ -25,6 +25,8 @@ https://intelsdi-x.github.io/snap-plugin-lib-py/.
 
 """
 
+__version__ = '1.0.3'
+
 __all__ = ['Collector', 'Processor', 'Publisher', 'Metric', 'Namespace',
            'NamespaceElement', 'ConfigMap', 'StringRule', 'IntegerRule',
            'BoolRule', 'FloatRule', 'ConfigPolicy']
