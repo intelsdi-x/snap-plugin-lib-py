@@ -99,7 +99,7 @@ class Namespace(object):
         Args:
             **kwargs (optional): key=-1
         """
-        return self._pb.pop(key=key)
+        return self._pb.pop(key)
 
     def add(self, namespace_element):
         self._pb.add(Value=namespace_element.value,
