@@ -10,13 +10,14 @@ python:
 install:
   - pip install -U pip wheel
   - pip install tox-travis
-  - pip install setuptools-markdown  
+  - pip install setuptools-markdown
 script: tox
 deploy:
   provider: pypi
-  distributions: sdist bdist_wheel  
+  distributions: sdist bdist_wheel
   user: $pypi_user
-  password: $pypi_password    
-  on:     
+  password: $pypi_password
+  on:
+    tags: true
     repo: intelsdi-x/snap-plugin-lib-py
-    condition: $TRAVIS_PYTHON_VERSION = "2.7"    
+    condition: $TRAVIS_PYTHON_VERSION = "2.7"
