@@ -18,5 +18,6 @@ deploy:
   user: $pypi_user
   password: $pypi_password    
   on:     
+    tags: true
     repo: intelsdi-x/snap-plugin-lib-py
     condition: $TRAVIS_PYTHON_VERSION = "2.7"    

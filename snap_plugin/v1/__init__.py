@@ -25,8 +25,6 @@ https://intelsdi-x.github.io/snap-plugin-lib-py/.
 
 """
 
-__version__ = '1.0.3'
-
 __all__ = ['Collector', 'Processor', 'Publisher', 'Metric', 'Namespace',
            'NamespaceElement', 'ConfigMap', 'StringRule', 'IntegerRule',
            'BoolRule', 'FloatRule', 'ConfigPolicy']
@@ -46,6 +44,7 @@ from .string_policy import StringRule
 from .integer_policy import IntegerRule
 from .bool_policy import BoolRule
 from .float_policy import FloatRule
+from ._version import get_versions
 
 LOG = logging.getLogger()
 _OUT_HDLR = logging.StreamHandler(sys.stderr)
@@ -56,3 +55,6 @@ LOG.addHandler(_OUT_HDLR)
 LOG.setLevel(logging.DEBUG)
 
 PLUGIN_VERSION = 0
+
+__version__ = get_versions()['version']
+del get_versions

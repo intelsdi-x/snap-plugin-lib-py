@@ -15,11 +15,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from setuptools import setup, find_packages
-from snap_plugin.v1 import __version__
+import versioneer
 
 setup(
     name="snap-plugin-lib-py",
-    version=__version__,
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     install_requires=['grpcio>=1.1.3,<2', 'protobuf>=3.2.0,<4',
                       'futures>=3.0.5', 'future>=0.16.0'],
