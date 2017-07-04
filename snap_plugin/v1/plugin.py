@@ -186,6 +186,7 @@ class Plugin(object):
             - Starting the gRPC server
             - Printing to STDOUT data (JSON) for handshaking with Snap
         """
+        return
         LOG.debug("plugin start called..")
         # start grpc server
         self._port = self.server.add_insecure_port('127.0.0.1:{!s}'.format(0))
