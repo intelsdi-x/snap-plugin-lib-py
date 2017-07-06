@@ -136,6 +136,14 @@ class ConfigPolicy(object):
                             self._pb.float_policy[key].rules.items()))
         return type('Rules', (object,), {"rules": rules})
 
+    @property
+    def policies(self):
+        """Return list of policies zipped with their respective data type"""
+        policies = [self._pb.integer_policy, self._pb.float_policy,
+                    self._pb.string_policy, self._pb.bool_policy]
+        key_types = ["integer", "float", "string", "bool"]
+        return zip(key_types, policies)
+
 
 def _check_key(key):
     errors = []

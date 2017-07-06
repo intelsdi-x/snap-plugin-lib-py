@@ -36,6 +36,7 @@ class MockCollector(snap.Collector, threading.Thread):
 
     def __init__(self, name, ver):
         super(MockCollector, self).__init__(name, ver)
+        self._flags.add('require-config', snap.plugin.FlagType.toggle, '')
         threading.Thread.__init__(self, group=None, target=None, name=None)
         self._stopper = threading.Event()
 
@@ -58,7 +59,6 @@ class MockCollector(snap.Collector, threading.Thread):
         return metrics
 
     def update_catalog(self, config):
-        assert config.IntMap["int"] == 1
         now = time.time()
         metrics = [
             snap.Metric(
@@ -75,21 +75,24 @@ class MockCollector(snap.Collector, threading.Thread):
         return metrics
 
     def get_config_policy(self):
-        return snap.ConfigPolicy(
-            (
-                ("acme", "sk8", "matix"),
+        policy = [
+            ("acme", "sk8", "matix"),
+            [
                 (
-                    (
-                        "password",
-                        snap.StringRule(default="grace", required=True),
-                    ),
-                    (
-                        "user",
-                        snap.StringRule(default="kristy", required=True),
-                    ),
-                )
-            )
-        )
+                    "password",
+                    snap.StringRule(default="grace", required=True),
+                ),
+                (
+                    "user",
+                    snap.StringRule(default="kristy", required=True),
+                ),
+            ]
+        ]
+
+        if self._args.require_config:
+            policy[1].append(("database", snap.StringRule(required=True)))
+
+        return snap.ConfigPolicy(policy)
 
     def run(self):
         self.start_plugin()
@@ -126,6 +129,74 @@ def test_monitor():
     assert col._shutting_down is False
     time.sleep(.4)
     assert col._shutting_down is True
+
+
+def test_diagnostics(capsys, caplog):
+    sys.argv = ["", "--config", '{"database": "123", "password": "321", "user": "admin"}', "--require-config"]
+    col = MockCollector("MyCollector", 99)
+
+    # run diagnostics and capture output
+    col.start_plugin()
+    out, _ = capsys.readouterr()
+    lines = out.split('\n')
+
+    # assert there are no logged errors
+    for record in caplog.records:
+        assert record.levelno < 40
+
+    # check if output of each part of diagnostic print is correct
+
+    CONFIG_OFFSET = 8
+    CPOLICY_OFFSET = CONFIG_OFFSET + 2
+    CATALOG_OFFSET = CPOLICY_OFFSET + 2
+    METRIC_OFFSET = CATALOG_OFFSET + 3
+    CONFIG_TIMER_MSG_LEN = CATALOG_TIMER_MSG_LEN = 15
+    CATALOG_MSG_LEN = 14
+    METRIC_MSG_LEN = 12
+    METRIC_TIMER_MSG_LEN = 18
+
+    assert lines[0] == "Runtime Details:"
+
+    assert lines[CONFIG_OFFSET] == "Config Policy:"
+    mock_cpolicy = [
+        ("acme.sk8.matix", "password", "string", "True", "grace"),
+        ("acme.sk8.matix", "database", "string", "True"),
+        ("acme.sk8.matix", "user", "string", "True", "kristy"),
+    ]
+    cpolicy = []
+    offset = len(mock_cpolicy)
+    for index in range(len(mock_cpolicy)):
+        fields = tuple(lines[CPOLICY_OFFSET + index].split())
+        cpolicy.append(fields)
+
+    def sort_by_key(policy): return policy[1]
+    for mock_policy, policy in zip(sorted(mock_cpolicy, key=sort_by_key), sorted(cpolicy, key=sort_by_key)):
+        assert mock_policy == policy
+    assert lines[CPOLICY_OFFSET + offset][:CONFIG_TIMER_MSG_LEN] == "Printing config"
+
+    assert lines[CATALOG_OFFSET + offset][:CATALOG_MSG_LEN] == "Metric catalog"
+    mock_namespaces = ["/acme/sk8/matix"]
+    for index, ns in enumerate(mock_namespaces):
+        assert lines[13 + offset + index].strip() == ns
+    offset += len(mock_namespaces)
+    assert lines[CATALOG_OFFSET + 1 + offset][:CATALOG_TIMER_MSG_LEN] == "Printing metric"
+
+    mock_metrics = [("/acme/sk8/matix", "float", "99.9")]
+    assert lines[METRIC_OFFSET + offset][:METRIC_MSG_LEN] == "Metrics that"
+    for index, metric in enumerate(mock_metrics):
+        fields = tuple(lines[METRIC_OFFSET + 2 + offset + index].split())
+        assert fields == metric
+    offset += len(mock_metrics)
+    assert lines[METRIC_OFFSET + 2 + offset][:METRIC_TIMER_MSG_LEN] == "Printing collected"
+
+    # run plugin with flag '--require-config' which makes it require field 'database' in config
+    sys.argv = ["", "--config", '{"password": "123", "user": "321"}', "--require-config"]
+    col = MockCollector("MyCollector", 99)
+
+    col.start_plugin()
+    # we didn't provide necessary config field so we should get error logs
+    errors = list(filter(lambda r: r.levelno >= 40, caplog.records))
+    assert len(errors) > 0
 
 
 def test_collect(collector_client):
@@ -189,7 +260,6 @@ def test_collect(collector_client):
     reply = collector_client.CollectMetrics(MetricsArg(metric).pb)
     assert reply.error == ''
     assert bool(snap.Metric(pb=reply.metrics[0]).data) is True
-
 
 
 def test_get_metric_types(collector_client):

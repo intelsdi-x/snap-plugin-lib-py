@@ -23,7 +23,7 @@ setup(
     cmdclass=versioneer.get_cmdclass(),
     packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     install_requires=['grpcio>=1.1.3,<2', 'protobuf>=3.2.0,<4',
-                      'futures>=3.0.5', 'future>=0.16.0'],
+                      'futures>=3.0.5', 'future>=0.16.0', 'tabulate>=0.7.7'],
     author="Joel Cooklin",
     author_email="joel.cooklin@gmail.com",
     description="This is a lib for creating plugins for the Snap telementry "

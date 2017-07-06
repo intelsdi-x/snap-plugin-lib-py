@@ -50,6 +50,24 @@ class Namespace(object):
     def __len__(self):
         return len(self._pb)
 
+    def __repr__(self):
+        separators = ["/", "|", "%", ":", "-", ";", "_", "^", ">", "<", "+", "=", "&", "㊽", "Ä", "大", "小", "ᵹ", "☍", "ヒ"]
+        separator = "\U0001f422"
+        for sep in separators:
+            found = False
+            for n in self:
+                if sep in n.value:
+                    found = True
+                    break
+            if not found:
+                separator = sep
+                break
+
+        result = separator
+        for n in self:
+            result += n.value + separator
+        return result[:-1]
+
     def add_dynamic_element(self, name, description):
         """Adds a dynamic namespace element to the end of the Namespace.
 

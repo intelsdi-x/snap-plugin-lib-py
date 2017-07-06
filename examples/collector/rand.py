@@ -34,6 +34,12 @@ class Rand(snap.Collector):
     applies default values for the 'int_min' and 'int_max' config items.
     """
 
+    def __init__(self, *args, **kwargs):
+        super(Rand, self).__init__(*args, **kwargs)
+        # add flag to test lib-py flags
+        self._flags.add_multiple([('required-config', snap.plugin.FlagType.toggle, 'Example flag'),
+                                 ('some-value', snap.plugin.FlagType.value, 'Some value to pass to metric', 1234)])
+
     def collect(self, metrics):
         LOG.debug("CollectMetrics called")
         for metric in metrics:
@@ -44,6 +50,7 @@ class Rand(snap.Collector):
                     metric.config["int_min"],
                     metric.config["int_max"]
                     ),
+                "other_value": self._args.some_value,
                 "*": None
             }
             typ = metric.namespace[1].value
@@ -61,7 +68,10 @@ class Rand(snap.Collector):
     def update_catalog(self, config):
         LOG.debug("GetMetricTypes called")
         metrics = []
-        for key in ("float64", "int64", "string"):
+        keys = ("float64", "int64", "string")
+        if self._args.required_config:
+            keys = keys + ("other_value",)
+        for key in keys:
             metric = snap.Metric(
                 namespace=[
                     snap.NamespaceElement(value="random"),
@@ -96,22 +106,23 @@ class Rand(snap.Collector):
 
     def get_config_policy(self):
         LOG.debug("GetConfigPolicy called")
-        return snap.ConfigPolicy(
+        policy = [
+            ("random"),
             [
-                ("random"),
-                [
-                    (
-                        "int_max",
-                        snap.IntegerRule(default=100, minimum=1, maximum=10000)
-                    ),
-                    (
-                        "int_min",
-                        snap.IntegerRule(default=0, minimum=0)
-                    )
-                ]
+                (
+                    "int_max",
+                    snap.IntegerRule(default=100, minimum=1, maximum=10000)
+                ),
+                (
+                    "int_min",
+                    snap.IntegerRule(default=0, minimum=0)
+                )
             ]
-        )
+        ]
+        if self._args.required_config:
+            policy[1].append(("required_argument", snap.IntegerRule(required=True)))
 
+        return snap.ConfigPolicy(policy)
 
 if __name__ == "__main__":
     Rand("rand-py", 1).start_plugin()
