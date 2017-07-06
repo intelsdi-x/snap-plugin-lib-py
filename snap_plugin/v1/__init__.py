@@ -27,7 +27,7 @@ https://intelsdi-x.github.io/snap-plugin-lib-py/.
 
 __all__ = ['Collector', 'Processor', 'Publisher', 'Metric', 'Namespace',
            'NamespaceElement', 'ConfigMap', 'StringRule', 'IntegerRule',
-           'BoolRule', 'FloatRule', 'ConfigPolicy']
+           'BoolRule', 'FloatRule', 'ConfigPolicy', 'FlagType']
 
 import logging
 import sys
@@ -44,6 +44,7 @@ from .string_policy import StringRule
 from .integer_policy import IntegerRule
 from .bool_policy import BoolRule
 from .float_policy import FloatRule
+from .plugin import FlagType
 from ._version import get_versions
 
 LOG = logging.getLogger()

@@ -19,6 +19,7 @@
 from builtins import int
 from collections import MutableMapping
 from itertools import chain
+from past.builtins import basestring
 
 from .plugin_pb2 import ConfigMap as PbConfigMap
 
@@ -67,7 +68,7 @@ class ConfigMap(MutableMapping):
             self._pb.BoolMap[key] = item
         elif isinstance(item, int):
             self._pb.IntMap[key] = item
-        elif isinstance(item, str):
+        elif isinstance(item, basestring):
             self._pb.StringMap[key] = item
         else:
             raise TypeError("The type is '{}' and should be string, int, long, float "

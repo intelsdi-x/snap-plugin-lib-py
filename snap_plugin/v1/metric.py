@@ -47,6 +47,9 @@ class Metric(object):
         metric = Metric(namespace=("acme", "sk8", "matix", "rotations"),
                         description="Rotation count")
 
+    Raises:
+        TypeError: Provided with arguments of wrong type, constructor will raise TypeError
+
     """
     def __init__(self, namespace=[], version=None, tags={}, config={},
                  timestamp=time.time(), unit="", description="", **kwargs):
@@ -80,8 +83,7 @@ class Metric(object):
             self._namespace = Namespace(self._pb.Namespace, *namespace)
         else:
             raise TypeError("The 'namespace', kwarg requires a list or tuple "
-                            "of :obj:`snap_plugin.v1.namespace_element.Namesp"
-                            "aceElement.  (given: `{}`)"
+                            "of :obj:`snap_plugin.v1.namespace_element.NamespaceElement.  (given: `{}`)"
                             .format(type(namespace)))
         # version
         if version is None:
@@ -100,15 +102,8 @@ class Metric(object):
             raise TypeError("The 'tags' kwarg requires a dict of strings. "
                             "(given: `{}`)".format(type(tags)))
         # configs
-        if isinstance(config, (list, tuple)):
-            self._config = ConfigMap(pb=self._pb.Config, *config)
-        elif isinstance(config, dict):
-            self._config = ConfigMap(pb=self._pb.Config, **config)
-        elif isinstance(config, ConfigMap):
-            self._config = ConfigMap(config.items(), pb=self._pb.Config)
-        else:
-            raise TypeError("The 'config' kwarg requires a list, tuple or"
-                            " dict.  (given: `{}`)".format(type(config)))
+        self._set_config(config)
+
         # timestamp
         self._timestamp = Timestamp(pb=self._pb.Timestamp,
                                     time=timestamp)
@@ -153,11 +148,18 @@ class Metric(object):
     def config(self):
         """Metric config
 
+        Args:
+            value (:obj:`dict` of :obj:`str`): {"config-key": "config-value"}
+
         Returns:
             :py:class:`~snap_plugin.v1.config_map.ConfigMap`
 
         """
         return self._config
+
+    @config.setter
+    def config(self, value):
+        self._set_config(value)
 
     @property
     def timestamp(self):
@@ -226,6 +228,18 @@ class Metric(object):
         self._pb.Description = value
 
     @property
+    def data_type(self):
+        if self._data_type == int:
+            return "integer"
+        if self._data_type == float:
+            return "float"
+        if self._data_type == str:
+            return "string"
+        if self._data_type == bool:
+            return "bool"
+        return "unknown"
+
+    @property
     def data(self):
         """Metric data
 
@@ -286,6 +300,17 @@ class Metric(object):
     @property
     def pb(self):
         return self._pb
+
+    def _set_config(self, config):
+        if isinstance(config, (list, tuple)):
+            self._config = ConfigMap(pb=self._pb.Config, *config)
+        elif isinstance(config, dict):
+            self._config = ConfigMap(pb=self._pb.Config, **config)
+        elif isinstance(config, ConfigMap):
+            self._config = ConfigMap(config.items(), pb=self._pb.Config)
+        else:
+            raise TypeError("The 'config' kwarg requires a list, tuple or"
+                            " dict.  (given: `{}`)".format(type(config)))
 
     def __repr__(self):
         return self._pb.__repr__()
