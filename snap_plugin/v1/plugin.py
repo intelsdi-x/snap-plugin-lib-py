@@ -30,7 +30,6 @@ from threading import Thread
 
 import grpc
 import six
-from tabulate import tabulate
 
 from .plugin_pb2 import GetConfigPolicyReply
 from .config_map import ConfigMap
@@ -448,7 +447,7 @@ class Plugin(object):
                     defaults.extend(t_defaults)
 
                 headers = ["NAMESPACE", "KEY", "TYPE", "REQUIRED", "DEFAULT", "MINIMUM", "MAXIMUM"]
-                sys.stdout.write(tabulate(policy_table, headers=headers, tablefmt="plain") + '\n')
+                sys.stdout.write(_tabulate(policy_table, headers))
 
                 # return if there are any missing required config entries
                 for missing in config_missing:
@@ -496,7 +495,7 @@ class Plugin(object):
                     metrics_table.append([metric.namespace, metric.data_type, metric.data])
 
                 headers = ["NAMESPACE", "TYPE", "VALUE"]
-                sys.stdout.write(tabulate(metrics_table, headers=headers, tablefmt="plain") + '\n')
+                sys.stdout.write(_tabulate(metrics_table, headers))
 
             sys.stdout.write("Printing collected metrics took {}\n\n".format(print_timer.elapsed()))
 
@@ -584,3 +583,24 @@ def _monitor(last_ping, stop_plugin, is_shutting_down, timeout=5):
                 return
         elif (time.time() - last_ping()) <= timeout:
             _timeout_count = 0
+
+
+def _tabulate(rows, headers, spacing=5):
+    """Prepare simple table with spacing based on content"""
+    assert len(rows[0]) == len(headers)
+    count = len(rows[0])
+    widths = [0 for _ in range(count)]
+    rows = [headers] + rows
+
+    for row in rows:
+        for index, field in enumerate(row):
+            if len(str(field)) > widths[index]:
+                widths[index] = len(str(field))
+
+    output = ""
+    for row in rows:
+        for index, field in enumerate(row):
+            field = str(field)
+            output += field + (widths[index] - len(field) + spacing) * " "
+        output += "\n"
+    return output
