@@ -84,6 +84,8 @@ class _Flags(object):
 
         if name not in self._flags:
             if default is not None:
+                if default is not False:
+                    description += " (default: %(default)s)"
                 self._flags[name] = (flag_type, description, default)
             else:
                 self._flags[name] = (flag_type, description)
@@ -250,9 +252,17 @@ class Plugin(object):
 
         # init argparse module and add arguments
         self._parser = argparse.ArgumentParser(description="%(prog)s - a Snap framework plugin.",
-                                               usage="%(prog)s [options]")
+                                               usage="%(prog)s [options]",
+                                               formatter_class=lambda prog:
+                                               argparse.HelpFormatter(prog, max_help_position=30))
         self._parser.add_argument("framework_config", nargs="?", default=None, help=argparse.SUPPRESS)
-        self._flags.add("config", FlagType.value, "JSON Snap global config")
+
+        flags = [
+            ("config", FlagType.value, "JSON Snap global config"),
+            ("stand-alone", FlagType.toggle, "enable stand alone mode"),
+            ("stand-alone-port", FlagType.value, "http port for stand alone mode", 8181)
+        ]
+        self._flags.add_multiple(flags)
 
     def ping(self):
         """Ping responds to clients providing proof of life
@@ -337,12 +347,13 @@ class Plugin(object):
                                   help="show plugin's version number and exit")
 
         # add every flag from Flags object to parser
-        for flag in self._flags:
+        for flag in list(sorted(self._flags, key=lambda flag: flag[0])):
             kwargs = {"dest": flag[0], "help": flag[2], "action": "store_true"}
             if '-' in flag[0]:
                 kwargs["dest"] = flag[0].replace('-', '_')
             if flag[1] == FlagType.value:
                 kwargs["action"] = "store"
+                kwargs["metavar"] = "value"
                 if len(flag) == 4:
                     kwargs["default"] = flag[3]
 
