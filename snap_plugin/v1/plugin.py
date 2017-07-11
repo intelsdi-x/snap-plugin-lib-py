@@ -24,7 +24,9 @@ import time
 from abc import ABCMeta, abstractmethod
 from concurrent import futures
 from enum import Enum
+from http.server import BaseHTTPRequestHandler, HTTPServer
 from past.builtins import basestring
+from socket import error as socket_error
 from timeit import default_timer as timer
 from threading import Thread
 
@@ -57,6 +59,25 @@ class _Timer(object):
         return "{:.3f} {}".format(float(elapsed), unit)
 
 
+def _make_standalone_handler(preamble):
+    """Class factory used so that preamble can be passed to :py:class:`_StandaloneHandler`
+     without use of static members"""
+    class _StandaloneHandler(BaseHTTPRequestHandler, object):
+        """HTTP Handler for standalone mode"""
+
+        def do_GET(self):
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json; charset=utf-8')
+            self.send_header('Content-length', len(preamble))
+            self.end_headers()
+            self.wfile.write(preamble.encode('utf-8'))
+
+        def log_message(self, format, *args):
+            # suppress logging on requests
+            return
+    return _StandaloneHandler
+
+
 class _Flags(object):
     """Command line flags container"""
     def __init__(self):
@@ -84,6 +105,8 @@ class _Flags(object):
 
         if name not in self._flags:
             if default is not None:
+                if default is not False:
+                    description += " (default: %(default)s)"
                 self._flags[name] = (flag_type, description, default)
             else:
                 self._flags[name] = (flag_type, description)
@@ -114,7 +137,6 @@ class _Flags(object):
 
 
 class _EnumEncoder(json.JSONEncoder):
-    # pylint: disable=E0202
     def default(self, obj):
         if isinstance(obj, Enum):
             return obj.value
@@ -173,6 +195,7 @@ class PluginMode(Enum):
     """Plugin operating modes"""
     normal = 0
     diagnostics = 1
+    standalone = 2
 
 
 class FlagType(Enum):
@@ -247,12 +270,22 @@ class Plugin(object):
         self._mode = PluginMode.normal
         self._config = {}
         self._flags = _Flags()
+        self.standalone_server = None
 
         # init argparse module and add arguments
         self._parser = argparse.ArgumentParser(description="%(prog)s - a Snap framework plugin.",
-                                               usage="%(prog)s [options]")
+                                               usage="%(prog)s [options]",
+                                               formatter_class=lambda prog:
+                                               argparse.HelpFormatter(prog, max_help_position=30))
         self._parser.add_argument("framework_config", nargs="?", default=None, help=argparse.SUPPRESS)
-        self._flags.add("config", FlagType.value, "JSON Snap global config")
+
+        flags = [
+            ("config", FlagType.value, "JSON Snap global config"),
+            ("stand-alone", FlagType.toggle, "enable stand alone mode"),
+            ("stand-alone-port", FlagType.value, "http port for stand alone mode", 8181),
+            ("log-level", FlagType.value, "logging level 0:panic - 5:debug", 3)
+        ]
+        self._flags.add_multiple(flags)
 
     def ping(self):
         """Ping responds to clients providing proof of life
@@ -293,40 +326,65 @@ class Plugin(object):
         LOG.debug("plugin start called..")
         if self._mode == PluginMode.normal:
             # start grpc server
-            self._port = self.server.add_insecure_port('127.0.0.1:{!s}'.format(0))
-            self.server.start()
-            sys.stdout.write(json.dumps(
-                {
-                    "Meta": {
-                        "Name": self.meta.name,
-                        "Version": self.meta.version,
-                        "Type": self.meta.type,
-                        "RPCType": self.meta.rpc_type,
-                        "RPCVersion": self.meta.rpc_version,
-                        "ConcurrencyCount": self.meta.concurrency_count,
-                        "Exclusive": self.meta.exclusive,
-                        "Unsecure": self.meta.unsecure,
-                        "CacheTTL": self.meta.cache_ttl,
-                        "RoutingStrategy": self.meta.routing_strategy,
-                    },
-                    "ListenAddress": "127.0.0.1:{!s}".format(self._port),
-                    "Token": None,
-                    "PublicKey": None,
-                    "Type": self.meta.type,
-                    "ErrorMessage": None,
-                    "State": PluginResponseState.plugin_success,
-                },
-                cls=_EnumEncoder
-            )+"\n")
+            preamble = self._generate_preamble_and_serve()
+            sys.stdout.write(preamble)
             sys.stdout.flush()
             self._monitor.start()
             self._monitor.join()
             sys.exit()
+        elif self._mode == PluginMode.standalone:
+            preamble = self._generate_preamble_and_serve()
+            try:
+                handler = _make_standalone_handler(preamble)
+                self.standalone_server = HTTPServer(('', int(self._args.stand_alone_port)), handler)
+            except (OSError, socket_error) as err:
+                if err.errno == 98:
+                    LOG.error("Port {} already in use.".format(self._args.stand_alone_port))
+                elif err.errno == 13:
+                    LOG.error("Port numbers below 1000 can be used only by privileged users.")
+                else:
+                    # unexpected error, re-raise
+                    raise
+            else:
+                try:
+                    sys.stdout.write("Plugin loaded at {}:{}\n".format(*self.standalone_server.server_address))
+                    sys.stdout.flush()
+                    self.standalone_server.serve_forever()
+                except KeyboardInterrupt:
+                    self.standalone_server.socket.close()
+
         elif self._mode == PluginMode.diagnostics and self.meta.type == PluginType.collector:
             self._print_diagnostic()
         else:
             sys.stdout.write("At the time being, plugin diagnostic is supported only by Collector plugins.")
             sys.stdout.flush()
+
+    def _generate_preamble_and_serve(self):
+        self._port = self.server.add_insecure_port('127.0.0.1:{!s}'.format(0))
+        self.server.start()
+        return json.dumps(
+            {
+                "Meta": {
+                    "Name": self.meta.name,
+                    "Version": self.meta.version,
+                    "Type": self.meta.type,
+                    "RPCType": self.meta.rpc_type,
+                    "RPCVersion": self.meta.rpc_version,
+                    "ConcurrencyCount": self.meta.concurrency_count,
+                    "Exclusive": self.meta.exclusive,
+                    "Unsecure": self.meta.unsecure,
+                    "CacheTTL": self.meta.cache_ttl,
+                    "RoutingStrategy": self.meta.routing_strategy,
+                },
+                "ListenAddress": "127.0.0.1:{!s}".format(self._port),
+                "Token": None,
+                "PublicKey": None,
+                "Type": self.meta.type,
+                "ErrorMessage": None,
+                "State": PluginResponseState.plugin_success,
+            },
+            cls=_EnumEncoder
+        ) + "\n"
 
     def _parse_args(self):
         """Parse command line arguments, parse config and initialize monitor"""
@@ -337,24 +395,32 @@ class Plugin(object):
                                   help="show plugin's version number and exit")
 
         # add every flag from Flags object to parser
-        for flag in self._flags:
+        for flag in list(sorted(self._flags, key=lambda flag: flag[0])):
             kwargs = {"dest": flag[0], "help": flag[2], "action": "store_true"}
             if '-' in flag[0]:
                 kwargs["dest"] = flag[0].replace('-', '_')
             if flag[1] == FlagType.value:
                 kwargs["action"] = "store"
+                kwargs["metavar"] = "value"
                 if len(flag) == 4:
                     kwargs["default"] = flag[3]
 
             self._parser.add_argument("--{}".format(flag[0]), **kwargs)
 
         self._args = self._parser.parse_args()
+        self._config["LogLevel"] = int(self._args.log_level)
+
+        if self._args.framework_config is not None:
+            # if there is a config provided by the framework, we operate in normal mode
+            self._args.config = self._args.framework_config
+        elif self._args.stand_alone:
+            # if user provided stand-alone flag, we run in standalone mode
+            self._mode = PluginMode.standalone
+        else:
+            # if config wasn't provided by the framework and user didn't use standalone flag, we run diagnostics
+            self._mode = PluginMode.diagnostics
 
         # process the config (valid json) provided by the framework or the user
-        if self._args.framework_config is not None:
-            self._args.config = self._args.framework_config
-        else:
-            self._mode = PluginMode.diagnostics
         if self._args.config is not None:
             try:
                 self._config = json.loads(self._args.config)
