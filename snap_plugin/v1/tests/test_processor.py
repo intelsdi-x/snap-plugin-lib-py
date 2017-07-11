@@ -17,7 +17,6 @@
 
 import json
 import sys
-import threading
 import time
 
 import grpc
@@ -28,42 +27,7 @@ from snap_plugin.v1.plugin_pb2 import ProcessorStub, Empty
 from snap_plugin.v1.pub_proc_arg import _ProcessArg
 
 from . import ThreadPrinter
-
-
-class MockProcessor(snap.Processor, threading.Thread):
-    """Mock processor plugin """
-    def __init__(self, name, ver):
-        super(MockProcessor, self).__init__(name, ver)
-        threading.Thread.__init__(self, group=None, target=None, name=None)
-        self._stopper = threading.Event()
-
-    def process(self, metrics, config):
-        for metric in metrics:
-            for (k, v) in config.items():
-                metric.tags[k] = v
-            metric.tags["processed"] = "true"
-        return metrics
-
-    def get_config_policy(self):
-        return snap.ConfigPolicy(
-            [
-                None,
-                [
-                    (
-                        "some-config",
-                        snap.StringRule(default="some-value")
-                    )
-                ]
-            ],
-        )
-
-    def run(self):
-        self.start_plugin()
-
-    def stop(self):
-        self._stopper.set()
-        self.stopped = True
-        self.stop_plugin()
+from .mock_plugins import MockProcessor
 
 
 @pytest.fixture(scope="module")
@@ -71,6 +35,7 @@ def processor_client():
     """Returns a client (grpc) fixture that is passed into processor
     tests """
     sys.stdout = ThreadPrinter()
+    sys.argv = ["", '{}']
     proc = MockProcessor("MyProcessor", 1)
     proc.start()
     t_end = time.time() + 5

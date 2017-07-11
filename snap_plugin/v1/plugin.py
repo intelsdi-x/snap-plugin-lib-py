@@ -270,6 +270,7 @@ class Plugin(object):
         self._mode = PluginMode.normal
         self._config = {}
         self._flags = _Flags()
+        self.standalone_server = None
 
         # init argparse module and add arguments
         self._parser = argparse.ArgumentParser(description="%(prog)s - a Snap framework plugin.",
@@ -335,7 +336,7 @@ class Plugin(object):
             preamble = self._generate_preamble_and_serve()
             try:
                 handler = _make_standalone_handler(preamble)
-                server = HTTPServer(('', int(self._args.stand_alone_port)), handler)
+                self.standalone_server = HTTPServer(('', int(self._args.stand_alone_port)), handler)
             except (OSError, socket_error) as err:
                 if err.errno == 98:
                     LOG.error("Port {} already in use.".format(self._args.stand_alone_port))
@@ -346,11 +347,11 @@ class Plugin(object):
                     raise
             else:
                 try:
-                    sys.stdout.write("Plugin loaded at {}:{}\n".format(*server.server_address))
+                    sys.stdout.write("Plugin loaded at {}:{}\n".format(*self.standalone_server.server_address))
                     sys.stdout.flush()
-                    server.serve_forever()
+                    self.standalone_server.serve_forever()
                 except KeyboardInterrupt:
-                    server.socket.close()
+                    self.standalone_server.socket.close()
 
         elif self._mode == PluginMode.diagnostics and self.meta.type == PluginType.collector:
             self._print_diagnostic()

@@ -17,7 +17,6 @@
 
 import json
 import sys
-import threading
 import time
 
 import grpc
@@ -28,35 +27,7 @@ from snap_plugin.v1.plugin_pb2 import PublisherStub
 from snap_plugin.v1.pub_proc_arg import _PublishArg
 
 from . import ThreadPrinter
-
-
-class MockPublisher(snap.Publisher, threading.Thread):
-    """Mock publisher plugin """
-
-    def __init__(self, name, ver):
-        super(MockPublisher, self).__init__(name, ver)
-        threading.Thread.__init__(self, group=None, target=None, name=None)
-        self._stopper = threading.Event()
-
-    def publish(self, metrics, config):
-        assert len(config) == 4
-        assert config["foo"] == "bar"
-        assert config["port"] == 911
-        assert config["debug"] is True
-        assert config["availability"] == 99.9
-        assert len(metrics) > 0
-        return metrics
-
-    def get_config_policy(self):
-        raise NotImplementedError
-
-    def run(self):
-        self.start_plugin()
-
-    def stop(self):
-        self._stopper.set()
-        self.stopped = True
-        self.stop_plugin()
+from .mock_plugins import MockPublisher
 
 
 @pytest.fixture(scope="module")
