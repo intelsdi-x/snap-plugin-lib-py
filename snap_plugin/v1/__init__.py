@@ -25,7 +25,7 @@ https://intelsdi-x.github.io/snap-plugin-lib-py/.
 
 """
 
-__all__ = ['Collector', 'Processor', 'Publisher', 'Metric', 'Namespace',
+__all__ = ['Collector', 'Processor', 'Publisher', 'StreamCollector', 'Metric', 'Namespace',
            'NamespaceElement', 'ConfigMap', 'StringRule', 'IntegerRule',
            'BoolRule', 'FloatRule', 'ConfigPolicy', 'FlagType']
 
@@ -35,6 +35,7 @@ import sys
 from .collector import Collector
 from .processor import Processor
 from .publisher import Publisher
+from .stream_collector import StreamCollector
 from .metric import Metric
 from .namespace import Namespace
 from .namespace_element import NamespaceElement
