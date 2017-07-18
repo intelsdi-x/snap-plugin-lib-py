@@ -55,12 +55,9 @@ class StreamCollector(Plugin):
         This method is ``abstract`` so the implementation **must be provided**
         by the plugin which extends :obj:`snap_plugin.v1.StreamCollector`.
 
-        This method is called by the Snap deamon during the collection phase
-        of the execution of a Snap workflow.
+        This method is called by the Snap deamon at task starting phase. It spawns thread which pushing
+        :obj:`snap_plugin.v1.Metric` to self.proxy.metrics_queue
 
-        Returns:
-            :obj:`list` of :obj:`snap_plugin.v1.Metric`:
-                List of collected metrics.
         """
         pass
 
