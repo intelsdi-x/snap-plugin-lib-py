@@ -14,6 +14,7 @@
 
 import sys
 
+
 class ThreadPrinter:
     def __init__(self):
         self.terminal = sys.stdout
