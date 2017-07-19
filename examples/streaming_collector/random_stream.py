@@ -44,8 +44,8 @@ class RandomStream(snap.StreamCollector):
                     snap.NamespaceElement(value="int")
                 ],
                 version=1,
-                tags={"mtype": "gauge"},
-                description="Random {}".format("int"),
+                tags={"mtype": "counter"},
+                description="Random int",
                 data=random.randint(1, 100)
             )
             metrics.append(metric)
@@ -57,8 +57,8 @@ class RandomStream(snap.StreamCollector):
                     snap.NamespaceElement(value="float")
                 ],
                 version=1,
-                tags={"mtype": "gauge"},
-                description="Random {}".format("float"),
+                tags={"mtype": "counter"},
+                description="Random float",
                 data=random.random()
             )
             metrics.append(metric)
@@ -69,7 +69,7 @@ class RandomStream(snap.StreamCollector):
     def update_catalog(self, config):
         LOG.debug("GetMetricTypes called")
         metrics = []
-        for key in ("float64", "int64"):
+        for key in ("float", "int"):
             metric = snap.Metric(
                 namespace=[
                     snap.NamespaceElement(value="intel"),

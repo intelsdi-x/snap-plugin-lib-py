@@ -188,7 +188,8 @@ class RPCType(Enum):
         switch = {
             0: "Native",
             1: "JSON",
-            2: "gRPC"
+            2: "gRPC",
+            3: "gRPCStream"
         }
         return switch[self.value]
 

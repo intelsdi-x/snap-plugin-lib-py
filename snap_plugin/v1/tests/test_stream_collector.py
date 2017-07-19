@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # http://www.apache.org/licenses/LICENSE-2.0.txt
 #
-# Copyright 2016 Intel Corporation
+# Copyright 2017 Intel Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -52,7 +52,6 @@ def test_stream():
     resp = json.loads(sys.stdout.lines[0])
     client = StreamCollectorStub(
         grpc.insecure_channel(resp["ListenAddress"]))
-    client.plugin = col
     metric = snap.Metric(
         namespace=[snap.NamespaceElement(value="intel"),
                    snap.NamespaceElement(value="streaming"),
@@ -62,10 +61,13 @@ def test_stream():
         unit="some unit",
         description="some description")
     mtr = iter([CollectArg(metric).pb])
-    client.StreamMetrics(mtr)
-    time.sleep(2)
-    client.plugin.stop()
-    assert client.plugin.proxy.metrics_queue.qsize() != 0
+    metrics = client.StreamMetrics(mtr)
+    assert next(metrics).Metrics_Reply.metrics[0].int64_data == 200
+    start_waiting_for_new_metric = time.time()
+    assert next(metrics).Metrics_Reply.metrics[0].int64_data == 250
+    retrieve_metric_time = time.time()
+    assert int(round(retrieve_metric_time)) - int(round(start_waiting_for_new_metric)) == 1
+    col.stop()
 
 
 def test_get_metric_types():
@@ -81,12 +83,12 @@ def test_get_metric_types():
     resp = json.loads(sys.stdout.lines[0])
     client = StreamCollectorStub(
         grpc.insecure_channel(resp["ListenAddress"]))
-    client.plugin = col
     reply = client.GetMetricTypes(
         GetMetricTypesArg({}).pb)
     assert reply.error == ''
     assert len(reply.metrics) == 1
     assert reply.metrics[0].Version == 99
+    col.stop()
 
 
 def test_get_config_policy():
@@ -101,7 +103,7 @@ def test_get_config_policy():
     resp = json.loads(sys.stdout.lines[0])
     client = StreamCollectorStub(
         grpc.insecure_channel(resp["ListenAddress"]))
-    client.plugin = col
     reply = client.GetConfigPolicy(Empty())
     assert reply.error == ""
     assert reply.string_policy["intel.streaming.random"].rules["password"].default == "pass"
+    col.stop()

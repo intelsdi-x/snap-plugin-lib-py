@@ -18,7 +18,7 @@
 import logging
 import threading
 import traceback
-# It is needed to prevent ImportError in python 3.x, cased by renaming package Queue to queue
+# It is needed to prevent ImportError in python 3.x, caused by renaming package Queue to queue
 try:
     import Queue as queue
 except ImportError:
@@ -37,6 +37,7 @@ class _StreamCollectorProxy(PluginProxy):
         super(_StreamCollectorProxy, self).__init__(stream_collector)
         self.plugin = stream_collector
         self.metrics_queue = queue.Queue(maxsize=0)
+        self.done_queue = queue.Queue(maxsize=1)
 
     def StreamMetrics(self, request_iterator, context):
         """Dispatches metrics streamed by collector"""
@@ -45,12 +46,13 @@ class _StreamCollectorProxy(PluginProxy):
         thread.daemon = True
         thread.start()
 
-        while True:
+        while context.is_active():
             metrics = []
             while not self.metrics_queue.empty():
                 metrics.append(self.metrics_queue.get())
-            metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics]))
-            yield metrics_col
+            if len(metrics) > 0:
+                yield CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics]))
+        self.done_queue.put(True)
 
     def GetMetricTypes(self, request, context):
         """Dispatches the request to the plugins update_catalog method"""
