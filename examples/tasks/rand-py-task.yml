@@ -6,11 +6,11 @@
     workflow:
         collect:
             metrics:
-                /random/float64: {}
-                /random/int64: {}
-                /random/string: {}
-                /random/*/uid: {}
-                /random/*/gid: {}
+                /intel/random/float64: {}
+                /intel/random/int64: {}
+                /intel/random/string: {}
+                /intel/random/*/uid: {}
+                /intel/random/*/gid: {}
             process:
                 - plugin_name: "tag-py"
                   publish:
