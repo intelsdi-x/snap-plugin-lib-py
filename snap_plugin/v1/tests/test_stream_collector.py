@@ -66,7 +66,7 @@ def test_stream():
     start_waiting_for_new_metric = time.time()
     assert next(metrics).Metrics_Reply.metrics[0].int64_data == 250
     retrieve_metric_time = time.time()
-    assert int(round(retrieve_metric_time)) - int(round(start_waiting_for_new_metric)) == 1
+    assert int(abs(retrieve_metric_time)) - int(abs(start_waiting_for_new_metric)) == 1
     col.stop()
 
 

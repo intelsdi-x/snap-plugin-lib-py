@@ -18,6 +18,7 @@
 import logging
 import threading
 import traceback
+import time
 # It is needed to prevent ImportError in python 3.x, caused by renaming package Queue to queue
 try:
     import Queue as queue
@@ -38,6 +39,8 @@ class _StreamCollectorProxy(PluginProxy):
         self.plugin = stream_collector
         self.metrics_queue = queue.Queue(maxsize=0)
         self.done_queue = queue.Queue(maxsize=1)
+        self.max_metrics_buffer = 0
+        self.max_collect_duration = 10
 
     def StreamMetrics(self, request_iterator, context):
         """Dispatches metrics streamed by collector"""
@@ -46,12 +49,39 @@ class _StreamCollectorProxy(PluginProxy):
         thread.daemon = True
         thread.start()
 
+        after_collect_duration = time.time() + self.max_collect_duration
+        metrics = []
         while context.is_active():
-            metrics = []
+            # check if max_collect_duration has been reached
+            if time.time() >= after_collect_duration:
+                metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics]))
+                metrics = []
+                after_collect_duration = time.time() + self.max_collect_duration
+                yield metrics_col
+            # if plugin puts metrics on queue
             while not self.metrics_queue.empty():
-                metrics.append(self.metrics_queue.get())
-            if len(metrics) > 0:
-                yield CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics]))
+                # get metric from queue
+                m = self.metrics_queue.get()
+                # if mex_metrics_buffer is set to 0, stream metric
+                if self.max_metrics_buffer == 0:
+                    after_collect_duration = time.time() + self.max_collect_duration
+                    yield CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb]))
+                else:
+                    # add metrics to list
+                    metrics.append(m)
+                    # verify if length of metrics buffer has been reached
+                    if len(metrics) == self.max_metrics_buffer:
+                        metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics]))
+                        metrics = []
+                        after_collect_duration = time.time() + self.max_collect_duration
+                        yield metrics_col
+                    # check if max_collect_duration has been reached
+                    if time.time() >= after_collect_duration:
+                        metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics]))
+                        metrics = []
+                        after_collect_duration = time.time() + self.max_collect_duration
+                        yield metrics_col
+        # sent notification if stream has been stopped
         self.done_queue.put(True)
 
     def GetMetricTypes(self, request, context):

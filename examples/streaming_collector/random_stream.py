@@ -46,7 +46,8 @@ class RandomStream(snap.StreamCollector):
                 version=1,
                 tags={"mtype": "counter"},
                 description="Random int",
-                data=random.randint(1, 100)
+                data=random.randint(1, 100),
+                timestamp=time.time()
             )
             metrics.append(metric)
             metric = snap.Metric(
@@ -59,7 +60,8 @@ class RandomStream(snap.StreamCollector):
                 version=1,
                 tags={"mtype": "counter"},
                 description="Random float",
-                data=random.random()
+                data=random.random(),
+                timestamp=time.time()
             )
             metrics.append(metric)
 
