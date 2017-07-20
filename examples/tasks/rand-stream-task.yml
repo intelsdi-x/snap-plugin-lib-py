@@ -1,0 +1,12 @@
+---
+    version: 1
+    schedule:
+        type: "streaming"
+    workflow:
+        collect:
+            metrics:
+                /intel/streaming/random/float: {}
+            process:
+                - plugin_name: "tag-py"
+                  publish:
+                    - plugin_name: "file-py"
