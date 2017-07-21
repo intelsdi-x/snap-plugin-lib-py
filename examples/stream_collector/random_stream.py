@@ -33,40 +33,38 @@ class RandomStream(snap.StreamCollector):
 
     def stream(self):
         LOG.debug("Metrics streaming started")
-        while True:
-            time.sleep(1)
-            metrics = []
-            metric = snap.Metric(
-                namespace=[
-                    snap.NamespaceElement(value="intel"),
-                    snap.NamespaceElement(value="streaming"),
-                    snap.NamespaceElement(value="random"),
-                    snap.NamespaceElement(value="int")
-                ],
-                version=1,
-                tags={"mtype": "counter"},
-                description="Random int",
-                data=random.randint(1, 100),
-                timestamp=time.time()
-            )
-            metrics.append(metric)
-            metric = snap.Metric(
-                namespace=[
-                    snap.NamespaceElement(value="intel"),
-                    snap.NamespaceElement(value="streaming"),
-                    snap.NamespaceElement(value="random"),
-                    snap.NamespaceElement(value="float")
-                ],
-                version=1,
-                tags={"mtype": "counter"},
-                description="Random float",
-                data=random.random(),
-                timestamp=time.time()
-            )
-            metrics.append(metric)
+        metrics = []
+        metric = snap.Metric(
+            namespace=[
+                snap.NamespaceElement(value="intel"),
+                snap.NamespaceElement(value="streaming"),
+                snap.NamespaceElement(value="random"),
+                snap.NamespaceElement(value="int")
+            ],
+            version=1,
+            tags={"mtype": "counter"},
+            description="Random int",
+            data=random.randint(1, 100),
+            timestamp=time.time()
+        )
+        metrics.append(metric)
+        metric = snap.Metric(
+            namespace=[
+                snap.NamespaceElement(value="intel"),
+                snap.NamespaceElement(value="streaming"),
+                snap.NamespaceElement(value="random"),
+                snap.NamespaceElement(value="float")
+            ],
+            version=1,
+            tags={"mtype": "counter"},
+            description="Random float",
+            data=random.random(),
+            timestamp=time.time()
+        )
+        time.sleep(1)
+        metrics.append(metric)
 
-            for mt in metrics:
-                self.proxy.metrics_queue.put(mt)
+        return metrics
 
     def update_catalog(self, config):
         LOG.debug("GetMetricTypes called")

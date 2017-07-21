@@ -42,10 +42,14 @@ class _StreamCollectorProxy(PluginProxy):
         self.max_metrics_buffer = 0
         self.max_collect_duration = 10
 
+    def _stream_wrapper(self):
+        while self.done_queue.empty():
+            self.metrics_queue.put(self.plugin.stream())
+
     def StreamMetrics(self, request_iterator, context):
         """Dispatches metrics streamed by collector"""
 
-        thread = threading.Thread(target=self.plugin.stream,)
+        thread = threading.Thread(target=self._stream_wrapper,)
         thread.daemon = True
         thread.start()
 

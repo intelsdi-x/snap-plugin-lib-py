@@ -167,26 +167,22 @@ class MockStreamCollector(snap.StreamCollector, threading.Thread):
         self._stopper = threading.Event()
 
     def stream(self):
-        i = 0
-        while self.proxy.done_queue.empty():
-            now = time.time()
-            metric = snap.Metric(
-                namespace=[
-                    snap.NamespaceElement(value="intel"),
-                    snap.NamespaceElement(value="streaming"),
-                    snap.NamespaceElement(value="random"),
-                    snap.NamespaceElement(value="int")
-                ],
-                version=1,
-                tags={"mtype": "counter"},
-                description="some description",
-                timestamp=now,
-                data=200 + i
-            )
-            self.proxy.metrics_queue.put(metric)
-            i += 50
-            time.sleep(1)
-        return
+        now = time.time()
+        metric = snap.Metric(
+            namespace=[
+                snap.NamespaceElement(value="intel"),
+                snap.NamespaceElement(value="streaming"),
+                snap.NamespaceElement(value="random"),
+                snap.NamespaceElement(value="int")
+            ],
+            version=1,
+            tags={"mtype": "counter"},
+            description="some description",
+            timestamp=now,
+            data=200
+        )
+        time.sleep(1)
+        return metric
 
     def update_catalog(self, config):
         metrics = [

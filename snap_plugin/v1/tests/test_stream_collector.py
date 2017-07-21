@@ -64,7 +64,7 @@ def test_stream():
     metrics = client.StreamMetrics(mtr)
     assert next(metrics).Metrics_Reply.metrics[0].int64_data == 200
     start_waiting_for_new_metric = time.time()
-    assert next(metrics).Metrics_Reply.metrics[0].int64_data == 250
+    assert next(metrics).Metrics_Reply.metrics[0].int64_data == 200
     retrieve_metric_time = time.time()
     assert int(abs(retrieve_metric_time)) - int(abs(start_waiting_for_new_metric)) == 1
     col.stop()
