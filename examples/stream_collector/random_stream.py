@@ -61,9 +61,8 @@ class RandomStream(snap.StreamCollector):
             data=random.random(),
             timestamp=time.time()
         )
-        time.sleep(1)
         metrics.append(metric)
-
+        time.sleep(1)
         return metrics
 
     def update_catalog(self, config):

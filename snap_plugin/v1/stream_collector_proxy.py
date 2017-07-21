@@ -49,6 +49,15 @@ class _StreamCollectorProxy(PluginProxy):
     def StreamMetrics(self, request_iterator, context):
         """Dispatches metrics streamed by collector"""
 
+        collect_args = next(request_iterator)
+        try:
+            if collect_args.MaxCollectDuration > 0:
+                self.max_collect_duration = collect_args.MaxCollectDuration
+            if collect_args.MaxMetricsBuffer > 0:
+                self.max_metrics_buffer = collect_args.MaxMetricsBuffer
+        except Exception as ex:
+            LOG.debug("Unable to get schedule parameters: {}".format(ex))
+
         thread = threading.Thread(target=self._stream_wrapper,)
         thread.daemon = True
         thread.start()
@@ -64,15 +73,15 @@ class _StreamCollectorProxy(PluginProxy):
                 yield metrics_col
             # if plugin puts metrics on queue
             while not self.metrics_queue.empty():
-                # get metric from queue
-                m = self.metrics_queue.get()
+                # get metric from queue and add it to list
+                metrics.append(self.metrics_queue.get())
                 # if mex_metrics_buffer is set to 0, stream metric
                 if self.max_metrics_buffer == 0:
+                    metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics]))
+                    metrics = []
                     after_collect_duration = time.time() + self.max_collect_duration
-                    yield CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb]))
+                    yield metrics_col
                 else:
-                    # add metrics to list
-                    metrics.append(m)
                     # verify if length of metrics buffer has been reached
                     if len(metrics) == self.max_metrics_buffer:
                         metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics]))

@@ -57,10 +57,10 @@ class StreamCollector(Plugin):
         by the plugin which extends :obj:`snap_plugin.v1.StreamCollector`.
 
         This method is called by the Snap deamon at task starting phase.
+        It is running by _stream_wrapper method in separate thread.
+
         Returns:
             :obj:`list` of :obj:`snap_plugin.v1.Metric`:
-
-        This method is running by _stream_wrapper method in separate thread.
 
         """
         pass
