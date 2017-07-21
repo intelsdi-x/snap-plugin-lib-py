@@ -53,12 +53,12 @@ class Rand(snap.Collector):
                 "other_value": self._args.some_value,
                 "*": None
             }
-            typ = metric.namespace[1].value
+            typ = metric.namespace[2].value
             if typ == "*":
-                metric.namespace[1].value = str(os.getpid())
-                if metric.namespace[2].value == "uid":
+                metric.namespace[2].value = str(os.getpid())
+                if metric.namespace[3].value == "uid":
                     metric.data = os.getuid()
-                elif metric.namespace[2].value == "gid":
+                elif metric.namespace[3].value == "gid":
                     metric.data = os.getgid()
             else:
                 metric.data = switch[typ]
@@ -74,6 +74,7 @@ class Rand(snap.Collector):
         for key in keys:
             metric = snap.Metric(
                 namespace=[
+                    snap.NamespaceElement(value="intel"),
                     snap.NamespaceElement(value="random"),
                     snap.NamespaceElement(value=key)
                 ],
@@ -85,6 +86,7 @@ class Rand(snap.Collector):
 
         metric = snap.Metric(version=1, Description="dynamic element example")
         # adds namespace elements (static and dynamic) via namespace methods
+        metric.namespace.add_static_element("intel")
         metric.namespace.add_static_element("random")
         metric.namespace.add_dynamic_element("pid", "current pid")
         metric.namespace.add_static_element("uid")
@@ -93,6 +95,7 @@ class Rand(snap.Collector):
         # metric is added with the namespace defined in the constructor
         metric = snap.Metric(
             namespace=[
+                snap.NamespaceElement(value="intel"),
                 snap.NamespaceElement(value="random"),
                 snap.NamespaceElement(name="pid", description="current pid"),
                 snap.NamespaceElement(value="gid")
@@ -107,7 +110,7 @@ class Rand(snap.Collector):
     def get_config_policy(self):
         LOG.debug("GetConfigPolicy called")
         policy = [
-            ("random"),
+            ("intel", "random"),
             [
                 (
                     "int_max",
