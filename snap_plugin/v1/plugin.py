@@ -656,6 +656,8 @@ def _monitor(last_ping, stop_plugin, is_shutting_down, timeout=5):
 
 def _tabulate(rows, headers, spacing=5):
     """Prepare simple table with spacing based on content"""
+    if len(rows) == 0:
+        return "None\n"
     assert len(rows[0]) == len(headers)
     count = len(rows[0])
     widths = [0 for _ in range(count)]
