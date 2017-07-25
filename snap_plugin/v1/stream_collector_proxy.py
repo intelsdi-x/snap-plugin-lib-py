@@ -49,16 +49,16 @@ class _StreamCollectorProxy(PluginProxy):
             for metric in mt.Metrics_Arg.metrics:
                 requested_metrics.append(Metric(pb=metric))
         while self.done_queue.empty():
-            self.metrics_queue.put(self.plugin.stream(requested_metrics))
+            returned_metrics = []
+            returned_metrics.extend(self.plugin.stream(requested_metrics))
+            for returned_metric in returned_metrics:
+                self.metrics_queue.put(returned_metric)
 
     def StreamMetrics(self, request_iterator, context):
         """Dispatches metrics streamed by collector"""
+        LOG.debug("StreamMetrics called")
         collect_args = []
-        while True:
-            try:
-                collect_args.append(next(request_iterator))
-            except StopIteration:
-                break
+        collect_args.append(next(request_iterator))
         try:
             if collect_args[0].MaxCollectDuration > 0:
                 self.max_collect_duration = collect_args[0].MaxCollectDuration

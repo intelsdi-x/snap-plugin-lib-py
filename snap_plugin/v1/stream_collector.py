@@ -56,7 +56,6 @@ class StreamCollector(Plugin):
         This method is ``abstract`` so the implementation **must be provided**
         by the plugin which extends :obj:`snap_plugin.v1.StreamCollector`.
 
-        This method is called by the Snap deamon at task starting phase.
         It is running by _stream_wrapper method in separate thread.
 
         Args:

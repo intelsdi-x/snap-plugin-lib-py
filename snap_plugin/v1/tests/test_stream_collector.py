@@ -66,7 +66,7 @@ def test_stream():
     start_waiting_for_new_metric = time.time()
     assert next(metrics).Metrics_Reply.metrics[0].int64_data == 200
     retrieve_metric_time = time.time()
-    assert int(round(retrieve_metric_time - start_waiting_for_new_metric)) == 1
+    assert round(retrieve_metric_time - start_waiting_for_new_metric) == 1
     col.stop()
 
 
@@ -97,7 +97,7 @@ def test_stream_max_metrics_buffer():
     start_waiting_for_new_metric = time.time()
     a = next(metrics)
     retrieve_metric_time = time.time()
-    assert int(round(retrieve_metric_time - start_waiting_for_new_metric)) == 5
+    assert round(retrieve_metric_time - start_waiting_for_new_metric) == 5
     assert len(a.Metrics_Reply.metrics) == 5
     col.stop()
 
@@ -129,8 +129,13 @@ def test_stream_max_collect_duration():
     start_waiting_for_new_metric = time.time()
     a = next(metrics)
     retrieve_metric_time = time.time()
-    assert int(round(retrieve_metric_time - start_waiting_for_new_metric)) == 10
+    assert round(retrieve_metric_time - start_waiting_for_new_metric) == 10
     assert len(a.Metrics_Reply.metrics) == 0
+    start_waiting_for_new_metric = time.time()
+    a = next(metrics)
+    retrieve_metric_time = time.time()
+    assert round(retrieve_metric_time - start_waiting_for_new_metric) == 1
+    assert len(a.Metrics_Reply.metrics) == 1
     col.stop()
 
 

@@ -32,7 +32,7 @@ class RandomStream(snap.StreamCollector):
     """
 
     def stream(self, metrics):
-        LOG.debug("Metrics streaming started")
+        LOG.debug("Metrics collection")
         metrics_to_stream = []
         metric = snap.Metric(
             namespace=[

@@ -166,10 +166,11 @@ class MockStreamCollector(snap.StreamCollector, threading.Thread):
         threading.Thread.__init__(self, group=None, target=None, name=None)
         self._stopper = threading.Event()
 
-    def stream(self, metrics):
+    def stream(self, requested_metrics):
+        metrics = []
         delay = 1
-        if "stream_delay" in metrics[0].config:
-            delay = metrics[0].config["stream_delay"]
+        if "stream_delay" in requested_metrics[0].config:
+            delay = requested_metrics[0].config["stream_delay"]
         now = time.time()
         metric = snap.Metric(
             namespace=[
@@ -184,8 +185,9 @@ class MockStreamCollector(snap.StreamCollector, threading.Thread):
             timestamp=now,
             data=200
         )
+        metrics.append(metric)
         time.sleep(delay)
-        return metric
+        return metrics
 
     def update_catalog(self, config):
         metrics = [
