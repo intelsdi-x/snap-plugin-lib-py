@@ -25,6 +25,7 @@ try:
 except ImportError:
     import queue as queue
 
+from .metric import Metric
 from .plugin_pb2 import MetricsReply, CollectReply
 from .plugin_proxy import PluginProxy
 from .config_map import ConfigMap
@@ -42,23 +43,31 @@ class _StreamCollectorProxy(PluginProxy):
         self.max_metrics_buffer = 0
         self.max_collect_duration = 10
 
-    def _stream_wrapper(self):
+    def _stream_wrapper(self, metrics):
+        requested_metrics = []
+        for mt in metrics:
+            for metric in mt.Metrics_Arg.metrics:
+                requested_metrics.append(Metric(pb=metric))
         while self.done_queue.empty():
-            self.metrics_queue.put(self.plugin.stream())
+            self.metrics_queue.put(self.plugin.stream(requested_metrics))
 
     def StreamMetrics(self, request_iterator, context):
         """Dispatches metrics streamed by collector"""
-
-        collect_args = next(request_iterator)
+        collect_args = []
+        while True:
+            try:
+                collect_args.append(next(request_iterator))
+            except StopIteration:
+                break
         try:
-            if collect_args.MaxCollectDuration > 0:
-                self.max_collect_duration = collect_args.MaxCollectDuration
-            if collect_args.MaxMetricsBuffer > 0:
-                self.max_metrics_buffer = collect_args.MaxMetricsBuffer
+            if collect_args[0].MaxCollectDuration > 0:
+                self.max_collect_duration = collect_args[0].MaxCollectDuration
+            if collect_args[0].MaxMetricsBuffer > 0:
+                self.max_metrics_buffer = collect_args[0].MaxMetricsBuffer
         except Exception as ex:
             LOG.debug("Unable to get schedule parameters: {}".format(ex))
 
-        thread = threading.Thread(target=self._stream_wrapper,)
+        thread = threading.Thread(target=self._stream_wrapper, args=(collect_args,),)
         thread.daemon = True
         thread.start()
 

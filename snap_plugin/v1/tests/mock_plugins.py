@@ -166,7 +166,10 @@ class MockStreamCollector(snap.StreamCollector, threading.Thread):
         threading.Thread.__init__(self, group=None, target=None, name=None)
         self._stopper = threading.Event()
 
-    def stream(self):
+    def stream(self, metrics):
+        delay = 1
+        if "stream_delay" in metrics[0].config:
+            delay = metrics[0].config["stream_delay"]
         now = time.time()
         metric = snap.Metric(
             namespace=[
@@ -181,7 +184,7 @@ class MockStreamCollector(snap.StreamCollector, threading.Thread):
             timestamp=now,
             data=200
         )
-        time.sleep(1)
+        time.sleep(delay)
         return metric
 
     def update_catalog(self, config):
@@ -204,12 +207,12 @@ class MockStreamCollector(snap.StreamCollector, threading.Thread):
             ("intel", "streaming", "random"),
             [
                 (
-                    "password",
-                    snap.StringRule(default="pass", required=True),
+                    "stream_delay",
+                    snap.IntegerRule(default=1, required=True),
                 ),
                 (
-                    "user",
-                    snap.StringRule(default="user", required=True),
+                    "password",
+                    snap.StringRule(default="pass", required=True),
                 ),
             ]
         ]

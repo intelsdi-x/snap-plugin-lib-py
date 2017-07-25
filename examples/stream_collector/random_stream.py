@@ -31,9 +31,9 @@ class RandomStream(snap.StreamCollector):
     Streams random int and float metrics
     """
 
-    def stream(self):
+    def stream(self, metrics):
         LOG.debug("Metrics streaming started")
-        metrics = []
+        metrics_to_stream = []
         metric = snap.Metric(
             namespace=[
                 snap.NamespaceElement(value="intel"),
@@ -47,7 +47,7 @@ class RandomStream(snap.StreamCollector):
             data=random.randint(1, 100),
             timestamp=time.time()
         )
-        metrics.append(metric)
+        metrics_to_stream.append(metric)
         metric = snap.Metric(
             namespace=[
                 snap.NamespaceElement(value="intel"),
@@ -61,9 +61,9 @@ class RandomStream(snap.StreamCollector):
             data=random.random(),
             timestamp=time.time()
         )
-        metrics.append(metric)
+        metrics_to_stream.append(metric)
         time.sleep(1)
-        return metrics
+        return metrics_to_stream
 
     def update_catalog(self, config):
         LOG.debug("GetMetricTypes called")

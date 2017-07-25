@@ -49,7 +49,7 @@ class StreamCollector(Plugin):
         add_StreamCollectorServicer_to_server(self.proxy, self.server)
 
     @abstractmethod
-    def stream(self):
+    def stream(self, metrics):
         """Streaming metrics.
 
 
@@ -58,6 +58,10 @@ class StreamCollector(Plugin):
 
         This method is called by the Snap deamon at task starting phase.
         It is running by _stream_wrapper method in separate thread.
+
+        Args:
+            metrics (:obj:`list` of :obj:`snap_plugin.v1.Metric`):
+                List of metrics to stream.
 
         Returns:
             :obj:`list` of :obj:`snap_plugin.v1.Metric`:
