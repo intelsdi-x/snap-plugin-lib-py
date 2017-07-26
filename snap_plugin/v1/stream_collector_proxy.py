@@ -45,25 +45,25 @@ class _StreamCollectorProxy(PluginProxy):
 
     def _stream_wrapper(self, metrics):
         requested_metrics = []
-        for mt in metrics:
-            for metric in mt.Metrics_Arg.metrics:
-                requested_metrics.append(Metric(pb=metric))
+        for metric in metrics.Metrics_Arg.metrics:
+            requested_metrics.append(Metric(pb=metric))
         while self.done_queue.empty():
-            returned_metrics = []
-            returned_metrics.extend(self.plugin.stream(requested_metrics))
-            for returned_metric in returned_metrics:
-                self.metrics_queue.put(returned_metric)
+            returned_metrics = self.plugin.stream(requested_metrics)
+            if isinstance(returned_metrics, list):
+                for returned_metric in returned_metrics:
+                    self.metrics_queue.put(returned_metric)
+            else:
+                self.metrics_queue.put(returned_metrics)
 
     def StreamMetrics(self, request_iterator, context):
         """Dispatches metrics streamed by collector"""
         LOG.debug("StreamMetrics called")
-        collect_args = []
-        collect_args.append(next(request_iterator))
+        collect_args = (next(request_iterator))
         try:
-            if collect_args[0].MaxCollectDuration > 0:
-                self.max_collect_duration = collect_args[0].MaxCollectDuration
-            if collect_args[0].MaxMetricsBuffer > 0:
-                self.max_metrics_buffer = collect_args[0].MaxMetricsBuffer
+            if collect_args.MaxCollectDuration > 0:
+                self.max_collect_duration = collect_args.MaxCollectDuration
+            if collect_args.MaxMetricsBuffer > 0:
+                self.max_metrics_buffer = collect_args.MaxMetricsBuffer
         except Exception as ex:
             LOG.debug("Unable to get schedule parameters: {}".format(ex))
 
