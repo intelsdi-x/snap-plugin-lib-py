@@ -96,12 +96,12 @@ Finally we have :py:meth:`~snap_plugin.v1.stream_collector.StreamCollector.strea
 :py:meth:`~snap_plugin.v1.stream_collector.StreamCollector.stream`
 ------------------------------------------------------------------
 
-Method runs in separate thread, and puts data on queue implemented in StreamCollector class
+It is running by _stream_wrapper method in separate thread.
 
 .. code-block:: Python
     :linenos:
     
-    def stream(self):
+    def stream(self, metrics):
         LOG.debug("Metrics streaming started")
         while True:
             time.sleep(1)
@@ -115,7 +115,7 @@ Method runs in separate thread, and puts data on queue implemented in StreamColl
                 ],
                 version=1,
                 tags={"mtype": "gauge"},
-                description="Random {}".format("int"),
+                description="Random int",
                 data=random.randint(1, 100)
             )
             metrics.append(metric)
@@ -128,10 +128,8 @@ Method runs in separate thread, and puts data on queue implemented in StreamColl
                 ],
                 version=1,
                 tags={"mtype": "gauge"},
-                description="Random {}".format("float"),
+                description="Random float",
                 data=random.random()
             )
             metrics.append(metric)
-
-            for mt in metrics:
-                self.proxy.metrics_queue.put(mt)
+            return metrics
