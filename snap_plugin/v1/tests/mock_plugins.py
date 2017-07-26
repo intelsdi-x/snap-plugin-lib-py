@@ -156,3 +156,71 @@ class MockPublisher(snap.Publisher, threading.Thread):
         self._stopper.set()
         self.stopped = True
         self.stop_plugin()
+
+
+class MockStreamCollector(snap.StreamCollector, threading.Thread):
+    """Mock streaming plugin """
+
+    def __init__(self, name, ver):
+        super(MockStreamCollector, self).__init__(name, ver)
+        threading.Thread.__init__(self, group=None, target=None, name=None)
+        self._stopper = threading.Event()
+
+    def stream(self, requested_metrics):
+        delay = 1
+        if "stream_delay" in requested_metrics[0].config:
+            delay = requested_metrics[0].config["stream_delay"]
+        now = time.time()
+        metric = snap.Metric(
+            namespace=[
+                snap.NamespaceElement(value="intel"),
+                snap.NamespaceElement(value="streaming"),
+                snap.NamespaceElement(value="random"),
+                snap.NamespaceElement(value="int")
+            ],
+            version=1,
+            tags={"mtype": "counter"},
+            description="some description",
+            timestamp=now,
+            data=200
+        )
+        time.sleep(delay)
+        return metric
+
+    def update_catalog(self, config):
+        metrics = [
+            snap.Metric(
+                namespace=[
+                    snap.NamespaceElement(value="intel"),
+                    snap.NamespaceElement(value="streaming"),
+                    snap.NamespaceElement(value="random"),
+                    snap.NamespaceElement(value="int")
+                ],
+                unit="some unit",
+                description="some description",
+            )
+        ]
+        return metrics
+
+    def get_config_policy(self):
+        policy = [
+            ("intel", "streaming", "random"),
+            [
+                (
+                    "stream_delay",
+                    snap.IntegerRule(default=1, required=True),
+                ),
+                (
+                    "password",
+                    snap.StringRule(default="pass", required=True),
+                ),
+            ]
+        ]
+        return snap.ConfigPolicy(policy)
+
+    def run(self):
+        self.start_plugin()
+
+    def stop(self):
+        self._stopper.set()
+        self.stop_plugin()

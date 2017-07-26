@@ -14,8 +14,8 @@ protoc.main(
     (
 	'',
 	'-I{}/'.format(snap_proto),
-	'--python_out=./snap_plugin/v1/',
-	'--grpc_python_out=./snap_plugin/v1/',
+	'--python_out=../snap_plugin/v1/',
+	'--grpc_python_out=../snap_plugin/v1/',
     '{}/plugin.proto'.format(snap_proto),
     )
 )

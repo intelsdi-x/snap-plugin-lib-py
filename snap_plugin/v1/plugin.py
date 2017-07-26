@@ -168,6 +168,7 @@ class PluginType(Enum):
     collector = 0
     processor = 1
     publisher = 2
+    stream_collector = 3
 
 
 class PluginResponseState(Enum):
@@ -181,12 +182,14 @@ class RPCType(Enum):
     native = 0
     json = 1
     grpc = 2
+    grpc_stream = 3
 
     def __str__(self):
         switch = {
             0: "Native",
             1: "JSON",
-            2: "gRPC"
+            2: "gRPC",
+            3: "gRPCStream"
         }
         return switch[self.value]
 
