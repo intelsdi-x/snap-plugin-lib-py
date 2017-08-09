@@ -1,8 +1,19 @@
 language: python
 sudo: false
+env:
+  global:
+  - secure: "xYk84NkwUe5TEEwEiBk4rJRZpVIR0zQ6w7MYcZcn+CTx4sRbu52QcM72n925ule0hHqf2i1o2MUYqtImdGeqWbC3eF1VQnRcfUZWwE8d0+zQBIqR0+q2dD5MMZC5/4c6sQgHQn7itWCkIDionmGEHJB6jMiB0aovEkl7Cqr6fAI/lrDabPfnEQ1H3uXLV/TTyXbbhicNWiYtKAj+GWsYoLNOmjGolhU9JONifYvMw8Rkh5hk/tQZpIwceNR6oy10VcjKs+yVHs58sPSF2sYsB6tFcdoDuCZFHX4F1KsP4vfu6GoAbf1X92A9t6P3p/1skXoCMAT9EUH+v6wFkYW0iKXBTZVKRvGquHQcWxhHN9Gw1Wefa84ckmUSAdPv0WsBtTIgu8BjePL88IRjVb35T9HFjYJvcJjg9pshUDVVJVFal0qvwXvHsoKM84SmRBq/JmP3prREY5Iw7IUtw05+r5tIOv4nR0zPzviO/C8OHn2OOV8/Lw+EcZlAtwSiop9SpvHIUqN0Sbj6vAQQ40Zj7aRGfMDXvq0gMcMN/5wMYzM+QhsC7bJfQpnIQ+7oMWWFVLFFuIi1UTKeaxK2sG0rdBa45xZenT4zeqOZ0lb9ZsOci2Z4xW9uic3MfZ86CxKMUUkR0BtBg46cyrpvB6a0sU5ZE6u4pMZQHfF004ARU0c="
 addons:
   apt_packages:
     - pandoc
+  coverity_scan:
+    project:
+      name: "intelsdi-x/snap-plugin-lib-py"
+      description: "Build submitted via Travis CI"
+    notification_email: daniel.nguyen@intel.com
+    build_command_prepend: ""
+    build_command: ""
+    branch_pattern: coverity_scan
 python:
 - '2.7'
 - '3.5'
