@@ -17,11 +17,10 @@
 from setuptools import setup, find_packages
 import versioneer
 
-try:
-    import pypandoc
-    long_description = pypandoc.convert('README.md', 'rst')
-except (IOError, ImportError):
-    long_description = open('README.md').read()
+
+def readme():
+    with open('README.rst') as f:
+        return f.read()
 
 setup(
     name="snap-plugin-lib-py",
@@ -33,7 +32,7 @@ setup(
     author="Joel Cooklin",
     author_email="joel.cooklin@gmail.com",
     description="This is a lib for creating plugins for the Snap telemetry framework.",
-    long_description=long_description,
+    long_description=readme(),
     license="Apache 2.0",
     keywords="snap telemetry plugin plugins metrics",
     url="http://github.com/intelsdi-x/snap-plugin-lib-py"
