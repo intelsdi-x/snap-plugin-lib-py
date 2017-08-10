@@ -21,7 +21,6 @@ python:
 install:
   - pip install -U pip wheel
   - pip install tox-travis
-  - pip install pypandoc
 script: tox
 deploy:
   provider: pypi
