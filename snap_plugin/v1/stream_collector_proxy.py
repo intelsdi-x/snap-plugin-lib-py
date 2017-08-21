@@ -71,22 +71,33 @@ class _StreamCollectorProxy(PluginProxy):
         thread.daemon = True
         thread.start()
 
+        after_collect_duration = time.time() + self.max_collect_duration
         metrics = []
         while context.is_active():
-            try:
-                # wait for new metrics until max collect duration timeout
-                metrics.append(self.metrics_queue.get(block=True, timeout=self.max_collect_duration))
-            except queue.Empty:
-                LOG.debug("Max collect duration exceeded")
+            # check if max_collect_duration has been reached
+            if time.time() >= after_collect_duration:
                 metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics]))
                 metrics = []
+                after_collect_duration = time.time() + self.max_collect_duration
                 yield metrics_col
-            else:
-                # stream metrics if max_metrics_buffer is 0 or enough metrics has been collected
-                if self.max_metrics_buffer == 0 or len(metrics) == self.max_metrics_buffer:
+            # if plugin puts metrics on queue
+            while not self.metrics_queue.empty():
+                # get metric from queue
+                metrics.append(self.metrics_queue.get())
+                # verify if length of metrics buffer has been reached
+                if len(metrics) == self.max_metrics_buffer:
                     metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics]))
                     metrics = []
+                    after_collect_duration = time.time() + self.max_collect_duration
                     yield metrics_col
+            if len(metrics) == 0:
+                continue
+            # if max_metrics_buffer is set to 0, stream metric
+            if self.max_metrics_buffer == 0:
+                metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics]))
+                metrics = []
+                after_collect_duration = time.time() + self.max_collect_duration
+                yield metrics_col
 
         # sent notification if stream has been stopped
         self.done_queue.put(True)
