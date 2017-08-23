@@ -88,10 +88,10 @@ def test_stream_max_metrics_buffer():
                    snap.NamespaceElement(value="random"),
                    snap.NamespaceElement(value="int")],
         version=1,
+        config={"max-metrics-buffer": 5},
         unit="some unit",
         description="some description")
     col_arg = CollectArg(metric).pb
-    col_arg.MaxMetricsBuffer = 5
     mtr = iter([col_arg])
     metrics = client.StreamMetrics(mtr)
     start_waiting_for_new_metric = time.time()

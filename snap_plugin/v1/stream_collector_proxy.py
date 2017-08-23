@@ -49,9 +49,8 @@ class _StreamCollectorProxy(PluginProxy):
             requested_metrics.append(Metric(pb=metric))
         while self.done_queue.empty():
             returned_metrics = self.plugin.stream(requested_metrics)
-            if isinstance(returned_metrics, list):
-                for returned_metric in returned_metrics:
-                    self.metrics_queue.put(returned_metric)
+            if not isinstance(returned_metrics, list):
+                self.metrics_queue.put([returned_metrics])
             else:
                 self.metrics_queue.put(returned_metrics)
 
@@ -59,33 +58,52 @@ class _StreamCollectorProxy(PluginProxy):
         """Dispatches metrics streamed by collector"""
         LOG.debug("StreamMetrics called")
         collect_args = (next(request_iterator))
+        max_metrics_buffer = 0
+        max_collect_duration = 0
+        cfg = Metric(pb=collect_args.Metrics_Arg.metrics[0])
         try:
-            if collect_args.MaxCollectDuration > 0:
-                self.max_collect_duration = collect_args.MaxCollectDuration
-            if collect_args.MaxMetricsBuffer > 0:
-                self.max_metrics_buffer = collect_args.MaxMetricsBuffer
+            max_metrics_buffer = int(cfg.config["max-metrics-buffer"])
         except Exception as ex:
             LOG.debug("Unable to get schedule parameters: {}".format(ex))
-
+        try:
+            max_collect_duration = int(cfg.config["max-collect-duration"])
+        except Exception as ex:
+            LOG.debug("Unable to get schedule parameters: {}".format(ex))
+        if max_metrics_buffer > 0:
+            self.max_metrics_buffer = max_metrics_buffer
+        if max_collect_duration > 0:
+            self.max_collect_duration = max_collect_duration
         thread = threading.Thread(target=self._stream_wrapper, args=(collect_args,),)
         thread.daemon = True
         thread.start()
 
         metrics = []
+        metrics_to_stream = []
         while context.is_active():
             try:
                 # wait for new metrics until max collect duration timeout
-                metrics.append(self.metrics_queue.get(block=True, timeout=self.max_collect_duration))
+                metrics = self.metrics_queue.get(block=True, timeout=self.max_collect_duration)
             except queue.Empty:
-                LOG.debug("Max collect duration exceeded")
-                metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics]))
-                metrics = []
+                LOG.debug("Max collect duration exceeded. Streaming metrics")
+                for metric in metrics:
+                    metrics_to_stream.append(metric)
+                metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics_to_stream]))
+                metrics_to_stream = []
                 yield metrics_col
             else:
+                for metric in metrics:
+                    metrics_to_stream.append(metric)
+                    if len(metrics_to_stream) == self.max_metrics_buffer:
+                        LOG.debug("Max metrics buffer reached. Streaming metrics")
+                        metrics_col = CollectReply(
+                            Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics_to_stream]))
+                        metrics_to_stream = []
+                        yield metrics_col
                 # stream metrics if max_metrics_buffer is 0 or enough metrics has been collected
-                if self.max_metrics_buffer == 0 or len(metrics) == self.max_metrics_buffer:
-                    metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics]))
-                    metrics = []
+                if self.max_metrics_buffer == 0:
+                    LOG.debug("Max metrics buffer set to 0. Streaming metrics")
+                    metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics_to_stream]))
+                    metrics_to_stream = []
                     yield metrics_col
 
         # sent notification if stream has been stopped
