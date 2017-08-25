@@ -120,7 +120,10 @@ def test_stream_max_collect_duration():
                    snap.NamespaceElement(value="random"),
                    snap.NamespaceElement(value="int")],
         version=1,
-        config={"stream_delay": 11},
+        config={
+            "max-collect-duration": 2,
+            "stream_delay": 3
+        },
         unit="some unit",
         description="some description")
     col_arg = CollectArg(metric).pb
@@ -129,12 +132,53 @@ def test_stream_max_collect_duration():
     start_waiting_for_new_metric = time.time()
     a = next(metrics)
     retrieve_metric_time = time.time()
-    assert round(retrieve_metric_time - start_waiting_for_new_metric) == 10
+    assert round(retrieve_metric_time - start_waiting_for_new_metric) == 2
     assert len(a.Metrics_Reply.metrics) == 0
     start_waiting_for_new_metric = time.time()
     a = next(metrics)
     retrieve_metric_time = time.time()
     assert round(retrieve_metric_time - start_waiting_for_new_metric) == 1
+    assert len(a.Metrics_Reply.metrics) == 1
+    col.stop()
+
+
+def test_stream_max_metrics_buffer_with_max_collect_duration():
+    sys.stdout = ThreadPrinter()
+    sys.argv = ["", '{"LogLevel": 1, "PingTimeoutDuration": 5000}']
+    col = MockStreamCollector("MyStreamCollector", 99)
+    col.start()
+    t_end = time.time() + 5
+    # wait for our collector to print its preamble
+    while len(sys.stdout.lines) == 0 and time.time() < t_end:
+        time.sleep(.1)
+    resp = json.loads(sys.stdout.lines[0])
+    client = StreamCollectorStub(
+        grpc.insecure_channel(resp["ListenAddress"]))
+    metric = snap.Metric(
+        namespace=[snap.NamespaceElement(value="intel"),
+                   snap.NamespaceElement(value="streaming"),
+                   snap.NamespaceElement(value="random"),
+                   snap.NamespaceElement(value="int")],
+        version=1,
+        config={
+            "stream_delay": 3,
+            "max-collect-duration": 4,
+            "max-metrics-buffer": 3
+        },
+        unit="some unit",
+        description="some description")
+    col_arg = CollectArg(metric).pb
+    mtr = iter([col_arg])
+    metrics = client.StreamMetrics(mtr)
+    start_waiting_for_new_metric = time.time()
+    a = next(metrics)
+    retrieve_metric_time = time.time()
+    assert round(retrieve_metric_time - start_waiting_for_new_metric) == 4
+    assert len(a.Metrics_Reply.metrics) == 1
+    start_waiting_for_new_metric = time.time()
+    a = next(metrics)
+    retrieve_metric_time = time.time()
+    assert round(retrieve_metric_time - start_waiting_for_new_metric) == 4
     assert len(a.Metrics_Reply.metrics) == 1
     col.stop()
 

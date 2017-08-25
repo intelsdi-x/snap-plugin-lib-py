@@ -57,6 +57,8 @@ class _StreamCollectorProxy(PluginProxy):
     def StreamMetrics(self, request_iterator, context):
         """Dispatches metrics streamed by collector"""
         LOG.debug("StreamMetrics called")
+
+        # set up arguments
         collect_args = (next(request_iterator))
         max_metrics_buffer = 0
         max_collect_duration = 0
@@ -73,37 +75,45 @@ class _StreamCollectorProxy(PluginProxy):
             self.max_metrics_buffer = max_metrics_buffer
         if max_collect_duration > 0:
             self.max_collect_duration = max_collect_duration
+
+        # start collection thread
         thread = threading.Thread(target=self._stream_wrapper, args=(collect_args,),)
         thread.daemon = True
         thread.start()
 
+        # stream metrics
         metrics = []
         metrics_to_stream = []
+        stream_timeout = self.max_collect_duration
         while context.is_active():
             try:
-                # wait for new metrics until max collect duration timeout
-                metrics = self.metrics_queue.get(block=True, timeout=self.max_collect_duration)
+                # wait for metrics until timeout is reached
+                t_start = time.time()
+                metrics = self.metrics_queue.get(block=True, timeout=stream_timeout)
+                elapsed = round(time.time() - t_start)
+                stream_timeout -= elapsed
             except queue.Empty:
-                LOG.debug("Max collect duration exceeded. Streaming metrics")
-                for metric in metrics:
-                    metrics_to_stream.append(metric)
+                LOG.debug("Max collect duration exceeded. Streaming {} metrics".format(len(metrics_to_stream)))
                 metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics_to_stream]))
                 metrics_to_stream = []
+                stream_timeout = self.max_collect_duration
                 yield metrics_col
             else:
                 for metric in metrics:
                     metrics_to_stream.append(metric)
                     if len(metrics_to_stream) == self.max_metrics_buffer:
-                        LOG.debug("Max metrics buffer reached. Streaming metrics")
+                        LOG.debug("Max metrics buffer reached. Streaming {} metrics".format(len(metrics_to_stream)))
                         metrics_col = CollectReply(
                             Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics_to_stream]))
                         metrics_to_stream = []
+                        stream_timeout = self.max_collect_duration
                         yield metrics_col
                 # stream metrics if max_metrics_buffer is 0 or enough metrics has been collected
                 if self.max_metrics_buffer == 0:
-                    LOG.debug("Max metrics buffer set to 0. Streaming metrics")
+                    LOG.debug("Max metrics buffer set to 0. Streaming {} metrics".format(len(metrics_to_stream)))
                     metrics_col = CollectReply(Metrics_Reply=MetricsReply(metrics=[m.pb for m in metrics_to_stream]))
                     metrics_to_stream = []
+                    stream_timeout = self.max_collect_duration
                     yield metrics_col
 
         # sent notification if stream has been stopped
