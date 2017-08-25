@@ -515,7 +515,7 @@ class Plugin(object):
             kwargs={"timeout": self._get_ping_timeout_duration()})
 
     def _init_config_from_args(self):
-        for arg, val in [(arg.replace("_", "-"), val) for arg, val in self._args.__dict__.viewitems() if val is not None]:
+        for arg, val in [(arg.replace("_", "-"), val) for arg, val in self._args.__dict__.items() if val is not None]:
             field = self._flags[arg].json_name if arg in self._flags else None
             if field is not None:
                 self._config[field] = val
