@@ -185,6 +185,8 @@ class MockStreamCollector(snap.StreamCollector, threading.Thread):
             data=200
         )
         time.sleep(delay)
+        if "send_multiple" in requested_metrics[0].config and requested_metrics[0].config["send_multiple"]:
+            return [metric, metric, metric]
         return metric
 
     def update_catalog(self, config):
@@ -208,7 +210,11 @@ class MockStreamCollector(snap.StreamCollector, threading.Thread):
             [
                 (
                     "stream_delay",
-                    snap.IntegerRule(default=1, required=True),
+                    snap.IntegerRule(default=1),
+                ),
+                (
+                    "send_multiple",
+                    snap.BoolRule(default=False),
                 ),
                 (
                     "password",

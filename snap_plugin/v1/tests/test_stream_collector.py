@@ -70,6 +70,35 @@ def test_stream():
     col.stop()
 
 
+def test_multiple_stream():
+    sys.stdout = ThreadPrinter()
+    sys.argv = ["", '{"LogLevel": 1, "PingTimeoutDuration": 5000}']
+    col = MockStreamCollector("MyStreamCollector", 99)
+    col.start()
+    t_end = time.time() + 5
+    # wait for our collector to print its preamble
+    while len(sys.stdout.lines) == 0 and time.time() < t_end:
+        time.sleep(.1)
+    resp = json.loads(sys.stdout.lines[0])
+    client = StreamCollectorStub(
+        grpc.insecure_channel(resp["ListenAddress"]))
+    metric = snap.Metric(
+        namespace=[snap.NamespaceElement(value="intel"),
+                   snap.NamespaceElement(value="streaming"),
+                   snap.NamespaceElement(value="random"),
+                   snap.NamespaceElement(value="int")],
+        version=1,
+        unit="some unit",
+        description="some description",
+        config={"send_multiple": True}
+    )
+    mtr = iter([CollectArg(metric).pb])
+    metrics = client.StreamMetrics(mtr)
+    a = next(metrics)
+    assert len(a.Metrics_Reply.metrics) == 3
+    col.stop()
+
+
 def test_stream_max_metrics_buffer():
     sys.stdout = ThreadPrinter()
     sys.argv = ["", '{"LogLevel": 1, "PingTimeoutDuration": 5000}']
