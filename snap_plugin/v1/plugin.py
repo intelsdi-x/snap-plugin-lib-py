@@ -18,17 +18,19 @@
 import argparse
 import json
 import logging
+import os
 import platform
 import sys
 import time
 from abc import ABCMeta, abstractmethod
+from collections import namedtuple
 from concurrent import futures
 from enum import Enum
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from past.builtins import basestring
 from socket import error as socket_error
-from timeit import default_timer as timer
 from threading import Thread
+from timeit import default_timer as timer
 
 import grpc
 import six
@@ -37,7 +39,6 @@ from .plugin_pb2 import GetConfigPolicyReply
 from .config_map import ConfigMap
 
 LOG = logging.getLogger(__name__)
-
 
 class _Timer(object):
     """Timer for diagnostic timing"""
@@ -77,13 +78,33 @@ def _make_standalone_handler(preamble):
             return
     return _StandaloneHandler
 
+class Flag(object):
+    """Flag definition wrapper."""
+    REQUIRED_FIELDS = ["name", "flag_type", "description"]
+    OPTIONAL_FIELDS = ["default", "json_name"]
+
+    def __init__(self, name, flag_type, description, default=None, json_name=None):
+        self.name = name
+        self.flag_type = flag_type
+        self.description = description
+        self.default = default
+        self.json_name = json_name
+
+    def __str__(self):
+        return "{0}{1}".format(self.__class__.__name__, [(k, getattr(self, k)) for k in self.REQUIRED_FIELDS + self.OPTIONAL_FIELDS])
 
 class _Flags(object):
     """Command line flags container"""
     def __init__(self):
         self._flags = {}
 
-    def add(self, name, flag_type, description, default=None):
+    def __getitem__(self, key):
+        return self._flags[key]
+
+    def __contains__(self, key):
+        return key in self._flags
+
+    def add_item(self, item):
         """Add single command line flag
 
         Arguments:
@@ -97,19 +118,22 @@ class _Flags(object):
             TypeError: Provided wrong arguments or arguments of wrong types, method will raise TypeError
 
         """
-        if not(isinstance(name, basestring) and isinstance(description, basestring)):
+        if not(isinstance(item.name, basestring) and isinstance(item.description, basestring)):
             raise TypeError("Name and description should be strings, are of type {} and {}"
-                            .format(type(name), type(description)))
-        if not(isinstance(flag_type, FlagType)):
-            raise TypeError("Flag type should be of type FlagType, is of {}".format(type(flag_type)))
+                            .format(type(item.name), type(item.description)))
+        if not(isinstance(item.flag_type, FlagType)):
+            raise TypeError("Flag type should be of type FlagType, is of {}".format(type(item.flag_type)))
 
-        if name not in self._flags:
-            if default is not None:
-                if default is not False:
-                    description += " (default: %(default)s)"
-                self._flags[name] = (flag_type, description, default)
+        if item.name not in self._flags:
+            if item.default is not None:
+                if item.default is not False:
+                    item.description = item.description + " (default: %(default)s)"
+                self._flags[item.name] = item
             else:
-                self._flags[name] = (flag_type, description)
+                self._flags[item.name] = item
+
+    def add(self, name, flag_type, description, default=None):
+        self.add_item(Flag(name, flag_type, description, default))
 
     def add_multiple(self, flags):
         """Add multiple command line flags
@@ -124,16 +148,20 @@ class _Flags(object):
         if not isinstance(flags, list):
             raise TypeError("Expected list of flags, got object of type{}".format(type(flags)))
         for flag in flags:
-            if not isinstance(flag, tuple) or not(len(flag) == 3 or len(flag) == 4):
-                raise TypeError("Expected tuple of length 3 or 4, got {}".format(flag))
-            if len(flag) == 3:
-                self.add(*flag)
-            else:
-                self.add(*flag[:3], default=flag[3])
+            if isinstance(flag, Flag):
+                self.add_item(flag)
+            elif isinstance(flag, tuple):
+                try:
+                    item = Flag(*flag)
+                    self.add_item(item)
+                except TypeError as e:
+                    raise TypeError("Invalid arguments to initialize a flag definition, expect ({0} [, {1}]) but got {3}"
+                        .format(", ".join(Flag.REQUIRED_FIELDS),
+                        ", ".join(Flag.OPTIONAL_FIELDS), flag))
 
     def __iter__(self):
-        for name, atr in self._flags.items():
-            yield (name,) + atr
+        for name, item in self._flags.items():
+            yield item
 
 
 class _EnumEncoder(json.JSONEncoder):
@@ -207,6 +235,23 @@ class FlagType(Enum):
     toggle = 1
 
 
+class MissingRequiredArgument(Exception):
+    """Exception covering the case when a toggle flag has been used
+    that must be used in conjunction with other argument flags.
+
+    Arguments:
+    missing_arg (`py:class:`string`): The argument that is required.
+    group_arg (`py:class:`string`): The argument requires an assigned subcategory argument to be assigned.
+    """
+    def __init__(self, missing_arg, group_arg):
+        self.missing_arg = missing_arg
+        self.group_arg = group_arg
+
+    def __str__(self):
+        return "'{}' argument is missing. Required with '{}' argument.".format(self.missing_arg, self.group_arg)
+pass
+
+
 class Meta(object):
     """Snap plugin meta
 
@@ -226,7 +271,9 @@ class Meta(object):
             for the provided plugin and the metrics it exposes (default=500ms).
         rpc_type (:py:class:`RPCType`)> RPC type
         rpc_version (:obj:`int`): RPC version
-        unsecure (:obj:`bool`): Unsecure
+        root_cert_paths (:obj:`string`): Paths to the root certificates. Colon delimited.
+        server_cert_path (:obj:`string`): Path to the server certificate.
+        private_key_path (:obj:`string`): Path to the private key file.
     """
     def __init__(self,
                  type,
@@ -238,7 +285,9 @@ class Meta(object):
                  cache_ttl=None,
                  rpc_type=RPCType.grpc,
                  rpc_version=1,
-                 unsecure=True):
+                 root_cert_paths=None,
+                 server_cert_path=None,
+                 private_key_path=None):
         self.name = name
         self.version = version
         setattr(sys.modules["snap_plugin.v1"], "PLUGIN_VERSION", version)
@@ -249,7 +298,11 @@ class Meta(object):
         self.cache_ttl = cache_ttl
         self.rpc_type = rpc_type
         self.rpc_version = rpc_version
-        self.unsecure = unsecure
+        self.tls = False,
+        self.root_cert_paths = root_cert_paths.split(":") if root_cert_paths is not None else None
+        self.server_cert_path = server_cert_path
+        self.private_key_path = private_key_path
+        self.cipher_suites = ["ECDHE-RSA-AES128-GCM-SHA256", "ECDHE-RSA-AES256-GCM-SHA386"]
 
 
 @six.add_metaclass(ABCMeta)
@@ -284,9 +337,14 @@ class Plugin(object):
 
         flags = [
             ("config", FlagType.value, "JSON Snap global config"),
+            ("port", FlagType.value, "GRPC server port"),
             ("stand-alone", FlagType.toggle, "enable stand alone mode"),
-            ("stand-alone-port", FlagType.value, "http port for stand alone mode", 8181),
-            ("log-level", FlagType.value, "logging level 0:panic - 5:debug", 3)
+            ("stand-alone-port", FlagType.value, "http port for stand alone mode", 8182),
+            Flag("log-level", FlagType.value, "logging level 0:panic - 5:debug", 3, json_name="LogLevel"),
+            Flag("tls", FlagType.toggle, "enable tls", json_name="TLSEnabled"),
+            Flag("root-cert-paths", FlagType.value, "paths to root certificate; delimited by ':'", json_name="RootCertPaths"),
+            Flag("key-path", FlagType.value, "path to server private key", json_name="KeyPath"),
+            Flag("cert-path", FlagType.value, "path to server certificate", json_name="CertPath"),
         ]
         self._flags.add_multiple(flags)
 
@@ -314,6 +372,7 @@ class Plugin(object):
             - Finding an available port
             - Starting the gRPC server
             - Printing to STDOUT data (JSON) for handshaking with Snap
+            - Configuring a secure (TLS) or insecure port
 
         Collector plugin started without config provided in command line arguments
         will run in diagnostic mode, which will print out following info:
@@ -336,8 +395,8 @@ class Plugin(object):
             self._monitor.join()
             sys.exit()
         elif self._mode == PluginMode.standalone:
-            preamble = self._generate_preamble_and_serve()
             try:
+                preamble = self._generate_preamble_and_serve()
                 handler = _make_standalone_handler(preamble)
                 self.standalone_server = HTTPServer(('', int(self._args.stand_alone_port)), handler)
             except (OSError, socket_error) as err:
@@ -348,6 +407,9 @@ class Plugin(object):
                 else:
                     # unexpected error, re-raise
                     raise
+            except Exception as e:
+                LOG.error("Unable to run stand alone. {}".format(str(e)))
+                return
             else:
                 try:
                     sys.stdout.write("Plugin loaded at {}:{}\n".format(*self.standalone_server.server_address))
@@ -363,7 +425,17 @@ class Plugin(object):
             sys.stdout.flush()
 
     def _generate_preamble_and_serve(self):
-        self._port = self.server.add_insecure_port('127.0.0.1:{!s}'.format(0))
+        if self._config.get("TLSEnabled", False) == True:
+            try:
+                self._tls_setup()
+                credentials = self._generate_tls_credentials()
+                self._port = self.server.add_secure_port('127.0.0.1:{}'.format(self._port), credentials)
+                LOG.info("Configured secure port on {}.".format(self._port))
+            except Exception as e:
+                raise Exception("TLS setup failed. Unable to add secure port. {}".format(str(e)))
+        else:
+            self._port = self.server.add_insecure_port('127.0.0.1:{}'.format(self._port))
+            LOG.info("Configured insecure port on {}.".format(self._port))
         self.server.start()
         return json.dumps(
             {
@@ -375,9 +447,13 @@ class Plugin(object):
                     "RPCVersion": self.meta.rpc_version,
                     "ConcurrencyCount": self.meta.concurrency_count,
                     "Exclusive": self.meta.exclusive,
-                    "Unsecure": self.meta.unsecure,
                     "CacheTTL": self.meta.cache_ttl,
                     "RoutingStrategy": self.meta.routing_strategy,
+                    "RootCertPaths": self.meta.root_cert_paths,
+                    "CertPath": self.meta.server_cert_path,
+                    "KeyPath": self.meta.private_key_path,
+                    "Ciphers": self.meta.cipher_suites,
+                    "TLSEnabled": self._config.get("TLSEnabled"),
                 },
                 "ListenAddress": "127.0.0.1:{!s}".format(self._port),
                 "Token": None,
@@ -388,7 +464,7 @@ class Plugin(object):
             },
             cls=_EnumEncoder
         ) + "\n"
-
+    
     def _parse_args(self):
         """Parse command line arguments, parse config and initialize monitor"""
 
@@ -398,20 +474,20 @@ class Plugin(object):
                                   help="show plugin's version number and exit")
 
         # add every flag from Flags object to parser
-        for flag in list(sorted(self._flags, key=lambda flag: flag[0])):
-            kwargs = {"dest": flag[0], "help": flag[2], "action": "store_true"}
-            if '-' in flag[0]:
-                kwargs["dest"] = flag[0].replace('-', '_')
-            if flag[1] == FlagType.value:
+        for flag in list(sorted(self._flags, key=lambda flag: flag.name)):
+            kwargs = {"dest": flag.name, "help": flag.description, "action": "store_true"}
+            if '-' in flag.name:
+                kwargs["dest"] = flag.name.replace('-', '_')
+            if flag.flag_type == FlagType.value:
                 kwargs["action"] = "store"
                 kwargs["metavar"] = "value"
-                if len(flag) == 4:
-                    kwargs["default"] = flag[3]
+                if flag.default is not None:
+                    kwargs["default"] = flag.default
 
-            self._parser.add_argument("--{}".format(flag[0]), **kwargs)
+            self._parser.add_argument("--{}".format(flag.name), **kwargs)
 
         self._args = self._parser.parse_args()
-        self._config["LogLevel"] = int(self._args.log_level)
+        self._init_config_from_args()
 
         if self._args.framework_config is not None:
             # if there is a config provided by the framework, we operate in normal mode
@@ -430,7 +506,6 @@ class Plugin(object):
             except ValueError:
                 LOG.warning("Invalid config provided: expected JSON (provided={}).".format(self._args.config))
                 self._config = {}
-
         self._set_log_level()
         self._monitor = Thread(
             target=_monitor,
@@ -438,6 +513,55 @@ class Plugin(object):
                   self.stop_plugin,
                   self._is_shutting_down),
             kwargs={"timeout": self._get_ping_timeout_duration()})
+
+    def _init_config_from_args(self):
+        for arg, val in [(arg.replace("_", "-"), val) for arg, val in self._args.__dict__.items() if val is not None]:
+            field = self._flags[arg].json_name if arg in self._flags else None
+            if field is not None:
+                self._config[field] = val
+
+    def _tls_setup(self):
+        # check if the secure flag has been added
+        self.meta.tls = True
+        self.meta.server_cert_path = self._config.get("CertPath")
+        self.meta.private_key_path = self._config.get("KeyPath")
+        self.meta.root_cert_paths = self._config.get("RootCertPaths").split(":") if self._config.get("RootCertPaths") is not None else None
+        # Check that all required variables are set
+        if self.meta.private_key_path is None:
+            raise MissingRequiredArgument("key-path", "tls")
+        elif self.meta.server_cert_path is None:
+            raise MissingRequiredArgument("cert-path", "tls")
+        elif self.meta.root_cert_paths is None:
+            raise MissingRequiredArgument("root-cert-paths", "tls")
+        if self.meta.cipher_suites is not None:
+            os.environ["GRPC_SSL_CIPHER_SUITES"] = ":".join(self.meta.cipher_suites)
+
+    def _generate_tls_credentials(self):
+        blocks = []
+        file_paths = []
+        dir_paths = []
+        for path in self.meta.root_cert_paths:
+            if os.path.isdir(path) == True:
+                dir_paths.append(path)
+            else:
+                file_paths.append(path)
+        for path in dir_paths:
+            for child in os.listdir(path):
+                child_path = os.path.join(path, child)
+                if os.path.isfile(child_path) == True:
+                    file_paths.append(child_path)
+                else:
+                    LOG.debug("skipping second level directory {} found under path {}".format(child_path, path))
+        for path in file_paths:
+            try:
+                cert = open(path).read().encode()
+                blocks.append(cert)
+            except Exception as e:
+                raise Exception("{} failed to load as a root certificate: {}".format(path, str(e)))
+        root_certs = b"".join(blocks)
+        key = open(self.meta.private_key_path).read().encode()
+        cert = open(self.meta.server_cert_path).read().encode()
+        return grpc.ssl_server_credentials([(key, cert)], root_certs, True)
 
     def _set_log_level(self):
         """Sets the log level provided by the framework.
