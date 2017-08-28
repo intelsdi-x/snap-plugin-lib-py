@@ -652,6 +652,11 @@ class Plugin(object):
             sys.stdout.write("Printing config policy took {}\n\n".format(print_timer.elapsed()))
             sys.stdout.flush()
 
+            # apply default values to config
+            for (_, default) in defaults:
+                if default[0] not in self._config:
+                    self._config[default[0]] = default[1]
+
             # metric catalog
             with print_timer:
                 sys.stdout.write("Metric catalog will be updated to include following namespaces:\n")
