@@ -1,3 +1,12 @@
+DISCONTINUATION OF PROJECT. 
+
+This project will no longer be maintained by Intel.
+
+This project has been identified as having known security escapes.
+
+Intel has ceased development and contributions including, but not limited to, maintenance, bug fixes, new releases, or updates, to this project.  
+
+Intel no longer accepts patches to this project.
 # <img src="http://snap-telemetry.io/assets/img/snap_url.png" align="middle" height="75">Snap Plugin Library for Python
 
 This is a library for writing plugins in Python for the
